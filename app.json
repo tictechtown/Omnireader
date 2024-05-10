@@ -1,0 +1,38 @@
+{
+  "expo": {
+    "name": "Omnireader",
+    "slug": "Omnireader",
+    "version": "1.0.0",
+    "orientation": "portrait",
+    "icon": "./assets/icon.png",
+    "backgroundColor": "#000000",
+    "userInterfaceStyle": "automatic",
+    "splash": {
+      "image": "./assets/splash.png",
+      "resizeMode": "contain",
+      "backgroundColor": "#ffea9f"
+    },
+    "assetBundlePatterns": ["**/*"],
+    "ios": {
+      "supportsTablet": true,
+      "bundleIdentifier": "com.freshtiti.Omnireader"
+    },
+    "android": {
+      "adaptiveIcon": {
+        "foregroundImage": "./assets/adaptive-icon.png",
+        "backgroundColor": "#ffea9f",
+        "monochromeImage": "./assets/monochrome-icon.png"
+      },
+      "package": "com.freshtiti.Omnireader"
+    },
+    "web": {
+      "favicon": "./assets/favicon.png"
+    },
+    "scheme": "omnireader",
+    "plugins": [
+      "expo-router",
+      "@config-plugins/react-native-blob-util",
+      "@config-plugins/react-native-pdf"
+    ]
+  }
+}

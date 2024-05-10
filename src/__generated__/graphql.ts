@@ -1,0 +1,4041 @@
+/* eslint-disable */
+import { TypedDocumentNode as DocumentNode } from '@graphql-typed-document-node/core';
+export type Maybe<T> = T | null;
+export type InputMaybe<T> = Maybe<T>;
+export type Exact<T extends { [key: string]: unknown }> = { [K in keyof T]: T[K] };
+export type MakeOptional<T, K extends keyof T> = Omit<T, K> & { [SubKey in K]?: Maybe<T[SubKey]> };
+export type MakeMaybe<T, K extends keyof T> = Omit<T, K> & { [SubKey in K]: Maybe<T[SubKey]> };
+export type MakeEmpty<T extends { [key: string]: unknown }, K extends keyof T> = { [_ in K]?: never };
+export type Incremental<T> = T | { [P in keyof T]?: P extends ' $fragmentName' | '__typename' ? T[P] : never };
+/** All built-in and custom scalars, mapped to their actual values */
+export type Scalars = {
+  ID: { input: string; output: string; }
+  String: { input: string; output: string; }
+  Boolean: { input: boolean; output: boolean; }
+  Int: { input: number; output: number; }
+  Float: { input: number; output: number; }
+  Date: { input: any; output: any; }
+  JSON: { input: any; output: any; }
+};
+
+export type AddDiscoverFeedError = {
+  __typename?: 'AddDiscoverFeedError';
+  errorCodes: Array<AddDiscoverFeedErrorCode>;
+};
+
+export enum AddDiscoverFeedErrorCode {
+  BadRequest = 'BAD_REQUEST',
+  Conflict = 'CONFLICT',
+  NotFound = 'NOT_FOUND',
+  Unauthorized = 'UNAUTHORIZED'
+}
+
+export type AddDiscoverFeedInput = {
+  url: Scalars['String']['input'];
+};
+
+export type AddDiscoverFeedResult = AddDiscoverFeedError | AddDiscoverFeedSuccess;
+
+export type AddDiscoverFeedSuccess = {
+  __typename?: 'AddDiscoverFeedSuccess';
+  feed: DiscoverFeed;
+};
+
+export type AddPopularReadError = {
+  __typename?: 'AddPopularReadError';
+  errorCodes: Array<AddPopularReadErrorCode>;
+};
+
+export enum AddPopularReadErrorCode {
+  BadRequest = 'BAD_REQUEST',
+  NotFound = 'NOT_FOUND',
+  Unauthorized = 'UNAUTHORIZED'
+}
+
+export type AddPopularReadResult = AddPopularReadError | AddPopularReadSuccess;
+
+export type AddPopularReadSuccess = {
+  __typename?: 'AddPopularReadSuccess';
+  pageId: Scalars['String']['output'];
+};
+
+export enum AllowedReply {
+  Confirm = 'CONFIRM',
+  Okay = 'OKAY',
+  Subscribe = 'SUBSCRIBE',
+  Yes = 'YES'
+}
+
+export type ApiKey = {
+  __typename?: 'ApiKey';
+  createdAt: Scalars['Date']['output'];
+  expiresAt: Scalars['Date']['output'];
+  id: Scalars['ID']['output'];
+  key?: Maybe<Scalars['String']['output']>;
+  name: Scalars['String']['output'];
+  scopes?: Maybe<Array<Scalars['String']['output']>>;
+  usedAt?: Maybe<Scalars['Date']['output']>;
+};
+
+export type ApiKeysError = {
+  __typename?: 'ApiKeysError';
+  errorCodes: Array<ApiKeysErrorCode>;
+};
+
+export enum ApiKeysErrorCode {
+  BadRequest = 'BAD_REQUEST',
+  Unauthorized = 'UNAUTHORIZED'
+}
+
+export type ApiKeysResult = ApiKeysError | ApiKeysSuccess;
+
+export type ApiKeysSuccess = {
+  __typename?: 'ApiKeysSuccess';
+  apiKeys: Array<ApiKey>;
+};
+
+export type ArchiveLinkError = {
+  __typename?: 'ArchiveLinkError';
+  errorCodes: Array<ArchiveLinkErrorCode>;
+  message: Scalars['String']['output'];
+};
+
+export enum ArchiveLinkErrorCode {
+  BadRequest = 'BAD_REQUEST',
+  Unauthorized = 'UNAUTHORIZED'
+}
+
+export type ArchiveLinkInput = {
+  archived: Scalars['Boolean']['input'];
+  linkId: Scalars['ID']['input'];
+};
+
+export type ArchiveLinkResult = ArchiveLinkError | ArchiveLinkSuccess;
+
+export type ArchiveLinkSuccess = {
+  __typename?: 'ArchiveLinkSuccess';
+  linkId: Scalars['String']['output'];
+  message: Scalars['String']['output'];
+};
+
+export type Article = {
+  __typename?: 'Article';
+  author?: Maybe<Scalars['String']['output']>;
+  content: Scalars['String']['output'];
+  contentReader: ContentReader;
+  createdAt: Scalars['Date']['output'];
+  description?: Maybe<Scalars['String']['output']>;
+  directionality?: Maybe<DirectionalityType>;
+  feedContent?: Maybe<Scalars['String']['output']>;
+  folder: Scalars['String']['output'];
+  hasContent?: Maybe<Scalars['Boolean']['output']>;
+  hash: Scalars['String']['output'];
+  highlights: Array<Highlight>;
+  id: Scalars['ID']['output'];
+  image?: Maybe<Scalars['String']['output']>;
+  isArchived: Scalars['Boolean']['output'];
+  labels?: Maybe<Array<Label>>;
+  language?: Maybe<Scalars['String']['output']>;
+  linkId?: Maybe<Scalars['ID']['output']>;
+  originalArticleUrl?: Maybe<Scalars['String']['output']>;
+  originalHtml?: Maybe<Scalars['String']['output']>;
+  pageType?: Maybe<PageType>;
+  postedByViewer?: Maybe<Scalars['Boolean']['output']>;
+  publishedAt?: Maybe<Scalars['Date']['output']>;
+  readAt?: Maybe<Scalars['Date']['output']>;
+  readingProgressAnchorIndex: Scalars['Int']['output'];
+  readingProgressPercent: Scalars['Float']['output'];
+  readingProgressTopPercent?: Maybe<Scalars['Float']['output']>;
+  recommendations?: Maybe<Array<Recommendation>>;
+  savedAt: Scalars['Date']['output'];
+  savedByViewer?: Maybe<Scalars['Boolean']['output']>;
+  shareInfo?: Maybe<LinkShareInfo>;
+  sharedComment?: Maybe<Scalars['String']['output']>;
+  siteIcon?: Maybe<Scalars['String']['output']>;
+  siteName?: Maybe<Scalars['String']['output']>;
+  slug: Scalars['String']['output'];
+  state?: Maybe<ArticleSavingRequestStatus>;
+  subscription?: Maybe<Scalars['String']['output']>;
+  title: Scalars['String']['output'];
+  unsubHttpUrl?: Maybe<Scalars['String']['output']>;
+  unsubMailTo?: Maybe<Scalars['String']['output']>;
+  updatedAt?: Maybe<Scalars['Date']['output']>;
+  uploadFileId?: Maybe<Scalars['ID']['output']>;
+  url: Scalars['String']['output'];
+  wordsCount?: Maybe<Scalars['Int']['output']>;
+};
+
+
+export type ArticleHighlightsArgs = {
+  input?: InputMaybe<ArticleHighlightsInput>;
+};
+
+export type ArticleEdge = {
+  __typename?: 'ArticleEdge';
+  cursor: Scalars['String']['output'];
+  node: Article;
+};
+
+export type ArticleError = {
+  __typename?: 'ArticleError';
+  errorCodes: Array<ArticleErrorCode>;
+};
+
+export enum ArticleErrorCode {
+  BadData = 'BAD_DATA',
+  NotFound = 'NOT_FOUND',
+  Unauthorized = 'UNAUTHORIZED'
+}
+
+export type ArticleHighlightsInput = {
+  includeFriends?: InputMaybe<Scalars['Boolean']['input']>;
+};
+
+export type ArticleResult = ArticleError | ArticleSuccess;
+
+export type ArticleSavingRequest = {
+  __typename?: 'ArticleSavingRequest';
+  /** @deprecated article has been replaced with slug */
+  article?: Maybe<Article>;
+  createdAt: Scalars['Date']['output'];
+  errorCode?: Maybe<CreateArticleErrorCode>;
+  id: Scalars['ID']['output'];
+  slug: Scalars['String']['output'];
+  status: ArticleSavingRequestStatus;
+  updatedAt?: Maybe<Scalars['Date']['output']>;
+  url: Scalars['String']['output'];
+  user: User;
+  /** @deprecated userId has been replaced with user */
+  userId: Scalars['ID']['output'];
+};
+
+export type ArticleSavingRequestError = {
+  __typename?: 'ArticleSavingRequestError';
+  errorCodes: Array<ArticleSavingRequestErrorCode>;
+};
+
+export enum ArticleSavingRequestErrorCode {
+  BadData = 'BAD_DATA',
+  NotFound = 'NOT_FOUND',
+  Unauthorized = 'UNAUTHORIZED'
+}
+
+export type ArticleSavingRequestResult = ArticleSavingRequestError | ArticleSavingRequestSuccess;
+
+export enum ArticleSavingRequestStatus {
+  Archived = 'ARCHIVED',
+  ContentNotFetched = 'CONTENT_NOT_FETCHED',
+  Deleted = 'DELETED',
+  Failed = 'FAILED',
+  Processing = 'PROCESSING',
+  Succeeded = 'SUCCEEDED'
+}
+
+export type ArticleSavingRequestSuccess = {
+  __typename?: 'ArticleSavingRequestSuccess';
+  articleSavingRequest: ArticleSavingRequest;
+};
+
+export type ArticleSuccess = {
+  __typename?: 'ArticleSuccess';
+  article: Article;
+};
+
+export type ArticlesError = {
+  __typename?: 'ArticlesError';
+  errorCodes: Array<ArticlesErrorCode>;
+};
+
+export enum ArticlesErrorCode {
+  Unauthorized = 'UNAUTHORIZED'
+}
+
+export type ArticlesResult = ArticlesError | ArticlesSuccess;
+
+export type ArticlesSuccess = {
+  __typename?: 'ArticlesSuccess';
+  edges: Array<ArticleEdge>;
+  pageInfo: PageInfo;
+};
+
+export type BulkActionError = {
+  __typename?: 'BulkActionError';
+  errorCodes: Array<BulkActionErrorCode>;
+};
+
+export enum BulkActionErrorCode {
+  BadRequest = 'BAD_REQUEST',
+  Unauthorized = 'UNAUTHORIZED'
+}
+
+export type BulkActionResult = BulkActionError | BulkActionSuccess;
+
+export type BulkActionSuccess = {
+  __typename?: 'BulkActionSuccess';
+  success: Scalars['Boolean']['output'];
+};
+
+export enum BulkActionType {
+  AddLabels = 'ADD_LABELS',
+  Archive = 'ARCHIVE',
+  Delete = 'DELETE',
+  MarkAsRead = 'MARK_AS_READ',
+  MoveToFolder = 'MOVE_TO_FOLDER'
+}
+
+export enum ContentReader {
+  Epub = 'EPUB',
+  Pdf = 'PDF',
+  Web = 'WEB'
+}
+
+export type CreateArticleError = {
+  __typename?: 'CreateArticleError';
+  errorCodes: Array<CreateArticleErrorCode>;
+};
+
+export enum CreateArticleErrorCode {
+  ElasticError = 'ELASTIC_ERROR',
+  NotAllowedToParse = 'NOT_ALLOWED_TO_PARSE',
+  PayloadTooLarge = 'PAYLOAD_TOO_LARGE',
+  UnableToFetch = 'UNABLE_TO_FETCH',
+  UnableToParse = 'UNABLE_TO_PARSE',
+  Unauthorized = 'UNAUTHORIZED',
+  UploadFileMissing = 'UPLOAD_FILE_MISSING'
+}
+
+export type CreateArticleInput = {
+  articleSavingRequestId?: InputMaybe<Scalars['ID']['input']>;
+  folder?: InputMaybe<Scalars['String']['input']>;
+  labels?: InputMaybe<Array<CreateLabelInput>>;
+  preparedDocument?: InputMaybe<PreparedDocumentInput>;
+  publishedAt?: InputMaybe<Scalars['Date']['input']>;
+  rssFeedUrl?: InputMaybe<Scalars['String']['input']>;
+  savedAt?: InputMaybe<Scalars['Date']['input']>;
+  skipParsing?: InputMaybe<Scalars['Boolean']['input']>;
+  source?: InputMaybe<Scalars['String']['input']>;
+  state?: InputMaybe<ArticleSavingRequestStatus>;
+  uploadFileId?: InputMaybe<Scalars['ID']['input']>;
+  url: Scalars['String']['input'];
+};
+
+export type CreateArticleResult = CreateArticleError | CreateArticleSuccess;
+
+export type CreateArticleSavingRequestError = {
+  __typename?: 'CreateArticleSavingRequestError';
+  errorCodes: Array<CreateArticleSavingRequestErrorCode>;
+};
+
+export enum CreateArticleSavingRequestErrorCode {
+  BadData = 'BAD_DATA',
+  Unauthorized = 'UNAUTHORIZED'
+}
+
+export type CreateArticleSavingRequestInput = {
+  url: Scalars['String']['input'];
+};
+
+export type CreateArticleSavingRequestResult = CreateArticleSavingRequestError | CreateArticleSavingRequestSuccess;
+
+export type CreateArticleSavingRequestSuccess = {
+  __typename?: 'CreateArticleSavingRequestSuccess';
+  articleSavingRequest: ArticleSavingRequest;
+};
+
+export type CreateArticleSuccess = {
+  __typename?: 'CreateArticleSuccess';
+  created: Scalars['Boolean']['output'];
+  createdArticle: Article;
+  user: User;
+};
+
+export type CreateGroupError = {
+  __typename?: 'CreateGroupError';
+  errorCodes: Array<CreateGroupErrorCode>;
+};
+
+export enum CreateGroupErrorCode {
+  BadRequest = 'BAD_REQUEST',
+  Unauthorized = 'UNAUTHORIZED'
+}
+
+export type CreateGroupInput = {
+  description?: InputMaybe<Scalars['String']['input']>;
+  expiresInDays?: InputMaybe<Scalars['Int']['input']>;
+  maxMembers?: InputMaybe<Scalars['Int']['input']>;
+  name: Scalars['String']['input'];
+  onlyAdminCanPost?: InputMaybe<Scalars['Boolean']['input']>;
+  onlyAdminCanSeeMembers?: InputMaybe<Scalars['Boolean']['input']>;
+  topics?: InputMaybe<Array<Scalars['String']['input']>>;
+};
+
+export type CreateGroupResult = CreateGroupError | CreateGroupSuccess;
+
+export type CreateGroupSuccess = {
+  __typename?: 'CreateGroupSuccess';
+  group: RecommendationGroup;
+};
+
+export type CreateHighlightError = {
+  __typename?: 'CreateHighlightError';
+  errorCodes: Array<CreateHighlightErrorCode>;
+};
+
+export enum CreateHighlightErrorCode {
+  AlreadyExists = 'ALREADY_EXISTS',
+  BadData = 'BAD_DATA',
+  Forbidden = 'FORBIDDEN',
+  NotFound = 'NOT_FOUND',
+  Unauthorized = 'UNAUTHORIZED'
+}
+
+export type CreateHighlightInput = {
+  annotation?: InputMaybe<Scalars['String']['input']>;
+  articleId: Scalars['ID']['input'];
+  color?: InputMaybe<Scalars['String']['input']>;
+  highlightPositionAnchorIndex?: InputMaybe<Scalars['Int']['input']>;
+  highlightPositionPercent?: InputMaybe<Scalars['Float']['input']>;
+  html?: InputMaybe<Scalars['String']['input']>;
+  id: Scalars['ID']['input'];
+  patch?: InputMaybe<Scalars['String']['input']>;
+  prefix?: InputMaybe<Scalars['String']['input']>;
+  quote?: InputMaybe<Scalars['String']['input']>;
+  representation?: InputMaybe<RepresentationType>;
+  sharedAt?: InputMaybe<Scalars['Date']['input']>;
+  shortId: Scalars['String']['input'];
+  suffix?: InputMaybe<Scalars['String']['input']>;
+  type?: InputMaybe<HighlightType>;
+};
+
+export type CreateHighlightReplyError = {
+  __typename?: 'CreateHighlightReplyError';
+  errorCodes: Array<CreateHighlightReplyErrorCode>;
+};
+
+export enum CreateHighlightReplyErrorCode {
+  EmptyAnnotation = 'EMPTY_ANNOTATION',
+  Forbidden = 'FORBIDDEN',
+  NotFound = 'NOT_FOUND',
+  Unauthorized = 'UNAUTHORIZED'
+}
+
+export type CreateHighlightReplyInput = {
+  highlightId: Scalars['ID']['input'];
+  text: Scalars['String']['input'];
+};
+
+export type CreateHighlightReplyResult = CreateHighlightReplyError | CreateHighlightReplySuccess;
+
+export type CreateHighlightReplySuccess = {
+  __typename?: 'CreateHighlightReplySuccess';
+  highlightReply: HighlightReply;
+};
+
+export type CreateHighlightResult = CreateHighlightError | CreateHighlightSuccess;
+
+export type CreateHighlightSuccess = {
+  __typename?: 'CreateHighlightSuccess';
+  highlight: Highlight;
+};
+
+export type CreateLabelError = {
+  __typename?: 'CreateLabelError';
+  errorCodes: Array<CreateLabelErrorCode>;
+};
+
+export enum CreateLabelErrorCode {
+  BadRequest = 'BAD_REQUEST',
+  LabelAlreadyExists = 'LABEL_ALREADY_EXISTS',
+  NotFound = 'NOT_FOUND',
+  Unauthorized = 'UNAUTHORIZED'
+}
+
+export type CreateLabelInput = {
+  color?: InputMaybe<Scalars['String']['input']>;
+  description?: InputMaybe<Scalars['String']['input']>;
+  name: Scalars['String']['input'];
+};
+
+export type CreateLabelResult = CreateLabelError | CreateLabelSuccess;
+
+export type CreateLabelSuccess = {
+  __typename?: 'CreateLabelSuccess';
+  label: Label;
+};
+
+export type CreateNewsletterEmailError = {
+  __typename?: 'CreateNewsletterEmailError';
+  errorCodes: Array<CreateNewsletterEmailErrorCode>;
+};
+
+export enum CreateNewsletterEmailErrorCode {
+  BadRequest = 'BAD_REQUEST',
+  Unauthorized = 'UNAUTHORIZED'
+}
+
+export type CreateNewsletterEmailInput = {
+  description?: InputMaybe<Scalars['String']['input']>;
+  folder?: InputMaybe<Scalars['String']['input']>;
+  name?: InputMaybe<Scalars['String']['input']>;
+};
+
+export type CreateNewsletterEmailResult = CreateNewsletterEmailError | CreateNewsletterEmailSuccess;
+
+export type CreateNewsletterEmailSuccess = {
+  __typename?: 'CreateNewsletterEmailSuccess';
+  newsletterEmail: NewsletterEmail;
+};
+
+export type CreateReactionError = {
+  __typename?: 'CreateReactionError';
+  errorCodes: Array<CreateReactionErrorCode>;
+};
+
+export enum CreateReactionErrorCode {
+  BadCode = 'BAD_CODE',
+  BadTarget = 'BAD_TARGET',
+  Forbidden = 'FORBIDDEN',
+  NotFound = 'NOT_FOUND',
+  Unauthorized = 'UNAUTHORIZED'
+}
+
+export type CreateReactionInput = {
+  code: ReactionType;
+  highlightId?: InputMaybe<Scalars['ID']['input']>;
+  userArticleId?: InputMaybe<Scalars['ID']['input']>;
+};
+
+export type CreateReactionResult = CreateReactionError | CreateReactionSuccess;
+
+export type CreateReactionSuccess = {
+  __typename?: 'CreateReactionSuccess';
+  reaction: Reaction;
+};
+
+export type CreateReminderError = {
+  __typename?: 'CreateReminderError';
+  errorCodes: Array<CreateReminderErrorCode>;
+};
+
+export enum CreateReminderErrorCode {
+  BadRequest = 'BAD_REQUEST',
+  NotFound = 'NOT_FOUND',
+  Unauthorized = 'UNAUTHORIZED'
+}
+
+export type CreateReminderInput = {
+  archiveUntil: Scalars['Boolean']['input'];
+  clientRequestId?: InputMaybe<Scalars['ID']['input']>;
+  linkId?: InputMaybe<Scalars['ID']['input']>;
+  remindAt: Scalars['Date']['input'];
+  sendNotification: Scalars['Boolean']['input'];
+};
+
+export type CreateReminderResult = CreateReminderError | CreateReminderSuccess;
+
+export type CreateReminderSuccess = {
+  __typename?: 'CreateReminderSuccess';
+  reminder: Reminder;
+};
+
+export type DeleteAccountError = {
+  __typename?: 'DeleteAccountError';
+  errorCodes: Array<DeleteAccountErrorCode>;
+};
+
+export enum DeleteAccountErrorCode {
+  Forbidden = 'FORBIDDEN',
+  Unauthorized = 'UNAUTHORIZED',
+  UserNotFound = 'USER_NOT_FOUND'
+}
+
+export type DeleteAccountResult = DeleteAccountError | DeleteAccountSuccess;
+
+export type DeleteAccountSuccess = {
+  __typename?: 'DeleteAccountSuccess';
+  userID: Scalars['ID']['output'];
+};
+
+export type DeleteDiscoverArticleError = {
+  __typename?: 'DeleteDiscoverArticleError';
+  errorCodes: Array<DeleteDiscoverArticleErrorCode>;
+};
+
+export enum DeleteDiscoverArticleErrorCode {
+  BadRequest = 'BAD_REQUEST',
+  NotFound = 'NOT_FOUND',
+  Unauthorized = 'UNAUTHORIZED'
+}
+
+export type DeleteDiscoverArticleInput = {
+  discoverArticleId: Scalars['ID']['input'];
+};
+
+export type DeleteDiscoverArticleResult = DeleteDiscoverArticleError | DeleteDiscoverArticleSuccess;
+
+export type DeleteDiscoverArticleSuccess = {
+  __typename?: 'DeleteDiscoverArticleSuccess';
+  id: Scalars['ID']['output'];
+};
+
+export type DeleteDiscoverFeedError = {
+  __typename?: 'DeleteDiscoverFeedError';
+  errorCodes: Array<DeleteDiscoverFeedErrorCode>;
+};
+
+export enum DeleteDiscoverFeedErrorCode {
+  BadRequest = 'BAD_REQUEST',
+  Conflict = 'CONFLICT',
+  NotFound = 'NOT_FOUND',
+  Unauthorized = 'UNAUTHORIZED'
+}
+
+export type DeleteDiscoverFeedInput = {
+  feedId: Scalars['ID']['input'];
+};
+
+export type DeleteDiscoverFeedResult = DeleteDiscoverFeedError | DeleteDiscoverFeedSuccess;
+
+export type DeleteDiscoverFeedSuccess = {
+  __typename?: 'DeleteDiscoverFeedSuccess';
+  id: Scalars['String']['output'];
+};
+
+export type DeleteFilterError = {
+  __typename?: 'DeleteFilterError';
+  errorCodes: Array<DeleteFilterErrorCode>;
+};
+
+export enum DeleteFilterErrorCode {
+  BadRequest = 'BAD_REQUEST',
+  NotFound = 'NOT_FOUND',
+  Unauthorized = 'UNAUTHORIZED'
+}
+
+export type DeleteFilterResult = DeleteFilterError | DeleteFilterSuccess;
+
+export type DeleteFilterSuccess = {
+  __typename?: 'DeleteFilterSuccess';
+  filter: Filter;
+};
+
+export type DeleteHighlightError = {
+  __typename?: 'DeleteHighlightError';
+  errorCodes: Array<DeleteHighlightErrorCode>;
+};
+
+export enum DeleteHighlightErrorCode {
+  Forbidden = 'FORBIDDEN',
+  NotFound = 'NOT_FOUND',
+  Unauthorized = 'UNAUTHORIZED'
+}
+
+export type DeleteHighlightReplyError = {
+  __typename?: 'DeleteHighlightReplyError';
+  errorCodes: Array<DeleteHighlightReplyErrorCode>;
+};
+
+export enum DeleteHighlightReplyErrorCode {
+  Forbidden = 'FORBIDDEN',
+  NotFound = 'NOT_FOUND',
+  Unauthorized = 'UNAUTHORIZED'
+}
+
+export type DeleteHighlightReplyResult = DeleteHighlightReplyError | DeleteHighlightReplySuccess;
+
+export type DeleteHighlightReplySuccess = {
+  __typename?: 'DeleteHighlightReplySuccess';
+  highlightReply: HighlightReply;
+};
+
+export type DeleteHighlightResult = DeleteHighlightError | DeleteHighlightSuccess;
+
+export type DeleteHighlightSuccess = {
+  __typename?: 'DeleteHighlightSuccess';
+  highlight: Highlight;
+};
+
+export type DeleteIntegrationError = {
+  __typename?: 'DeleteIntegrationError';
+  errorCodes: Array<DeleteIntegrationErrorCode>;
+};
+
+export enum DeleteIntegrationErrorCode {
+  BadRequest = 'BAD_REQUEST',
+  NotFound = 'NOT_FOUND',
+  Unauthorized = 'UNAUTHORIZED'
+}
+
+export type DeleteIntegrationResult = DeleteIntegrationError | DeleteIntegrationSuccess;
+
+export type DeleteIntegrationSuccess = {
+  __typename?: 'DeleteIntegrationSuccess';
+  integration: Integration;
+};
+
+export type DeleteLabelError = {
+  __typename?: 'DeleteLabelError';
+  errorCodes: Array<DeleteLabelErrorCode>;
+};
+
+export enum DeleteLabelErrorCode {
+  BadRequest = 'BAD_REQUEST',
+  Forbidden = 'FORBIDDEN',
+  NotFound = 'NOT_FOUND',
+  Unauthorized = 'UNAUTHORIZED'
+}
+
+export type DeleteLabelResult = DeleteLabelError | DeleteLabelSuccess;
+
+export type DeleteLabelSuccess = {
+  __typename?: 'DeleteLabelSuccess';
+  label: Label;
+};
+
+export type DeleteNewsletterEmailError = {
+  __typename?: 'DeleteNewsletterEmailError';
+  errorCodes: Array<DeleteNewsletterEmailErrorCode>;
+};
+
+export enum DeleteNewsletterEmailErrorCode {
+  BadRequest = 'BAD_REQUEST',
+  NotFound = 'NOT_FOUND',
+  Unauthorized = 'UNAUTHORIZED'
+}
+
+export type DeleteNewsletterEmailResult = DeleteNewsletterEmailError | DeleteNewsletterEmailSuccess;
+
+export type DeleteNewsletterEmailSuccess = {
+  __typename?: 'DeleteNewsletterEmailSuccess';
+  newsletterEmail: NewsletterEmail;
+};
+
+export type DeleteReactionError = {
+  __typename?: 'DeleteReactionError';
+  errorCodes: Array<DeleteReactionErrorCode>;
+};
+
+export enum DeleteReactionErrorCode {
+  Forbidden = 'FORBIDDEN',
+  NotFound = 'NOT_FOUND',
+  Unauthorized = 'UNAUTHORIZED'
+}
+
+export type DeleteReactionResult = DeleteReactionError | DeleteReactionSuccess;
+
+export type DeleteReactionSuccess = {
+  __typename?: 'DeleteReactionSuccess';
+  reaction: Reaction;
+};
+
+export type DeleteReminderError = {
+  __typename?: 'DeleteReminderError';
+  errorCodes: Array<DeleteReminderErrorCode>;
+};
+
+export enum DeleteReminderErrorCode {
+  BadRequest = 'BAD_REQUEST',
+  NotFound = 'NOT_FOUND',
+  Unauthorized = 'UNAUTHORIZED'
+}
+
+export type DeleteReminderResult = DeleteReminderError | DeleteReminderSuccess;
+
+export type DeleteReminderSuccess = {
+  __typename?: 'DeleteReminderSuccess';
+  reminder: Reminder;
+};
+
+export type DeleteRuleError = {
+  __typename?: 'DeleteRuleError';
+  errorCodes: Array<DeleteRuleErrorCode>;
+};
+
+export enum DeleteRuleErrorCode {
+  BadRequest = 'BAD_REQUEST',
+  NotFound = 'NOT_FOUND',
+  Unauthorized = 'UNAUTHORIZED'
+}
+
+export type DeleteRuleResult = DeleteRuleError | DeleteRuleSuccess;
+
+export type DeleteRuleSuccess = {
+  __typename?: 'DeleteRuleSuccess';
+  rule: Rule;
+};
+
+export type DeleteWebhookError = {
+  __typename?: 'DeleteWebhookError';
+  errorCodes: Array<DeleteWebhookErrorCode>;
+};
+
+export enum DeleteWebhookErrorCode {
+  BadRequest = 'BAD_REQUEST',
+  NotFound = 'NOT_FOUND',
+  Unauthorized = 'UNAUTHORIZED'
+}
+
+export type DeleteWebhookResult = DeleteWebhookError | DeleteWebhookSuccess;
+
+export type DeleteWebhookSuccess = {
+  __typename?: 'DeleteWebhookSuccess';
+  webhook: Webhook;
+};
+
+export type DeviceToken = {
+  __typename?: 'DeviceToken';
+  createdAt: Scalars['Date']['output'];
+  id: Scalars['ID']['output'];
+  token: Scalars['String']['output'];
+};
+
+export type DeviceTokensError = {
+  __typename?: 'DeviceTokensError';
+  errorCodes: Array<DeviceTokensErrorCode>;
+};
+
+export enum DeviceTokensErrorCode {
+  BadRequest = 'BAD_REQUEST',
+  Unauthorized = 'UNAUTHORIZED'
+}
+
+export type DeviceTokensResult = DeviceTokensError | DeviceTokensSuccess;
+
+export type DeviceTokensSuccess = {
+  __typename?: 'DeviceTokensSuccess';
+  deviceTokens: Array<DeviceToken>;
+};
+
+export enum DirectionalityType {
+  Ltr = 'LTR',
+  Rtl = 'RTL'
+}
+
+export type DiscoverFeed = {
+  __typename?: 'DiscoverFeed';
+  description?: Maybe<Scalars['String']['output']>;
+  id: Scalars['ID']['output'];
+  image?: Maybe<Scalars['String']['output']>;
+  link: Scalars['String']['output'];
+  title: Scalars['String']['output'];
+  type: Scalars['String']['output'];
+  visibleName?: Maybe<Scalars['String']['output']>;
+};
+
+export type DiscoverFeedArticle = {
+  __typename?: 'DiscoverFeedArticle';
+  author?: Maybe<Scalars['String']['output']>;
+  description: Scalars['String']['output'];
+  feed: Scalars['String']['output'];
+  id: Scalars['ID']['output'];
+  image?: Maybe<Scalars['String']['output']>;
+  publishedDate?: Maybe<Scalars['Date']['output']>;
+  savedId?: Maybe<Scalars['String']['output']>;
+  savedLinkUrl?: Maybe<Scalars['String']['output']>;
+  siteName?: Maybe<Scalars['String']['output']>;
+  slug: Scalars['String']['output'];
+  title: Scalars['String']['output'];
+  url: Scalars['String']['output'];
+};
+
+export type DiscoverFeedError = {
+  __typename?: 'DiscoverFeedError';
+  errorCodes: Array<DiscoverFeedErrorCode>;
+};
+
+export enum DiscoverFeedErrorCode {
+  BadRequest = 'BAD_REQUEST',
+  Unauthorized = 'UNAUTHORIZED'
+}
+
+export type DiscoverFeedResult = DiscoverFeedError | DiscoverFeedSuccess;
+
+export type DiscoverFeedSuccess = {
+  __typename?: 'DiscoverFeedSuccess';
+  feeds: Array<Maybe<DiscoverFeed>>;
+};
+
+export type DiscoverTopic = {
+  __typename?: 'DiscoverTopic';
+  description: Scalars['String']['output'];
+  name: Scalars['String']['output'];
+};
+
+export type EditDiscoverFeedError = {
+  __typename?: 'EditDiscoverFeedError';
+  errorCodes: Array<EditDiscoverFeedErrorCode>;
+};
+
+export enum EditDiscoverFeedErrorCode {
+  BadRequest = 'BAD_REQUEST',
+  NotFound = 'NOT_FOUND',
+  Unauthorized = 'UNAUTHORIZED'
+}
+
+export type EditDiscoverFeedInput = {
+  feedId: Scalars['ID']['input'];
+  name: Scalars['String']['input'];
+};
+
+export type EditDiscoverFeedResult = EditDiscoverFeedError | EditDiscoverFeedSuccess;
+
+export type EditDiscoverFeedSuccess = {
+  __typename?: 'EditDiscoverFeedSuccess';
+  id: Scalars['ID']['output'];
+};
+
+export type EmptyTrashError = {
+  __typename?: 'EmptyTrashError';
+  errorCodes: Array<EmptyTrashErrorCode>;
+};
+
+export enum EmptyTrashErrorCode {
+  Unauthorized = 'UNAUTHORIZED'
+}
+
+export type EmptyTrashResult = EmptyTrashError | EmptyTrashSuccess;
+
+export type EmptyTrashSuccess = {
+  __typename?: 'EmptyTrashSuccess';
+  success?: Maybe<Scalars['Boolean']['output']>;
+};
+
+export type ExportToIntegrationError = {
+  __typename?: 'ExportToIntegrationError';
+  errorCodes: Array<ExportToIntegrationErrorCode>;
+};
+
+export enum ExportToIntegrationErrorCode {
+  FailedToCreateTask = 'FAILED_TO_CREATE_TASK',
+  Unauthorized = 'UNAUTHORIZED'
+}
+
+export type ExportToIntegrationResult = ExportToIntegrationError | ExportToIntegrationSuccess;
+
+export type ExportToIntegrationSuccess = {
+  __typename?: 'ExportToIntegrationSuccess';
+  task: Task;
+};
+
+export type Feature = {
+  __typename?: 'Feature';
+  createdAt: Scalars['Date']['output'];
+  expiresAt?: Maybe<Scalars['Date']['output']>;
+  grantedAt?: Maybe<Scalars['Date']['output']>;
+  id: Scalars['ID']['output'];
+  name: Scalars['String']['output'];
+  token: Scalars['String']['output'];
+  updatedAt?: Maybe<Scalars['Date']['output']>;
+};
+
+export type Feed = {
+  __typename?: 'Feed';
+  author?: Maybe<Scalars['String']['output']>;
+  createdAt?: Maybe<Scalars['Date']['output']>;
+  description?: Maybe<Scalars['String']['output']>;
+  id?: Maybe<Scalars['ID']['output']>;
+  image?: Maybe<Scalars['String']['output']>;
+  publishedAt?: Maybe<Scalars['Date']['output']>;
+  title: Scalars['String']['output'];
+  type?: Maybe<Scalars['String']['output']>;
+  updatedAt?: Maybe<Scalars['Date']['output']>;
+  url: Scalars['String']['output'];
+};
+
+export type FeedArticle = {
+  __typename?: 'FeedArticle';
+  annotationsCount?: Maybe<Scalars['Int']['output']>;
+  article: Article;
+  highlight?: Maybe<Highlight>;
+  highlightsCount?: Maybe<Scalars['Int']['output']>;
+  id: Scalars['ID']['output'];
+  reactions: Array<Reaction>;
+  sharedAt: Scalars['Date']['output'];
+  sharedBy: User;
+  sharedComment?: Maybe<Scalars['String']['output']>;
+  sharedWithHighlights?: Maybe<Scalars['Boolean']['output']>;
+};
+
+export type FeedArticleEdge = {
+  __typename?: 'FeedArticleEdge';
+  cursor: Scalars['String']['output'];
+  node: FeedArticle;
+};
+
+export type FeedArticlesError = {
+  __typename?: 'FeedArticlesError';
+  errorCodes: Array<FeedArticlesErrorCode>;
+};
+
+export enum FeedArticlesErrorCode {
+  Unauthorized = 'UNAUTHORIZED'
+}
+
+export type FeedArticlesResult = FeedArticlesError | FeedArticlesSuccess;
+
+export type FeedArticlesSuccess = {
+  __typename?: 'FeedArticlesSuccess';
+  edges: Array<FeedArticleEdge>;
+  pageInfo: PageInfo;
+};
+
+export type FeedEdge = {
+  __typename?: 'FeedEdge';
+  cursor: Scalars['String']['output'];
+  node: Feed;
+};
+
+export type FeedsError = {
+  __typename?: 'FeedsError';
+  errorCodes: Array<FeedsErrorCode>;
+};
+
+export enum FeedsErrorCode {
+  BadRequest = 'BAD_REQUEST',
+  Unauthorized = 'UNAUTHORIZED'
+}
+
+export type FeedsInput = {
+  after?: InputMaybe<Scalars['String']['input']>;
+  first?: InputMaybe<Scalars['Int']['input']>;
+  query?: InputMaybe<Scalars['String']['input']>;
+  sort?: InputMaybe<SortParams>;
+};
+
+export type FeedsResult = FeedsError | FeedsSuccess;
+
+export type FeedsSuccess = {
+  __typename?: 'FeedsSuccess';
+  edges: Array<FeedEdge>;
+  pageInfo: PageInfo;
+};
+
+export type FetchContentError = {
+  __typename?: 'FetchContentError';
+  errorCodes: Array<FetchContentErrorCode>;
+};
+
+export enum FetchContentErrorCode {
+  BadRequest = 'BAD_REQUEST',
+  Unauthorized = 'UNAUTHORIZED'
+}
+
+export type FetchContentResult = FetchContentError | FetchContentSuccess;
+
+export type FetchContentSuccess = {
+  __typename?: 'FetchContentSuccess';
+  success: Scalars['Boolean']['output'];
+};
+
+export enum FetchContentType {
+  Always = 'ALWAYS',
+  Never = 'NEVER',
+  WhenEmpty = 'WHEN_EMPTY'
+}
+
+export type Filter = {
+  __typename?: 'Filter';
+  category?: Maybe<Scalars['String']['output']>;
+  createdAt: Scalars['Date']['output'];
+  defaultFilter?: Maybe<Scalars['Boolean']['output']>;
+  description?: Maybe<Scalars['String']['output']>;
+  filter: Scalars['String']['output'];
+  folder?: Maybe<Scalars['String']['output']>;
+  id: Scalars['ID']['output'];
+  name: Scalars['String']['output'];
+  position: Scalars['Int']['output'];
+  updatedAt?: Maybe<Scalars['Date']['output']>;
+  visible?: Maybe<Scalars['Boolean']['output']>;
+};
+
+export type FiltersError = {
+  __typename?: 'FiltersError';
+  errorCodes: Array<FiltersErrorCode>;
+};
+
+export enum FiltersErrorCode {
+  BadRequest = 'BAD_REQUEST',
+  Unauthorized = 'UNAUTHORIZED'
+}
+
+export type FiltersResult = FiltersError | FiltersSuccess;
+
+export type FiltersSuccess = {
+  __typename?: 'FiltersSuccess';
+  filters: Array<Filter>;
+};
+
+export type GenerateApiKeyError = {
+  __typename?: 'GenerateApiKeyError';
+  errorCodes: Array<GenerateApiKeyErrorCode>;
+};
+
+export enum GenerateApiKeyErrorCode {
+  AlreadyExists = 'ALREADY_EXISTS',
+  BadRequest = 'BAD_REQUEST',
+  Unauthorized = 'UNAUTHORIZED'
+}
+
+export type GenerateApiKeyInput = {
+  expiresAt: Scalars['Date']['input'];
+  name: Scalars['String']['input'];
+  scopes?: InputMaybe<Array<Scalars['String']['input']>>;
+};
+
+export type GenerateApiKeyResult = GenerateApiKeyError | GenerateApiKeySuccess;
+
+export type GenerateApiKeySuccess = {
+  __typename?: 'GenerateApiKeySuccess';
+  apiKey: ApiKey;
+};
+
+export type GetDiscoverFeedArticleError = {
+  __typename?: 'GetDiscoverFeedArticleError';
+  errorCodes: Array<GetDiscoverFeedArticleErrorCode>;
+};
+
+export enum GetDiscoverFeedArticleErrorCode {
+  BadRequest = 'BAD_REQUEST',
+  NotFound = 'NOT_FOUND',
+  Unauthorized = 'UNAUTHORIZED'
+}
+
+export type GetDiscoverFeedArticleResults = GetDiscoverFeedArticleError | GetDiscoverFeedArticleSuccess;
+
+export type GetDiscoverFeedArticleSuccess = {
+  __typename?: 'GetDiscoverFeedArticleSuccess';
+  discoverArticles?: Maybe<Array<Maybe<DiscoverFeedArticle>>>;
+  pageInfo: PageInfo;
+};
+
+export type GetDiscoverTopicError = {
+  __typename?: 'GetDiscoverTopicError';
+  errorCodes: Array<GetDiscoverTopicErrorCode>;
+};
+
+export enum GetDiscoverTopicErrorCode {
+  Unauthorized = 'UNAUTHORIZED'
+}
+
+export type GetDiscoverTopicResults = GetDiscoverTopicError | GetDiscoverTopicSuccess;
+
+export type GetDiscoverTopicSuccess = {
+  __typename?: 'GetDiscoverTopicSuccess';
+  discoverTopics?: Maybe<Array<DiscoverTopic>>;
+};
+
+export type GetFollowersError = {
+  __typename?: 'GetFollowersError';
+  errorCodes: Array<GetFollowersErrorCode>;
+};
+
+export enum GetFollowersErrorCode {
+  Unauthorized = 'UNAUTHORIZED'
+}
+
+export type GetFollowersResult = GetFollowersError | GetFollowersSuccess;
+
+export type GetFollowersSuccess = {
+  __typename?: 'GetFollowersSuccess';
+  followers: Array<User>;
+};
+
+export type GetFollowingError = {
+  __typename?: 'GetFollowingError';
+  errorCodes: Array<GetFollowingErrorCode>;
+};
+
+export enum GetFollowingErrorCode {
+  Unauthorized = 'UNAUTHORIZED'
+}
+
+export type GetFollowingResult = GetFollowingError | GetFollowingSuccess;
+
+export type GetFollowingSuccess = {
+  __typename?: 'GetFollowingSuccess';
+  following: Array<User>;
+};
+
+export type GetUserPersonalizationError = {
+  __typename?: 'GetUserPersonalizationError';
+  errorCodes: Array<GetUserPersonalizationErrorCode>;
+};
+
+export enum GetUserPersonalizationErrorCode {
+  Unauthorized = 'UNAUTHORIZED'
+}
+
+export type GetUserPersonalizationResult = GetUserPersonalizationError | GetUserPersonalizationSuccess;
+
+export type GetUserPersonalizationSuccess = {
+  __typename?: 'GetUserPersonalizationSuccess';
+  userPersonalization?: Maybe<UserPersonalization>;
+};
+
+export type GoogleLoginInput = {
+  email: Scalars['String']['input'];
+  secret: Scalars['String']['input'];
+};
+
+export type GoogleSignupError = {
+  __typename?: 'GoogleSignupError';
+  errorCodes: Array<Maybe<SignupErrorCode>>;
+};
+
+export type GoogleSignupInput = {
+  bio?: InputMaybe<Scalars['String']['input']>;
+  email: Scalars['String']['input'];
+  name: Scalars['String']['input'];
+  pictureUrl: Scalars['String']['input'];
+  secret: Scalars['String']['input'];
+  sourceUserId: Scalars['String']['input'];
+  username: Scalars['String']['input'];
+};
+
+export type GoogleSignupResult = GoogleSignupError | GoogleSignupSuccess;
+
+export type GoogleSignupSuccess = {
+  __typename?: 'GoogleSignupSuccess';
+  me: User;
+};
+
+export type GroupsError = {
+  __typename?: 'GroupsError';
+  errorCodes: Array<GroupsErrorCode>;
+};
+
+export enum GroupsErrorCode {
+  BadRequest = 'BAD_REQUEST',
+  Unauthorized = 'UNAUTHORIZED'
+}
+
+export type GroupsResult = GroupsError | GroupsSuccess;
+
+export type GroupsSuccess = {
+  __typename?: 'GroupsSuccess';
+  groups: Array<RecommendationGroup>;
+};
+
+export type Highlight = {
+  __typename?: 'Highlight';
+  annotation?: Maybe<Scalars['String']['output']>;
+  color?: Maybe<Scalars['String']['output']>;
+  createdAt: Scalars['Date']['output'];
+  createdByMe: Scalars['Boolean']['output'];
+  highlightPositionAnchorIndex?: Maybe<Scalars['Int']['output']>;
+  highlightPositionPercent?: Maybe<Scalars['Float']['output']>;
+  html?: Maybe<Scalars['String']['output']>;
+  id: Scalars['ID']['output'];
+  labels?: Maybe<Array<Label>>;
+  patch?: Maybe<Scalars['String']['output']>;
+  prefix?: Maybe<Scalars['String']['output']>;
+  quote?: Maybe<Scalars['String']['output']>;
+  reactions: Array<Reaction>;
+  replies: Array<HighlightReply>;
+  representation: RepresentationType;
+  sharedAt?: Maybe<Scalars['Date']['output']>;
+  shortId: Scalars['String']['output'];
+  suffix?: Maybe<Scalars['String']['output']>;
+  type: HighlightType;
+  updatedAt?: Maybe<Scalars['Date']['output']>;
+  user: User;
+};
+
+export type HighlightReply = {
+  __typename?: 'HighlightReply';
+  createdAt: Scalars['Date']['output'];
+  highlight: Highlight;
+  id: Scalars['ID']['output'];
+  text: Scalars['String']['output'];
+  updatedAt?: Maybe<Scalars['Date']['output']>;
+  user: User;
+};
+
+export type HighlightStats = {
+  __typename?: 'HighlightStats';
+  highlightCount: Scalars['Int']['output'];
+};
+
+export enum HighlightType {
+  Highlight = 'HIGHLIGHT',
+  Note = 'NOTE',
+  Redaction = 'REDACTION'
+}
+
+export type ImportFromIntegrationError = {
+  __typename?: 'ImportFromIntegrationError';
+  errorCodes: Array<ImportFromIntegrationErrorCode>;
+};
+
+export enum ImportFromIntegrationErrorCode {
+  BadRequest = 'BAD_REQUEST',
+  Unauthorized = 'UNAUTHORIZED'
+}
+
+export type ImportFromIntegrationResult = ImportFromIntegrationError | ImportFromIntegrationSuccess;
+
+export type ImportFromIntegrationSuccess = {
+  __typename?: 'ImportFromIntegrationSuccess';
+  success: Scalars['Boolean']['output'];
+};
+
+export enum ImportItemState {
+  All = 'ALL',
+  Archived = 'ARCHIVED',
+  Unarchived = 'UNARCHIVED',
+  Unread = 'UNREAD'
+}
+
+export type Integration = {
+  __typename?: 'Integration';
+  createdAt: Scalars['Date']['output'];
+  enabled: Scalars['Boolean']['output'];
+  id: Scalars['ID']['output'];
+  name: Scalars['String']['output'];
+  settings?: Maybe<Scalars['JSON']['output']>;
+  taskName?: Maybe<Scalars['String']['output']>;
+  token: Scalars['String']['output'];
+  type: IntegrationType;
+  updatedAt?: Maybe<Scalars['Date']['output']>;
+};
+
+export type IntegrationError = {
+  __typename?: 'IntegrationError';
+  errorCodes: Array<IntegrationErrorCode>;
+};
+
+export enum IntegrationErrorCode {
+  NotFound = 'NOT_FOUND'
+}
+
+export type IntegrationResult = IntegrationError | IntegrationSuccess;
+
+export type IntegrationSuccess = {
+  __typename?: 'IntegrationSuccess';
+  integration: Integration;
+};
+
+export enum IntegrationType {
+  Export = 'EXPORT',
+  Import = 'IMPORT'
+}
+
+export type IntegrationsError = {
+  __typename?: 'IntegrationsError';
+  errorCodes: Array<IntegrationsErrorCode>;
+};
+
+export enum IntegrationsErrorCode {
+  BadRequest = 'BAD_REQUEST',
+  Unauthorized = 'UNAUTHORIZED'
+}
+
+export type IntegrationsResult = IntegrationsError | IntegrationsSuccess;
+
+export type IntegrationsSuccess = {
+  __typename?: 'IntegrationsSuccess';
+  integrations: Array<Integration>;
+};
+
+export type JoinGroupError = {
+  __typename?: 'JoinGroupError';
+  errorCodes: Array<JoinGroupErrorCode>;
+};
+
+export enum JoinGroupErrorCode {
+  BadRequest = 'BAD_REQUEST',
+  NotFound = 'NOT_FOUND',
+  Unauthorized = 'UNAUTHORIZED'
+}
+
+export type JoinGroupResult = JoinGroupError | JoinGroupSuccess;
+
+export type JoinGroupSuccess = {
+  __typename?: 'JoinGroupSuccess';
+  group: RecommendationGroup;
+};
+
+export type Label = {
+  __typename?: 'Label';
+  color: Scalars['String']['output'];
+  createdAt?: Maybe<Scalars['Date']['output']>;
+  description?: Maybe<Scalars['String']['output']>;
+  id: Scalars['ID']['output'];
+  internal?: Maybe<Scalars['Boolean']['output']>;
+  name: Scalars['String']['output'];
+  position?: Maybe<Scalars['Int']['output']>;
+  source?: Maybe<Scalars['String']['output']>;
+};
+
+export type LabelsError = {
+  __typename?: 'LabelsError';
+  errorCodes: Array<LabelsErrorCode>;
+};
+
+export enum LabelsErrorCode {
+  BadRequest = 'BAD_REQUEST',
+  NotFound = 'NOT_FOUND',
+  Unauthorized = 'UNAUTHORIZED'
+}
+
+export type LabelsResult = LabelsError | LabelsSuccess;
+
+export type LabelsSuccess = {
+  __typename?: 'LabelsSuccess';
+  labels: Array<Label>;
+};
+
+export type LeaveGroupError = {
+  __typename?: 'LeaveGroupError';
+  errorCodes: Array<LeaveGroupErrorCode>;
+};
+
+export enum LeaveGroupErrorCode {
+  BadRequest = 'BAD_REQUEST',
+  NotFound = 'NOT_FOUND',
+  Unauthorized = 'UNAUTHORIZED'
+}
+
+export type LeaveGroupResult = LeaveGroupError | LeaveGroupSuccess;
+
+export type LeaveGroupSuccess = {
+  __typename?: 'LeaveGroupSuccess';
+  success: Scalars['Boolean']['output'];
+};
+
+export type Link = {
+  __typename?: 'Link';
+  highlightStats: HighlightStats;
+  id: Scalars['ID']['output'];
+  page: Page;
+  postedByViewer: Scalars['Boolean']['output'];
+  readState: ReadState;
+  savedAt: Scalars['Date']['output'];
+  savedBy: User;
+  savedByViewer: Scalars['Boolean']['output'];
+  shareInfo: LinkShareInfo;
+  shareStats: ShareStats;
+  slug: Scalars['String']['output'];
+  updatedAt?: Maybe<Scalars['Date']['output']>;
+  url: Scalars['String']['output'];
+};
+
+export type LinkShareInfo = {
+  __typename?: 'LinkShareInfo';
+  description: Scalars['String']['output'];
+  imageUrl: Scalars['String']['output'];
+  title: Scalars['String']['output'];
+};
+
+export type LogOutError = {
+  __typename?: 'LogOutError';
+  errorCodes: Array<LogOutErrorCode>;
+};
+
+export enum LogOutErrorCode {
+  LogOutFailed = 'LOG_OUT_FAILED'
+}
+
+export type LogOutResult = LogOutError | LogOutSuccess;
+
+export type LogOutSuccess = {
+  __typename?: 'LogOutSuccess';
+  message?: Maybe<Scalars['String']['output']>;
+};
+
+export type LoginError = {
+  __typename?: 'LoginError';
+  errorCodes: Array<LoginErrorCode>;
+};
+
+export enum LoginErrorCode {
+  AccessDenied = 'ACCESS_DENIED',
+  AuthFailed = 'AUTH_FAILED',
+  InvalidCredentials = 'INVALID_CREDENTIALS',
+  UserAlreadyExists = 'USER_ALREADY_EXISTS',
+  UserNotFound = 'USER_NOT_FOUND',
+  WrongSource = 'WRONG_SOURCE'
+}
+
+export type LoginResult = LoginError | LoginSuccess;
+
+export type LoginSuccess = {
+  __typename?: 'LoginSuccess';
+  me: User;
+};
+
+export type MarkEmailAsItemError = {
+  __typename?: 'MarkEmailAsItemError';
+  errorCodes: Array<MarkEmailAsItemErrorCode>;
+};
+
+export enum MarkEmailAsItemErrorCode {
+  BadRequest = 'BAD_REQUEST',
+  NotFound = 'NOT_FOUND',
+  Unauthorized = 'UNAUTHORIZED'
+}
+
+export type MarkEmailAsItemResult = MarkEmailAsItemError | MarkEmailAsItemSuccess;
+
+export type MarkEmailAsItemSuccess = {
+  __typename?: 'MarkEmailAsItemSuccess';
+  success: Scalars['Boolean']['output'];
+};
+
+export type MergeHighlightError = {
+  __typename?: 'MergeHighlightError';
+  errorCodes: Array<MergeHighlightErrorCode>;
+};
+
+export enum MergeHighlightErrorCode {
+  AlreadyExists = 'ALREADY_EXISTS',
+  BadData = 'BAD_DATA',
+  Forbidden = 'FORBIDDEN',
+  NotFound = 'NOT_FOUND',
+  Unauthorized = 'UNAUTHORIZED'
+}
+
+export type MergeHighlightInput = {
+  annotation?: InputMaybe<Scalars['String']['input']>;
+  articleId: Scalars['ID']['input'];
+  color?: InputMaybe<Scalars['String']['input']>;
+  highlightPositionAnchorIndex?: InputMaybe<Scalars['Int']['input']>;
+  highlightPositionPercent?: InputMaybe<Scalars['Float']['input']>;
+  html?: InputMaybe<Scalars['String']['input']>;
+  id: Scalars['ID']['input'];
+  overlapHighlightIdList: Array<Scalars['String']['input']>;
+  patch: Scalars['String']['input'];
+  prefix?: InputMaybe<Scalars['String']['input']>;
+  quote: Scalars['String']['input'];
+  representation?: InputMaybe<RepresentationType>;
+  shortId: Scalars['ID']['input'];
+  suffix?: InputMaybe<Scalars['String']['input']>;
+};
+
+export type MergeHighlightResult = MergeHighlightError | MergeHighlightSuccess;
+
+export type MergeHighlightSuccess = {
+  __typename?: 'MergeHighlightSuccess';
+  highlight: Highlight;
+  overlapHighlightIdList: Array<Scalars['String']['output']>;
+};
+
+export type MoveFilterError = {
+  __typename?: 'MoveFilterError';
+  errorCodes: Array<MoveFilterErrorCode>;
+};
+
+export enum MoveFilterErrorCode {
+  BadRequest = 'BAD_REQUEST',
+  NotFound = 'NOT_FOUND',
+  Unauthorized = 'UNAUTHORIZED'
+}
+
+export type MoveFilterInput = {
+  afterFilterId?: InputMaybe<Scalars['ID']['input']>;
+  filterId: Scalars['ID']['input'];
+};
+
+export type MoveFilterResult = MoveFilterError | MoveFilterSuccess;
+
+export type MoveFilterSuccess = {
+  __typename?: 'MoveFilterSuccess';
+  filter: Filter;
+};
+
+export type MoveLabelError = {
+  __typename?: 'MoveLabelError';
+  errorCodes: Array<MoveLabelErrorCode>;
+};
+
+export enum MoveLabelErrorCode {
+  BadRequest = 'BAD_REQUEST',
+  NotFound = 'NOT_FOUND',
+  Unauthorized = 'UNAUTHORIZED'
+}
+
+export type MoveLabelInput = {
+  afterLabelId?: InputMaybe<Scalars['ID']['input']>;
+  labelId: Scalars['ID']['input'];
+};
+
+export type MoveLabelResult = MoveLabelError | MoveLabelSuccess;
+
+export type MoveLabelSuccess = {
+  __typename?: 'MoveLabelSuccess';
+  label: Label;
+};
+
+export type MoveToFolderError = {
+  __typename?: 'MoveToFolderError';
+  errorCodes: Array<MoveToFolderErrorCode>;
+};
+
+export enum MoveToFolderErrorCode {
+  AlreadyExists = 'ALREADY_EXISTS',
+  BadRequest = 'BAD_REQUEST',
+  Unauthorized = 'UNAUTHORIZED'
+}
+
+export type MoveToFolderResult = MoveToFolderError | MoveToFolderSuccess;
+
+export type MoveToFolderSuccess = {
+  __typename?: 'MoveToFolderSuccess';
+  success: Scalars['Boolean']['output'];
+};
+
+export type Mutation = {
+  __typename?: 'Mutation';
+  addDiscoverFeed: AddDiscoverFeedResult;
+  addPopularRead: AddPopularReadResult;
+  bulkAction: BulkActionResult;
+  createArticle: CreateArticleResult;
+  createArticleSavingRequest: CreateArticleSavingRequestResult;
+  createGroup: CreateGroupResult;
+  createHighlight: CreateHighlightResult;
+  createLabel: CreateLabelResult;
+  createNewsletterEmail: CreateNewsletterEmailResult;
+  deleteAccount: DeleteAccountResult;
+  deleteDiscoverArticle: DeleteDiscoverArticleResult;
+  deleteDiscoverFeed: DeleteDiscoverFeedResult;
+  deleteFilter: DeleteFilterResult;
+  deleteHighlight: DeleteHighlightResult;
+  deleteIntegration: DeleteIntegrationResult;
+  deleteLabel: DeleteLabelResult;
+  deleteNewsletterEmail: DeleteNewsletterEmailResult;
+  deleteRule: DeleteRuleResult;
+  deleteWebhook: DeleteWebhookResult;
+  editDiscoverFeed: EditDiscoverFeedResult;
+  emptyTrash: EmptyTrashResult;
+  exportToIntegration: ExportToIntegrationResult;
+  fetchContent: FetchContentResult;
+  generateApiKey: GenerateApiKeyResult;
+  googleLogin: LoginResult;
+  googleSignup: GoogleSignupResult;
+  importFromIntegration: ImportFromIntegrationResult;
+  joinGroup: JoinGroupResult;
+  leaveGroup: LeaveGroupResult;
+  logOut: LogOutResult;
+  markEmailAsItem: MarkEmailAsItemResult;
+  mergeHighlight: MergeHighlightResult;
+  moveFilter: MoveFilterResult;
+  moveLabel: MoveLabelResult;
+  moveToFolder: MoveToFolderResult;
+  optInFeature: OptInFeatureResult;
+  recommend: RecommendResult;
+  recommendHighlights: RecommendHighlightsResult;
+  replyToEmail: ReplyToEmailResult;
+  reportItem: ReportItemResult;
+  revokeApiKey: RevokeApiKeyResult;
+  saveArticleReadingProgress: SaveArticleReadingProgressResult;
+  saveDiscoverArticle: SaveDiscoverArticleResult;
+  saveFile: SaveResult;
+  saveFilter: SaveFilterResult;
+  savePage: SaveResult;
+  saveUrl: SaveResult;
+  setBookmarkArticle: SetBookmarkArticleResult;
+  setDeviceToken: SetDeviceTokenResult;
+  setFavoriteArticle: SetFavoriteArticleResult;
+  setIntegration: SetIntegrationResult;
+  setLabels: SetLabelsResult;
+  setLabelsForHighlight: SetLabelsResult;
+  setLinkArchived: ArchiveLinkResult;
+  setRule: SetRuleResult;
+  setUserPersonalization: SetUserPersonalizationResult;
+  setWebhook: SetWebhookResult;
+  subscribe: SubscribeResult;
+  unsubscribe: UnsubscribeResult;
+  updateEmail: UpdateEmailResult;
+  updateFilter: UpdateFilterResult;
+  updateHighlight: UpdateHighlightResult;
+  updateLabel: UpdateLabelResult;
+  updateNewsletterEmail: UpdateNewsletterEmailResult;
+  updatePage: UpdatePageResult;
+  updateSubscription: UpdateSubscriptionResult;
+  updateUser: UpdateUserResult;
+  updateUserProfile: UpdateUserProfileResult;
+  uploadFileRequest: UploadFileRequestResult;
+  uploadImportFile: UploadImportFileResult;
+};
+
+
+export type MutationAddDiscoverFeedArgs = {
+  input: AddDiscoverFeedInput;
+};
+
+
+export type MutationAddPopularReadArgs = {
+  name: Scalars['String']['input'];
+};
+
+
+export type MutationBulkActionArgs = {
+  action: BulkActionType;
+  arguments?: InputMaybe<Scalars['JSON']['input']>;
+  async?: InputMaybe<Scalars['Boolean']['input']>;
+  expectedCount?: InputMaybe<Scalars['Int']['input']>;
+  labelIds?: InputMaybe<Array<Scalars['ID']['input']>>;
+  query: Scalars['String']['input'];
+};
+
+
+export type MutationCreateArticleArgs = {
+  input: CreateArticleInput;
+};
+
+
+export type MutationCreateArticleSavingRequestArgs = {
+  input: CreateArticleSavingRequestInput;
+};
+
+
+export type MutationCreateGroupArgs = {
+  input: CreateGroupInput;
+};
+
+
+export type MutationCreateHighlightArgs = {
+  input: CreateHighlightInput;
+};
+
+
+export type MutationCreateLabelArgs = {
+  input: CreateLabelInput;
+};
+
+
+export type MutationCreateNewsletterEmailArgs = {
+  input?: InputMaybe<CreateNewsletterEmailInput>;
+};
+
+
+export type MutationDeleteAccountArgs = {
+  userID: Scalars['ID']['input'];
+};
+
+
+export type MutationDeleteDiscoverArticleArgs = {
+  input: DeleteDiscoverArticleInput;
+};
+
+
+export type MutationDeleteDiscoverFeedArgs = {
+  input: DeleteDiscoverFeedInput;
+};
+
+
+export type MutationDeleteFilterArgs = {
+  id: Scalars['ID']['input'];
+};
+
+
+export type MutationDeleteHighlightArgs = {
+  highlightId: Scalars['ID']['input'];
+};
+
+
+export type MutationDeleteIntegrationArgs = {
+  id: Scalars['ID']['input'];
+};
+
+
+export type MutationDeleteLabelArgs = {
+  id: Scalars['ID']['input'];
+};
+
+
+export type MutationDeleteNewsletterEmailArgs = {
+  newsletterEmailId: Scalars['ID']['input'];
+};
+
+
+export type MutationDeleteRuleArgs = {
+  id: Scalars['ID']['input'];
+};
+
+
+export type MutationDeleteWebhookArgs = {
+  id: Scalars['ID']['input'];
+};
+
+
+export type MutationEditDiscoverFeedArgs = {
+  input: EditDiscoverFeedInput;
+};
+
+
+export type MutationExportToIntegrationArgs = {
+  integrationId: Scalars['ID']['input'];
+};
+
+
+export type MutationFetchContentArgs = {
+  id: Scalars['ID']['input'];
+};
+
+
+export type MutationGenerateApiKeyArgs = {
+  input: GenerateApiKeyInput;
+};
+
+
+export type MutationGoogleLoginArgs = {
+  input: GoogleLoginInput;
+};
+
+
+export type MutationGoogleSignupArgs = {
+  input: GoogleSignupInput;
+};
+
+
+export type MutationImportFromIntegrationArgs = {
+  integrationId: Scalars['ID']['input'];
+};
+
+
+export type MutationJoinGroupArgs = {
+  inviteCode: Scalars['String']['input'];
+};
+
+
+export type MutationLeaveGroupArgs = {
+  groupId: Scalars['ID']['input'];
+};
+
+
+export type MutationMarkEmailAsItemArgs = {
+  recentEmailId: Scalars['ID']['input'];
+};
+
+
+export type MutationMergeHighlightArgs = {
+  input: MergeHighlightInput;
+};
+
+
+export type MutationMoveFilterArgs = {
+  input: MoveFilterInput;
+};
+
+
+export type MutationMoveLabelArgs = {
+  input: MoveLabelInput;
+};
+
+
+export type MutationMoveToFolderArgs = {
+  folder: Scalars['String']['input'];
+  id: Scalars['ID']['input'];
+};
+
+
+export type MutationOptInFeatureArgs = {
+  input: OptInFeatureInput;
+};
+
+
+export type MutationRecommendArgs = {
+  input: RecommendInput;
+};
+
+
+export type MutationRecommendHighlightsArgs = {
+  input: RecommendHighlightsInput;
+};
+
+
+export type MutationReplyToEmailArgs = {
+  recentEmailId: Scalars['ID']['input'];
+  reply: AllowedReply;
+};
+
+
+export type MutationReportItemArgs = {
+  input: ReportItemInput;
+};
+
+
+export type MutationRevokeApiKeyArgs = {
+  id: Scalars['ID']['input'];
+};
+
+
+export type MutationSaveArticleReadingProgressArgs = {
+  input: SaveArticleReadingProgressInput;
+};
+
+
+export type MutationSaveDiscoverArticleArgs = {
+  input: SaveDiscoverArticleInput;
+};
+
+
+export type MutationSaveFileArgs = {
+  input: SaveFileInput;
+};
+
+
+export type MutationSaveFilterArgs = {
+  input: SaveFilterInput;
+};
+
+
+export type MutationSavePageArgs = {
+  input: SavePageInput;
+};
+
+
+export type MutationSaveUrlArgs = {
+  input: SaveUrlInput;
+};
+
+
+export type MutationSetBookmarkArticleArgs = {
+  input: SetBookmarkArticleInput;
+};
+
+
+export type MutationSetDeviceTokenArgs = {
+  input: SetDeviceTokenInput;
+};
+
+
+export type MutationSetFavoriteArticleArgs = {
+  id: Scalars['ID']['input'];
+};
+
+
+export type MutationSetIntegrationArgs = {
+  input: SetIntegrationInput;
+};
+
+
+export type MutationSetLabelsArgs = {
+  input: SetLabelsInput;
+};
+
+
+export type MutationSetLabelsForHighlightArgs = {
+  input: SetLabelsForHighlightInput;
+};
+
+
+export type MutationSetLinkArchivedArgs = {
+  input: ArchiveLinkInput;
+};
+
+
+export type MutationSetRuleArgs = {
+  input: SetRuleInput;
+};
+
+
+export type MutationSetUserPersonalizationArgs = {
+  input: SetUserPersonalizationInput;
+};
+
+
+export type MutationSetWebhookArgs = {
+  input: SetWebhookInput;
+};
+
+
+export type MutationSubscribeArgs = {
+  input: SubscribeInput;
+};
+
+
+export type MutationUnsubscribeArgs = {
+  name: Scalars['String']['input'];
+  subscriptionId?: InputMaybe<Scalars['ID']['input']>;
+};
+
+
+export type MutationUpdateEmailArgs = {
+  input: UpdateEmailInput;
+};
+
+
+export type MutationUpdateFilterArgs = {
+  input: UpdateFilterInput;
+};
+
+
+export type MutationUpdateHighlightArgs = {
+  input: UpdateHighlightInput;
+};
+
+
+export type MutationUpdateLabelArgs = {
+  input: UpdateLabelInput;
+};
+
+
+export type MutationUpdateNewsletterEmailArgs = {
+  input: UpdateNewsletterEmailInput;
+};
+
+
+export type MutationUpdatePageArgs = {
+  input: UpdatePageInput;
+};
+
+
+export type MutationUpdateSubscriptionArgs = {
+  input: UpdateSubscriptionInput;
+};
+
+
+export type MutationUpdateUserArgs = {
+  input: UpdateUserInput;
+};
+
+
+export type MutationUpdateUserProfileArgs = {
+  input: UpdateUserProfileInput;
+};
+
+
+export type MutationUploadFileRequestArgs = {
+  input: UploadFileRequestInput;
+};
+
+
+export type MutationUploadImportFileArgs = {
+  contentType: Scalars['String']['input'];
+  type: UploadImportFileType;
+};
+
+export type NewsletterEmail = {
+  __typename?: 'NewsletterEmail';
+  address: Scalars['String']['output'];
+  confirmationCode?: Maybe<Scalars['String']['output']>;
+  createdAt: Scalars['Date']['output'];
+  description?: Maybe<Scalars['String']['output']>;
+  folder: Scalars['String']['output'];
+  id: Scalars['ID']['output'];
+  name?: Maybe<Scalars['String']['output']>;
+  subscriptionCount: Scalars['Int']['output'];
+};
+
+export type NewsletterEmailsError = {
+  __typename?: 'NewsletterEmailsError';
+  errorCodes: Array<NewsletterEmailsErrorCode>;
+};
+
+export enum NewsletterEmailsErrorCode {
+  BadRequest = 'BAD_REQUEST',
+  Unauthorized = 'UNAUTHORIZED'
+}
+
+export type NewsletterEmailsResult = NewsletterEmailsError | NewsletterEmailsSuccess;
+
+export type NewsletterEmailsSuccess = {
+  __typename?: 'NewsletterEmailsSuccess';
+  newsletterEmails: Array<NewsletterEmail>;
+};
+
+export type OptInFeatureError = {
+  __typename?: 'OptInFeatureError';
+  errorCodes: Array<OptInFeatureErrorCode>;
+};
+
+export enum OptInFeatureErrorCode {
+  BadRequest = 'BAD_REQUEST',
+  NotFound = 'NOT_FOUND'
+}
+
+export type OptInFeatureInput = {
+  name: Scalars['String']['input'];
+};
+
+export type OptInFeatureResult = OptInFeatureError | OptInFeatureSuccess;
+
+export type OptInFeatureSuccess = {
+  __typename?: 'OptInFeatureSuccess';
+  feature: Feature;
+};
+
+export type Page = {
+  __typename?: 'Page';
+  author?: Maybe<Scalars['String']['output']>;
+  createdAt: Scalars['Date']['output'];
+  description?: Maybe<Scalars['String']['output']>;
+  hash: Scalars['String']['output'];
+  id: Scalars['ID']['output'];
+  image: Scalars['String']['output'];
+  originalHtml: Scalars['String']['output'];
+  originalUrl: Scalars['String']['output'];
+  publishedAt?: Maybe<Scalars['Date']['output']>;
+  readableHtml: Scalars['String']['output'];
+  title: Scalars['String']['output'];
+  type: PageType;
+  updatedAt?: Maybe<Scalars['Date']['output']>;
+  url: Scalars['String']['output'];
+};
+
+export type PageInfo = {
+  __typename?: 'PageInfo';
+  endCursor?: Maybe<Scalars['String']['output']>;
+  hasNextPage: Scalars['Boolean']['output'];
+  hasPreviousPage: Scalars['Boolean']['output'];
+  startCursor?: Maybe<Scalars['String']['output']>;
+  totalCount?: Maybe<Scalars['Int']['output']>;
+};
+
+export type PageInfoInput = {
+  author?: InputMaybe<Scalars['String']['input']>;
+  canonicalUrl?: InputMaybe<Scalars['String']['input']>;
+  contentType?: InputMaybe<Scalars['String']['input']>;
+  description?: InputMaybe<Scalars['String']['input']>;
+  previewImage?: InputMaybe<Scalars['String']['input']>;
+  publishedAt?: InputMaybe<Scalars['Date']['input']>;
+  title?: InputMaybe<Scalars['String']['input']>;
+};
+
+export enum PageType {
+  Article = 'ARTICLE',
+  Book = 'BOOK',
+  File = 'FILE',
+  Highlights = 'HIGHLIGHTS',
+  Image = 'IMAGE',
+  Profile = 'PROFILE',
+  Tweet = 'TWEET',
+  Unknown = 'UNKNOWN',
+  Video = 'VIDEO',
+  Website = 'WEBSITE'
+}
+
+export type ParseResult = {
+  byline?: InputMaybe<Scalars['String']['input']>;
+  content: Scalars['String']['input'];
+  dir?: InputMaybe<Scalars['String']['input']>;
+  excerpt: Scalars['String']['input'];
+  language?: InputMaybe<Scalars['String']['input']>;
+  length: Scalars['Int']['input'];
+  previewImage?: InputMaybe<Scalars['String']['input']>;
+  publishedDate?: InputMaybe<Scalars['Date']['input']>;
+  siteIcon?: InputMaybe<Scalars['String']['input']>;
+  siteName?: InputMaybe<Scalars['String']['input']>;
+  textContent: Scalars['String']['input'];
+  title: Scalars['String']['input'];
+};
+
+export type PreparedDocumentInput = {
+  document: Scalars['String']['input'];
+  pageInfo: PageInfoInput;
+};
+
+export type Profile = {
+  __typename?: 'Profile';
+  bio?: Maybe<Scalars['String']['output']>;
+  id: Scalars['ID']['output'];
+  pictureUrl?: Maybe<Scalars['String']['output']>;
+  private: Scalars['Boolean']['output'];
+  username: Scalars['String']['output'];
+};
+
+export type Query = {
+  __typename?: 'Query';
+  apiKeys: ApiKeysResult;
+  article: ArticleResult;
+  articleSavingRequest: ArticleSavingRequestResult;
+  deviceTokens: DeviceTokensResult;
+  discoverFeeds: DiscoverFeedResult;
+  discoverTopics: GetDiscoverTopicResults;
+  feeds: FeedsResult;
+  filters: FiltersResult;
+  getDiscoverFeedArticles: GetDiscoverFeedArticleResults;
+  getUserPersonalization: GetUserPersonalizationResult;
+  groups: GroupsResult;
+  hello?: Maybe<Scalars['String']['output']>;
+  integration: IntegrationResult;
+  integrations: IntegrationsResult;
+  labels: LabelsResult;
+  me?: Maybe<User>;
+  newsletterEmails: NewsletterEmailsResult;
+  recentEmails: RecentEmailsResult;
+  recentSearches: RecentSearchesResult;
+  rules: RulesResult;
+  scanFeeds: ScanFeedsResult;
+  search: SearchResult;
+  sendInstallInstructions: SendInstallInstructionsResult;
+  subscriptions: SubscriptionsResult;
+  typeaheadSearch: TypeaheadSearchResult;
+  updatesSince: UpdatesSinceResult;
+  user: UserResult;
+  users: UsersResult;
+  validateUsername: Scalars['Boolean']['output'];
+  webhook: WebhookResult;
+  webhooks: WebhooksResult;
+};
+
+
+export type QueryArticleArgs = {
+  format?: InputMaybe<Scalars['String']['input']>;
+  slug: Scalars['String']['input'];
+  username: Scalars['String']['input'];
+};
+
+
+export type QueryArticleSavingRequestArgs = {
+  id?: InputMaybe<Scalars['ID']['input']>;
+  url?: InputMaybe<Scalars['String']['input']>;
+};
+
+
+export type QueryFeedsArgs = {
+  input: FeedsInput;
+};
+
+
+export type QueryGetDiscoverFeedArticlesArgs = {
+  after?: InputMaybe<Scalars['String']['input']>;
+  discoverTopicId: Scalars['String']['input'];
+  feedId?: InputMaybe<Scalars['ID']['input']>;
+  first?: InputMaybe<Scalars['Int']['input']>;
+};
+
+
+export type QueryIntegrationArgs = {
+  name: Scalars['String']['input'];
+};
+
+
+export type QueryRulesArgs = {
+  enabled?: InputMaybe<Scalars['Boolean']['input']>;
+};
+
+
+export type QueryScanFeedsArgs = {
+  input: ScanFeedsInput;
+};
+
+
+export type QuerySearchArgs = {
+  after?: InputMaybe<Scalars['String']['input']>;
+  first?: InputMaybe<Scalars['Int']['input']>;
+  format?: InputMaybe<Scalars['String']['input']>;
+  includeContent?: InputMaybe<Scalars['Boolean']['input']>;
+  query?: InputMaybe<Scalars['String']['input']>;
+};
+
+
+export type QuerySubscriptionsArgs = {
+  sort?: InputMaybe<SortParams>;
+  type?: InputMaybe<SubscriptionType>;
+};
+
+
+export type QueryTypeaheadSearchArgs = {
+  first?: InputMaybe<Scalars['Int']['input']>;
+  query: Scalars['String']['input'];
+};
+
+
+export type QueryUpdatesSinceArgs = {
+  after?: InputMaybe<Scalars['String']['input']>;
+  first?: InputMaybe<Scalars['Int']['input']>;
+  folder?: InputMaybe<Scalars['String']['input']>;
+  since: Scalars['Date']['input'];
+  sort?: InputMaybe<SortParams>;
+};
+
+
+export type QueryUserArgs = {
+  userId?: InputMaybe<Scalars['ID']['input']>;
+  username?: InputMaybe<Scalars['String']['input']>;
+};
+
+
+export type QueryValidateUsernameArgs = {
+  username: Scalars['String']['input'];
+};
+
+
+export type QueryWebhookArgs = {
+  id: Scalars['ID']['input'];
+};
+
+export type Reaction = {
+  __typename?: 'Reaction';
+  code: ReactionType;
+  createdAt: Scalars['Date']['output'];
+  id: Scalars['ID']['output'];
+  updatedAt?: Maybe<Scalars['Date']['output']>;
+  user: User;
+};
+
+export enum ReactionType {
+  Crying = 'CRYING',
+  Heart = 'HEART',
+  Hushed = 'HUSHED',
+  Like = 'LIKE',
+  Pout = 'POUT',
+  Smile = 'SMILE'
+}
+
+export type ReadState = {
+  __typename?: 'ReadState';
+  progressAnchorIndex: Scalars['Int']['output'];
+  progressPercent: Scalars['Float']['output'];
+  reading?: Maybe<Scalars['Boolean']['output']>;
+  readingTime?: Maybe<Scalars['Int']['output']>;
+};
+
+export type RecentEmail = {
+  __typename?: 'RecentEmail';
+  createdAt: Scalars['Date']['output'];
+  from: Scalars['String']['output'];
+  html?: Maybe<Scalars['String']['output']>;
+  id: Scalars['ID']['output'];
+  reply?: Maybe<Scalars['String']['output']>;
+  replyTo?: Maybe<Scalars['String']['output']>;
+  subject: Scalars['String']['output'];
+  text: Scalars['String']['output'];
+  to: Scalars['String']['output'];
+  type: Scalars['String']['output'];
+};
+
+export type RecentEmailsError = {
+  __typename?: 'RecentEmailsError';
+  errorCodes: Array<RecentEmailsErrorCode>;
+};
+
+export enum RecentEmailsErrorCode {
+  BadRequest = 'BAD_REQUEST',
+  Unauthorized = 'UNAUTHORIZED'
+}
+
+export type RecentEmailsResult = RecentEmailsError | RecentEmailsSuccess;
+
+export type RecentEmailsSuccess = {
+  __typename?: 'RecentEmailsSuccess';
+  recentEmails: Array<RecentEmail>;
+};
+
+export type RecentSearch = {
+  __typename?: 'RecentSearch';
+  createdAt: Scalars['Date']['output'];
+  id: Scalars['ID']['output'];
+  term: Scalars['String']['output'];
+};
+
+export type RecentSearchesError = {
+  __typename?: 'RecentSearchesError';
+  errorCodes: Array<RecentSearchesErrorCode>;
+};
+
+export enum RecentSearchesErrorCode {
+  BadRequest = 'BAD_REQUEST',
+  Unauthorized = 'UNAUTHORIZED'
+}
+
+export type RecentSearchesResult = RecentSearchesError | RecentSearchesSuccess;
+
+export type RecentSearchesSuccess = {
+  __typename?: 'RecentSearchesSuccess';
+  searches: Array<RecentSearch>;
+};
+
+export type RecommendError = {
+  __typename?: 'RecommendError';
+  errorCodes: Array<RecommendErrorCode>;
+};
+
+export enum RecommendErrorCode {
+  BadRequest = 'BAD_REQUEST',
+  NotFound = 'NOT_FOUND',
+  Unauthorized = 'UNAUTHORIZED'
+}
+
+export type RecommendHighlightsError = {
+  __typename?: 'RecommendHighlightsError';
+  errorCodes: Array<RecommendHighlightsErrorCode>;
+};
+
+export enum RecommendHighlightsErrorCode {
+  BadRequest = 'BAD_REQUEST',
+  NotFound = 'NOT_FOUND',
+  Unauthorized = 'UNAUTHORIZED'
+}
+
+export type RecommendHighlightsInput = {
+  groupIds: Array<Scalars['ID']['input']>;
+  highlightIds: Array<Scalars['ID']['input']>;
+  note?: InputMaybe<Scalars['String']['input']>;
+  pageId: Scalars['ID']['input'];
+};
+
+export type RecommendHighlightsResult = RecommendHighlightsError | RecommendHighlightsSuccess;
+
+export type RecommendHighlightsSuccess = {
+  __typename?: 'RecommendHighlightsSuccess';
+  success: Scalars['Boolean']['output'];
+};
+
+export type RecommendInput = {
+  groupIds: Array<Scalars['ID']['input']>;
+  note?: InputMaybe<Scalars['String']['input']>;
+  pageId: Scalars['ID']['input'];
+  recommendedWithHighlights?: InputMaybe<Scalars['Boolean']['input']>;
+};
+
+export type RecommendResult = RecommendError | RecommendSuccess;
+
+export type RecommendSuccess = {
+  __typename?: 'RecommendSuccess';
+  success: Scalars['Boolean']['output'];
+};
+
+export type Recommendation = {
+  __typename?: 'Recommendation';
+  id: Scalars['ID']['output'];
+  name: Scalars['String']['output'];
+  note?: Maybe<Scalars['String']['output']>;
+  recommendedAt: Scalars['Date']['output'];
+  user?: Maybe<RecommendingUser>;
+};
+
+export type RecommendationGroup = {
+  __typename?: 'RecommendationGroup';
+  admins: Array<User>;
+  canPost: Scalars['Boolean']['output'];
+  canSeeMembers: Scalars['Boolean']['output'];
+  createdAt: Scalars['Date']['output'];
+  description?: Maybe<Scalars['String']['output']>;
+  id: Scalars['ID']['output'];
+  inviteUrl: Scalars['String']['output'];
+  members: Array<User>;
+  name: Scalars['String']['output'];
+  topics?: Maybe<Array<Scalars['String']['output']>>;
+  updatedAt?: Maybe<Scalars['Date']['output']>;
+};
+
+export type RecommendingUser = {
+  __typename?: 'RecommendingUser';
+  name: Scalars['String']['output'];
+  profileImageURL?: Maybe<Scalars['String']['output']>;
+  userId: Scalars['String']['output'];
+  username: Scalars['String']['output'];
+};
+
+export type Reminder = {
+  __typename?: 'Reminder';
+  archiveUntil: Scalars['Boolean']['output'];
+  id: Scalars['ID']['output'];
+  remindAt: Scalars['Date']['output'];
+  sendNotification: Scalars['Boolean']['output'];
+};
+
+export type ReminderError = {
+  __typename?: 'ReminderError';
+  errorCodes: Array<ReminderErrorCode>;
+};
+
+export enum ReminderErrorCode {
+  BadRequest = 'BAD_REQUEST',
+  NotFound = 'NOT_FOUND',
+  Unauthorized = 'UNAUTHORIZED'
+}
+
+export type ReminderResult = ReminderError | ReminderSuccess;
+
+export type ReminderSuccess = {
+  __typename?: 'ReminderSuccess';
+  reminder: Reminder;
+};
+
+export type ReplyToEmailError = {
+  __typename?: 'ReplyToEmailError';
+  errorCodes: Array<ReplyToEmailErrorCode>;
+};
+
+export enum ReplyToEmailErrorCode {
+  Unauthorized = 'UNAUTHORIZED'
+}
+
+export type ReplyToEmailResult = ReplyToEmailError | ReplyToEmailSuccess;
+
+export type ReplyToEmailSuccess = {
+  __typename?: 'ReplyToEmailSuccess';
+  success: Scalars['Boolean']['output'];
+};
+
+export type ReportItemInput = {
+  itemUrl: Scalars['String']['input'];
+  pageId: Scalars['ID']['input'];
+  reportComment: Scalars['String']['input'];
+  reportTypes: Array<ReportType>;
+  sharedBy?: InputMaybe<Scalars['ID']['input']>;
+};
+
+export type ReportItemResult = {
+  __typename?: 'ReportItemResult';
+  message: Scalars['String']['output'];
+};
+
+export enum ReportType {
+  Abusive = 'ABUSIVE',
+  ContentDisplay = 'CONTENT_DISPLAY',
+  ContentViolation = 'CONTENT_VIOLATION',
+  Spam = 'SPAM'
+}
+
+export enum RepresentationType {
+  Content = 'CONTENT',
+  FeedContent = 'FEED_CONTENT'
+}
+
+export type RevokeApiKeyError = {
+  __typename?: 'RevokeApiKeyError';
+  errorCodes: Array<RevokeApiKeyErrorCode>;
+};
+
+export enum RevokeApiKeyErrorCode {
+  BadRequest = 'BAD_REQUEST',
+  NotFound = 'NOT_FOUND',
+  Unauthorized = 'UNAUTHORIZED'
+}
+
+export type RevokeApiKeyResult = RevokeApiKeyError | RevokeApiKeySuccess;
+
+export type RevokeApiKeySuccess = {
+  __typename?: 'RevokeApiKeySuccess';
+  apiKey: ApiKey;
+};
+
+export type Rule = {
+  __typename?: 'Rule';
+  actions: Array<RuleAction>;
+  createdAt: Scalars['Date']['output'];
+  enabled: Scalars['Boolean']['output'];
+  eventTypes: Array<RuleEventType>;
+  failedAt?: Maybe<Scalars['Date']['output']>;
+  filter: Scalars['String']['output'];
+  id: Scalars['ID']['output'];
+  name: Scalars['String']['output'];
+  updatedAt?: Maybe<Scalars['Date']['output']>;
+};
+
+export type RuleAction = {
+  __typename?: 'RuleAction';
+  params: Array<Scalars['String']['output']>;
+  type: RuleActionType;
+};
+
+export type RuleActionInput = {
+  params: Array<Scalars['String']['input']>;
+  type: RuleActionType;
+};
+
+export enum RuleActionType {
+  AddLabel = 'ADD_LABEL',
+  Archive = 'ARCHIVE',
+  Delete = 'DELETE',
+  Export = 'EXPORT',
+  MarkAsRead = 'MARK_AS_READ',
+  SendNotification = 'SEND_NOTIFICATION',
+  Webhook = 'WEBHOOK'
+}
+
+export enum RuleEventType {
+  HighlightCreated = 'HIGHLIGHT_CREATED',
+  HighlightUpdated = 'HIGHLIGHT_UPDATED',
+  LabelCreated = 'LABEL_CREATED',
+  PageCreated = 'PAGE_CREATED',
+  PageUpdated = 'PAGE_UPDATED'
+}
+
+export type RulesError = {
+  __typename?: 'RulesError';
+  errorCodes: Array<RulesErrorCode>;
+};
+
+export enum RulesErrorCode {
+  BadRequest = 'BAD_REQUEST',
+  Unauthorized = 'UNAUTHORIZED'
+}
+
+export type RulesResult = RulesError | RulesSuccess;
+
+export type RulesSuccess = {
+  __typename?: 'RulesSuccess';
+  rules: Array<Rule>;
+};
+
+export type SaveArticleReadingProgressError = {
+  __typename?: 'SaveArticleReadingProgressError';
+  errorCodes: Array<SaveArticleReadingProgressErrorCode>;
+};
+
+export enum SaveArticleReadingProgressErrorCode {
+  BadData = 'BAD_DATA',
+  NotFound = 'NOT_FOUND',
+  Unauthorized = 'UNAUTHORIZED'
+}
+
+export type SaveArticleReadingProgressInput = {
+  force?: InputMaybe<Scalars['Boolean']['input']>;
+  id: Scalars['ID']['input'];
+  readingProgressAnchorIndex?: InputMaybe<Scalars['Int']['input']>;
+  readingProgressPercent: Scalars['Float']['input'];
+  readingProgressTopPercent?: InputMaybe<Scalars['Float']['input']>;
+};
+
+export type SaveArticleReadingProgressResult = SaveArticleReadingProgressError | SaveArticleReadingProgressSuccess;
+
+export type SaveArticleReadingProgressSuccess = {
+  __typename?: 'SaveArticleReadingProgressSuccess';
+  updatedArticle: Article;
+};
+
+export type SaveDiscoverArticleError = {
+  __typename?: 'SaveDiscoverArticleError';
+  errorCodes: Array<SaveDiscoverArticleErrorCode>;
+};
+
+export enum SaveDiscoverArticleErrorCode {
+  BadRequest = 'BAD_REQUEST',
+  NotFound = 'NOT_FOUND',
+  Unauthorized = 'UNAUTHORIZED'
+}
+
+export type SaveDiscoverArticleInput = {
+  discoverArticleId: Scalars['ID']['input'];
+  locale?: InputMaybe<Scalars['String']['input']>;
+  timezone?: InputMaybe<Scalars['String']['input']>;
+};
+
+export type SaveDiscoverArticleResult = SaveDiscoverArticleError | SaveDiscoverArticleSuccess;
+
+export type SaveDiscoverArticleSuccess = {
+  __typename?: 'SaveDiscoverArticleSuccess';
+  saveId: Scalars['String']['output'];
+  url: Scalars['String']['output'];
+};
+
+export type SaveError = {
+  __typename?: 'SaveError';
+  errorCodes: Array<SaveErrorCode>;
+  message?: Maybe<Scalars['String']['output']>;
+};
+
+export enum SaveErrorCode {
+  EmbeddedHighlightFailed = 'EMBEDDED_HIGHLIGHT_FAILED',
+  Unauthorized = 'UNAUTHORIZED',
+  Unknown = 'UNKNOWN'
+}
+
+export type SaveFileInput = {
+  clientRequestId: Scalars['ID']['input'];
+  folder?: InputMaybe<Scalars['String']['input']>;
+  labels?: InputMaybe<Array<CreateLabelInput>>;
+  publishedAt?: InputMaybe<Scalars['Date']['input']>;
+  savedAt?: InputMaybe<Scalars['Date']['input']>;
+  source: Scalars['String']['input'];
+  state?: InputMaybe<ArticleSavingRequestStatus>;
+  subscription?: InputMaybe<Scalars['String']['input']>;
+  uploadFileId: Scalars['ID']['input'];
+  url: Scalars['String']['input'];
+};
+
+export type SaveFilterError = {
+  __typename?: 'SaveFilterError';
+  errorCodes: Array<SaveFilterErrorCode>;
+};
+
+export enum SaveFilterErrorCode {
+  BadRequest = 'BAD_REQUEST',
+  NotFound = 'NOT_FOUND',
+  Unauthorized = 'UNAUTHORIZED'
+}
+
+export type SaveFilterInput = {
+  category?: InputMaybe<Scalars['String']['input']>;
+  description?: InputMaybe<Scalars['String']['input']>;
+  filter: Scalars['String']['input'];
+  folder?: InputMaybe<Scalars['String']['input']>;
+  name: Scalars['String']['input'];
+  position?: InputMaybe<Scalars['Int']['input']>;
+};
+
+export type SaveFilterResult = SaveFilterError | SaveFilterSuccess;
+
+export type SaveFilterSuccess = {
+  __typename?: 'SaveFilterSuccess';
+  filter: Filter;
+};
+
+export type SavePageInput = {
+  clientRequestId: Scalars['ID']['input'];
+  folder?: InputMaybe<Scalars['String']['input']>;
+  labels?: InputMaybe<Array<CreateLabelInput>>;
+  originalContent: Scalars['String']['input'];
+  parseResult?: InputMaybe<ParseResult>;
+  publishedAt?: InputMaybe<Scalars['Date']['input']>;
+  rssFeedUrl?: InputMaybe<Scalars['String']['input']>;
+  savedAt?: InputMaybe<Scalars['Date']['input']>;
+  source: Scalars['String']['input'];
+  state?: InputMaybe<ArticleSavingRequestStatus>;
+  title?: InputMaybe<Scalars['String']['input']>;
+  url: Scalars['String']['input'];
+};
+
+export type SaveResult = SaveError | SaveSuccess;
+
+export type SaveSuccess = {
+  __typename?: 'SaveSuccess';
+  clientRequestId: Scalars['ID']['output'];
+  url: Scalars['String']['output'];
+};
+
+export type SaveUrlInput = {
+  clientRequestId: Scalars['ID']['input'];
+  folder?: InputMaybe<Scalars['String']['input']>;
+  labels?: InputMaybe<Array<CreateLabelInput>>;
+  locale?: InputMaybe<Scalars['String']['input']>;
+  publishedAt?: InputMaybe<Scalars['Date']['input']>;
+  savedAt?: InputMaybe<Scalars['Date']['input']>;
+  source: Scalars['String']['input'];
+  state?: InputMaybe<ArticleSavingRequestStatus>;
+  timezone?: InputMaybe<Scalars['String']['input']>;
+  url: Scalars['String']['input'];
+};
+
+export type ScanFeedsError = {
+  __typename?: 'ScanFeedsError';
+  errorCodes: Array<ScanFeedsErrorCode>;
+};
+
+export enum ScanFeedsErrorCode {
+  BadRequest = 'BAD_REQUEST'
+}
+
+export type ScanFeedsInput = {
+  opml?: InputMaybe<Scalars['String']['input']>;
+  url?: InputMaybe<Scalars['String']['input']>;
+};
+
+export type ScanFeedsResult = ScanFeedsError | ScanFeedsSuccess;
+
+export type ScanFeedsSuccess = {
+  __typename?: 'ScanFeedsSuccess';
+  feeds: Array<Feed>;
+};
+
+export type SearchError = {
+  __typename?: 'SearchError';
+  errorCodes: Array<SearchErrorCode>;
+};
+
+export enum SearchErrorCode {
+  QueryTooLong = 'QUERY_TOO_LONG',
+  Unauthorized = 'UNAUTHORIZED'
+}
+
+export type SearchItem = {
+  __typename?: 'SearchItem';
+  aiSummary?: Maybe<Scalars['String']['output']>;
+  annotation?: Maybe<Scalars['String']['output']>;
+  archivedAt?: Maybe<Scalars['Date']['output']>;
+  author?: Maybe<Scalars['String']['output']>;
+  color?: Maybe<Scalars['String']['output']>;
+  content?: Maybe<Scalars['String']['output']>;
+  contentReader: ContentReader;
+  createdAt: Scalars['Date']['output'];
+  description?: Maybe<Scalars['String']['output']>;
+  directionality?: Maybe<DirectionalityType>;
+  feedContent?: Maybe<Scalars['String']['output']>;
+  folder: Scalars['String']['output'];
+  format?: Maybe<Scalars['String']['output']>;
+  highlights?: Maybe<Array<Highlight>>;
+  id: Scalars['ID']['output'];
+  image?: Maybe<Scalars['String']['output']>;
+  isArchived: Scalars['Boolean']['output'];
+  labels?: Maybe<Array<Label>>;
+  language?: Maybe<Scalars['String']['output']>;
+  links?: Maybe<Scalars['JSON']['output']>;
+  originalArticleUrl?: Maybe<Scalars['String']['output']>;
+  ownedByViewer?: Maybe<Scalars['Boolean']['output']>;
+  pageId?: Maybe<Scalars['ID']['output']>;
+  pageType: PageType;
+  previewContentType?: Maybe<Scalars['String']['output']>;
+  publishedAt?: Maybe<Scalars['Date']['output']>;
+  quote?: Maybe<Scalars['String']['output']>;
+  readAt?: Maybe<Scalars['Date']['output']>;
+  readingProgressAnchorIndex: Scalars['Int']['output'];
+  readingProgressPercent: Scalars['Float']['output'];
+  readingProgressTopPercent?: Maybe<Scalars['Float']['output']>;
+  recommendations?: Maybe<Array<Recommendation>>;
+  savedAt: Scalars['Date']['output'];
+  shortId?: Maybe<Scalars['String']['output']>;
+  siteIcon?: Maybe<Scalars['String']['output']>;
+  siteName?: Maybe<Scalars['String']['output']>;
+  slug: Scalars['String']['output'];
+  state?: Maybe<ArticleSavingRequestStatus>;
+  subscription?: Maybe<Scalars['String']['output']>;
+  title: Scalars['String']['output'];
+  unsubHttpUrl?: Maybe<Scalars['String']['output']>;
+  unsubMailTo?: Maybe<Scalars['String']['output']>;
+  updatedAt?: Maybe<Scalars['Date']['output']>;
+  uploadFileId?: Maybe<Scalars['ID']['output']>;
+  url: Scalars['String']['output'];
+  wordsCount?: Maybe<Scalars['Int']['output']>;
+};
+
+export type SearchItemEdge = {
+  __typename?: 'SearchItemEdge';
+  cursor: Scalars['String']['output'];
+  node: SearchItem;
+};
+
+export type SearchResult = SearchError | SearchSuccess;
+
+export type SearchSuccess = {
+  __typename?: 'SearchSuccess';
+  edges: Array<SearchItemEdge>;
+  pageInfo: PageInfo;
+};
+
+export type SendInstallInstructionsError = {
+  __typename?: 'SendInstallInstructionsError';
+  errorCodes: Array<SendInstallInstructionsErrorCode>;
+};
+
+export enum SendInstallInstructionsErrorCode {
+  BadRequest = 'BAD_REQUEST',
+  Forbidden = 'FORBIDDEN',
+  NotFound = 'NOT_FOUND',
+  Unauthorized = 'UNAUTHORIZED'
+}
+
+export type SendInstallInstructionsResult = SendInstallInstructionsError | SendInstallInstructionsSuccess;
+
+export type SendInstallInstructionsSuccess = {
+  __typename?: 'SendInstallInstructionsSuccess';
+  sent: Scalars['Boolean']['output'];
+};
+
+export type SetBookmarkArticleError = {
+  __typename?: 'SetBookmarkArticleError';
+  errorCodes: Array<SetBookmarkArticleErrorCode>;
+};
+
+export enum SetBookmarkArticleErrorCode {
+  BookmarkExists = 'BOOKMARK_EXISTS',
+  NotFound = 'NOT_FOUND'
+}
+
+export type SetBookmarkArticleInput = {
+  articleID: Scalars['ID']['input'];
+  bookmark: Scalars['Boolean']['input'];
+};
+
+export type SetBookmarkArticleResult = SetBookmarkArticleError | SetBookmarkArticleSuccess;
+
+export type SetBookmarkArticleSuccess = {
+  __typename?: 'SetBookmarkArticleSuccess';
+  bookmarkedArticle: Article;
+};
+
+export type SetDeviceTokenError = {
+  __typename?: 'SetDeviceTokenError';
+  errorCodes: Array<SetDeviceTokenErrorCode>;
+};
+
+export enum SetDeviceTokenErrorCode {
+  BadRequest = 'BAD_REQUEST',
+  NotFound = 'NOT_FOUND',
+  Unauthorized = 'UNAUTHORIZED'
+}
+
+export type SetDeviceTokenInput = {
+  id?: InputMaybe<Scalars['ID']['input']>;
+  token?: InputMaybe<Scalars['String']['input']>;
+};
+
+export type SetDeviceTokenResult = SetDeviceTokenError | SetDeviceTokenSuccess;
+
+export type SetDeviceTokenSuccess = {
+  __typename?: 'SetDeviceTokenSuccess';
+  deviceToken: DeviceToken;
+};
+
+export type SetFavoriteArticleError = {
+  __typename?: 'SetFavoriteArticleError';
+  errorCodes: Array<SetFavoriteArticleErrorCode>;
+};
+
+export enum SetFavoriteArticleErrorCode {
+  AlreadyExists = 'ALREADY_EXISTS',
+  BadRequest = 'BAD_REQUEST',
+  NotFound = 'NOT_FOUND',
+  Unauthorized = 'UNAUTHORIZED'
+}
+
+export type SetFavoriteArticleResult = SetFavoriteArticleError | SetFavoriteArticleSuccess;
+
+export type SetFavoriteArticleSuccess = {
+  __typename?: 'SetFavoriteArticleSuccess';
+  success: Scalars['Boolean']['output'];
+};
+
+export type SetFollowError = {
+  __typename?: 'SetFollowError';
+  errorCodes: Array<SetFollowErrorCode>;
+};
+
+export enum SetFollowErrorCode {
+  NotFound = 'NOT_FOUND',
+  Unauthorized = 'UNAUTHORIZED'
+}
+
+export type SetFollowInput = {
+  follow: Scalars['Boolean']['input'];
+  userId: Scalars['ID']['input'];
+};
+
+export type SetFollowResult = SetFollowError | SetFollowSuccess;
+
+export type SetFollowSuccess = {
+  __typename?: 'SetFollowSuccess';
+  updatedUser: User;
+};
+
+export type SetIntegrationError = {
+  __typename?: 'SetIntegrationError';
+  errorCodes: Array<SetIntegrationErrorCode>;
+};
+
+export enum SetIntegrationErrorCode {
+  AlreadyExists = 'ALREADY_EXISTS',
+  BadRequest = 'BAD_REQUEST',
+  InvalidToken = 'INVALID_TOKEN',
+  NotFound = 'NOT_FOUND',
+  Unauthorized = 'UNAUTHORIZED'
+}
+
+export type SetIntegrationInput = {
+  enabled: Scalars['Boolean']['input'];
+  id?: InputMaybe<Scalars['ID']['input']>;
+  importItemState?: InputMaybe<ImportItemState>;
+  name: Scalars['String']['input'];
+  settings?: InputMaybe<Scalars['JSON']['input']>;
+  syncedAt?: InputMaybe<Scalars['Date']['input']>;
+  taskName?: InputMaybe<Scalars['String']['input']>;
+  token: Scalars['String']['input'];
+  type?: InputMaybe<IntegrationType>;
+};
+
+export type SetIntegrationResult = SetIntegrationError | SetIntegrationSuccess;
+
+export type SetIntegrationSuccess = {
+  __typename?: 'SetIntegrationSuccess';
+  integration: Integration;
+};
+
+export type SetLabelsError = {
+  __typename?: 'SetLabelsError';
+  errorCodes: Array<SetLabelsErrorCode>;
+};
+
+export enum SetLabelsErrorCode {
+  BadRequest = 'BAD_REQUEST',
+  NotFound = 'NOT_FOUND',
+  Unauthorized = 'UNAUTHORIZED'
+}
+
+export type SetLabelsForHighlightInput = {
+  highlightId: Scalars['ID']['input'];
+  labelIds?: InputMaybe<Array<Scalars['ID']['input']>>;
+  labels?: InputMaybe<Array<CreateLabelInput>>;
+};
+
+export type SetLabelsInput = {
+  labelIds?: InputMaybe<Array<Scalars['ID']['input']>>;
+  labels?: InputMaybe<Array<CreateLabelInput>>;
+  pageId: Scalars['ID']['input'];
+  source?: InputMaybe<Scalars['String']['input']>;
+};
+
+export type SetLabelsResult = SetLabelsError | SetLabelsSuccess;
+
+export type SetLabelsSuccess = {
+  __typename?: 'SetLabelsSuccess';
+  labels: Array<Label>;
+};
+
+export type SetRuleError = {
+  __typename?: 'SetRuleError';
+  errorCodes: Array<SetRuleErrorCode>;
+};
+
+export enum SetRuleErrorCode {
+  BadRequest = 'BAD_REQUEST',
+  NotFound = 'NOT_FOUND',
+  Unauthorized = 'UNAUTHORIZED'
+}
+
+export type SetRuleInput = {
+  actions: Array<RuleActionInput>;
+  description?: InputMaybe<Scalars['String']['input']>;
+  enabled: Scalars['Boolean']['input'];
+  eventTypes: Array<RuleEventType>;
+  filter: Scalars['String']['input'];
+  id?: InputMaybe<Scalars['ID']['input']>;
+  name: Scalars['String']['input'];
+};
+
+export type SetRuleResult = SetRuleError | SetRuleSuccess;
+
+export type SetRuleSuccess = {
+  __typename?: 'SetRuleSuccess';
+  rule: Rule;
+};
+
+export type SetShareArticleError = {
+  __typename?: 'SetShareArticleError';
+  errorCodes: Array<SetShareArticleErrorCode>;
+};
+
+export enum SetShareArticleErrorCode {
+  NotFound = 'NOT_FOUND',
+  Unauthorized = 'UNAUTHORIZED'
+}
+
+export type SetShareArticleInput = {
+  articleID: Scalars['ID']['input'];
+  share: Scalars['Boolean']['input'];
+  sharedComment?: InputMaybe<Scalars['String']['input']>;
+  sharedWithHighlights?: InputMaybe<Scalars['Boolean']['input']>;
+};
+
+export type SetShareArticleResult = SetShareArticleError | SetShareArticleSuccess;
+
+export type SetShareArticleSuccess = {
+  __typename?: 'SetShareArticleSuccess';
+  updatedArticle: Article;
+  updatedFeedArticle?: Maybe<FeedArticle>;
+  updatedFeedArticleId?: Maybe<Scalars['String']['output']>;
+};
+
+export type SetShareHighlightError = {
+  __typename?: 'SetShareHighlightError';
+  errorCodes: Array<SetShareHighlightErrorCode>;
+};
+
+export enum SetShareHighlightErrorCode {
+  Forbidden = 'FORBIDDEN',
+  NotFound = 'NOT_FOUND',
+  Unauthorized = 'UNAUTHORIZED'
+}
+
+export type SetShareHighlightInput = {
+  id: Scalars['ID']['input'];
+  share: Scalars['Boolean']['input'];
+};
+
+export type SetShareHighlightResult = SetShareHighlightError | SetShareHighlightSuccess;
+
+export type SetShareHighlightSuccess = {
+  __typename?: 'SetShareHighlightSuccess';
+  highlight: Highlight;
+};
+
+export type SetUserPersonalizationError = {
+  __typename?: 'SetUserPersonalizationError';
+  errorCodes: Array<SetUserPersonalizationErrorCode>;
+};
+
+export enum SetUserPersonalizationErrorCode {
+  NotFound = 'NOT_FOUND',
+  Unauthorized = 'UNAUTHORIZED'
+}
+
+export type SetUserPersonalizationInput = {
+  fields?: InputMaybe<Scalars['JSON']['input']>;
+  fontFamily?: InputMaybe<Scalars['String']['input']>;
+  fontSize?: InputMaybe<Scalars['Int']['input']>;
+  libraryLayoutType?: InputMaybe<Scalars['String']['input']>;
+  librarySortOrder?: InputMaybe<SortOrder>;
+  margin?: InputMaybe<Scalars['Int']['input']>;
+  speechRate?: InputMaybe<Scalars['String']['input']>;
+  speechSecondaryVoice?: InputMaybe<Scalars['String']['input']>;
+  speechVoice?: InputMaybe<Scalars['String']['input']>;
+  speechVolume?: InputMaybe<Scalars['String']['input']>;
+  theme?: InputMaybe<Scalars['String']['input']>;
+};
+
+export type SetUserPersonalizationResult = SetUserPersonalizationError | SetUserPersonalizationSuccess;
+
+export type SetUserPersonalizationSuccess = {
+  __typename?: 'SetUserPersonalizationSuccess';
+  updatedUserPersonalization: UserPersonalization;
+};
+
+export type SetWebhookError = {
+  __typename?: 'SetWebhookError';
+  errorCodes: Array<SetWebhookErrorCode>;
+};
+
+export enum SetWebhookErrorCode {
+  AlreadyExists = 'ALREADY_EXISTS',
+  BadRequest = 'BAD_REQUEST',
+  NotFound = 'NOT_FOUND',
+  Unauthorized = 'UNAUTHORIZED'
+}
+
+export type SetWebhookInput = {
+  contentType?: InputMaybe<Scalars['String']['input']>;
+  enabled?: InputMaybe<Scalars['Boolean']['input']>;
+  eventTypes: Array<WebhookEvent>;
+  id?: InputMaybe<Scalars['ID']['input']>;
+  method?: InputMaybe<Scalars['String']['input']>;
+  url: Scalars['String']['input'];
+};
+
+export type SetWebhookResult = SetWebhookError | SetWebhookSuccess;
+
+export type SetWebhookSuccess = {
+  __typename?: 'SetWebhookSuccess';
+  webhook: Webhook;
+};
+
+export type ShareStats = {
+  __typename?: 'ShareStats';
+  readDuration: Scalars['Int']['output'];
+  saveCount: Scalars['Int']['output'];
+  viewCount: Scalars['Int']['output'];
+};
+
+export type SharedArticleError = {
+  __typename?: 'SharedArticleError';
+  errorCodes: Array<SharedArticleErrorCode>;
+};
+
+export enum SharedArticleErrorCode {
+  NotFound = 'NOT_FOUND'
+}
+
+export type SharedArticleResult = SharedArticleError | SharedArticleSuccess;
+
+export type SharedArticleSuccess = {
+  __typename?: 'SharedArticleSuccess';
+  article: Article;
+};
+
+export enum SignupErrorCode {
+  AccessDenied = 'ACCESS_DENIED',
+  ExpiredToken = 'EXPIRED_TOKEN',
+  GoogleAuthError = 'GOOGLE_AUTH_ERROR',
+  InvalidEmail = 'INVALID_EMAIL',
+  InvalidPassword = 'INVALID_PASSWORD',
+  InvalidUsername = 'INVALID_USERNAME',
+  Unknown = 'UNKNOWN',
+  UserExists = 'USER_EXISTS'
+}
+
+export enum SortBy {
+  PublishedAt = 'PUBLISHED_AT',
+  SavedAt = 'SAVED_AT',
+  Score = 'SCORE',
+  UpdatedTime = 'UPDATED_TIME'
+}
+
+export enum SortOrder {
+  Ascending = 'ASCENDING',
+  Descending = 'DESCENDING'
+}
+
+export type SortParams = {
+  by: SortBy;
+  order?: InputMaybe<SortOrder>;
+};
+
+export type SubscribeError = {
+  __typename?: 'SubscribeError';
+  errorCodes: Array<SubscribeErrorCode>;
+};
+
+export enum SubscribeErrorCode {
+  AlreadySubscribed = 'ALREADY_SUBSCRIBED',
+  BadRequest = 'BAD_REQUEST',
+  ExceededMaxSubscriptions = 'EXCEEDED_MAX_SUBSCRIPTIONS',
+  NotFound = 'NOT_FOUND',
+  Unauthorized = 'UNAUTHORIZED'
+}
+
+export type SubscribeInput = {
+  autoAddToLibrary?: InputMaybe<Scalars['Boolean']['input']>;
+  fetchContent?: InputMaybe<Scalars['Boolean']['input']>;
+  fetchContentType?: InputMaybe<FetchContentType>;
+  folder?: InputMaybe<Scalars['String']['input']>;
+  isPrivate?: InputMaybe<Scalars['Boolean']['input']>;
+  subscriptionType?: InputMaybe<SubscriptionType>;
+  url: Scalars['String']['input'];
+};
+
+export type SubscribeResult = SubscribeError | SubscribeSuccess;
+
+export type SubscribeSuccess = {
+  __typename?: 'SubscribeSuccess';
+  subscriptions: Array<Subscription>;
+};
+
+export type Subscription = {
+  __typename?: 'Subscription';
+  autoAddToLibrary?: Maybe<Scalars['Boolean']['output']>;
+  count: Scalars['Int']['output'];
+  createdAt: Scalars['Date']['output'];
+  description?: Maybe<Scalars['String']['output']>;
+  failedAt?: Maybe<Scalars['Date']['output']>;
+  fetchContent: Scalars['Boolean']['output'];
+  fetchContentType: FetchContentType;
+  folder: Scalars['String']['output'];
+  icon?: Maybe<Scalars['String']['output']>;
+  id: Scalars['ID']['output'];
+  isPrivate?: Maybe<Scalars['Boolean']['output']>;
+  lastFetchedAt?: Maybe<Scalars['Date']['output']>;
+  mostRecentItemDate?: Maybe<Scalars['Date']['output']>;
+  name: Scalars['String']['output'];
+  newsletterEmail?: Maybe<Scalars['String']['output']>;
+  refreshedAt?: Maybe<Scalars['Date']['output']>;
+  status: SubscriptionStatus;
+  type: SubscriptionType;
+  unsubscribeHttpUrl?: Maybe<Scalars['String']['output']>;
+  unsubscribeMailTo?: Maybe<Scalars['String']['output']>;
+  updatedAt?: Maybe<Scalars['Date']['output']>;
+  url?: Maybe<Scalars['String']['output']>;
+};
+
+export enum SubscriptionStatus {
+  Active = 'ACTIVE',
+  Deleted = 'DELETED',
+  Unsubscribed = 'UNSUBSCRIBED'
+}
+
+export enum SubscriptionType {
+  Newsletter = 'NEWSLETTER',
+  Rss = 'RSS'
+}
+
+export type SubscriptionsError = {
+  __typename?: 'SubscriptionsError';
+  errorCodes: Array<SubscriptionsErrorCode>;
+};
+
+export enum SubscriptionsErrorCode {
+  BadRequest = 'BAD_REQUEST',
+  Unauthorized = 'UNAUTHORIZED'
+}
+
+export type SubscriptionsResult = SubscriptionsError | SubscriptionsSuccess;
+
+export type SubscriptionsSuccess = {
+  __typename?: 'SubscriptionsSuccess';
+  subscriptions: Array<Subscription>;
+};
+
+export type SyncUpdatedItemEdge = {
+  __typename?: 'SyncUpdatedItemEdge';
+  cursor: Scalars['String']['output'];
+  itemID: Scalars['ID']['output'];
+  node?: Maybe<SearchItem>;
+  updateReason: UpdateReason;
+};
+
+export type Task = {
+  __typename?: 'Task';
+  cancellable?: Maybe<Scalars['Boolean']['output']>;
+  createdAt: Scalars['Date']['output'];
+  failedReason?: Maybe<Scalars['String']['output']>;
+  id: Scalars['ID']['output'];
+  name: Scalars['String']['output'];
+  progress?: Maybe<Scalars['Float']['output']>;
+  runningTime?: Maybe<Scalars['Int']['output']>;
+  state: TaskState;
+};
+
+export enum TaskState {
+  Cancelled = 'CANCELLED',
+  Failed = 'FAILED',
+  Pending = 'PENDING',
+  Running = 'RUNNING',
+  Succeeded = 'SUCCEEDED'
+}
+
+export type TypeaheadSearchError = {
+  __typename?: 'TypeaheadSearchError';
+  errorCodes: Array<TypeaheadSearchErrorCode>;
+};
+
+export enum TypeaheadSearchErrorCode {
+  Unauthorized = 'UNAUTHORIZED'
+}
+
+export type TypeaheadSearchItem = {
+  __typename?: 'TypeaheadSearchItem';
+  contentReader: ContentReader;
+  id: Scalars['ID']['output'];
+  siteName?: Maybe<Scalars['String']['output']>;
+  slug: Scalars['String']['output'];
+  title: Scalars['String']['output'];
+};
+
+export type TypeaheadSearchResult = TypeaheadSearchError | TypeaheadSearchSuccess;
+
+export type TypeaheadSearchSuccess = {
+  __typename?: 'TypeaheadSearchSuccess';
+  items: Array<TypeaheadSearchItem>;
+};
+
+export type UnsubscribeError = {
+  __typename?: 'UnsubscribeError';
+  errorCodes: Array<UnsubscribeErrorCode>;
+};
+
+export enum UnsubscribeErrorCode {
+  AlreadyUnsubscribed = 'ALREADY_UNSUBSCRIBED',
+  BadRequest = 'BAD_REQUEST',
+  NotFound = 'NOT_FOUND',
+  Unauthorized = 'UNAUTHORIZED',
+  UnsubscribeMethodNotFound = 'UNSUBSCRIBE_METHOD_NOT_FOUND'
+}
+
+export type UnsubscribeResult = UnsubscribeError | UnsubscribeSuccess;
+
+export type UnsubscribeSuccess = {
+  __typename?: 'UnsubscribeSuccess';
+  subscription: Subscription;
+};
+
+export type UpdateEmailError = {
+  __typename?: 'UpdateEmailError';
+  errorCodes: Array<UpdateEmailErrorCode>;
+};
+
+export enum UpdateEmailErrorCode {
+  BadRequest = 'BAD_REQUEST',
+  EmailAlreadyExists = 'EMAIL_ALREADY_EXISTS',
+  Unauthorized = 'UNAUTHORIZED'
+}
+
+export type UpdateEmailInput = {
+  email: Scalars['String']['input'];
+};
+
+export type UpdateEmailResult = UpdateEmailError | UpdateEmailSuccess;
+
+export type UpdateEmailSuccess = {
+  __typename?: 'UpdateEmailSuccess';
+  email: Scalars['String']['output'];
+  verificationEmailSent?: Maybe<Scalars['Boolean']['output']>;
+};
+
+export type UpdateFilterError = {
+  __typename?: 'UpdateFilterError';
+  errorCodes: Array<UpdateFilterErrorCode>;
+};
+
+export enum UpdateFilterErrorCode {
+  BadRequest = 'BAD_REQUEST',
+  NotFound = 'NOT_FOUND',
+  Unauthorized = 'UNAUTHORIZED'
+}
+
+export type UpdateFilterInput = {
+  category?: InputMaybe<Scalars['String']['input']>;
+  description?: InputMaybe<Scalars['String']['input']>;
+  filter?: InputMaybe<Scalars['String']['input']>;
+  folder?: InputMaybe<Scalars['String']['input']>;
+  id: Scalars['String']['input'];
+  name?: InputMaybe<Scalars['String']['input']>;
+  position?: InputMaybe<Scalars['Int']['input']>;
+  visible?: InputMaybe<Scalars['Boolean']['input']>;
+};
+
+export type UpdateFilterResult = UpdateFilterError | UpdateFilterSuccess;
+
+export type UpdateFilterSuccess = {
+  __typename?: 'UpdateFilterSuccess';
+  filter: Filter;
+};
+
+export type UpdateHighlightError = {
+  __typename?: 'UpdateHighlightError';
+  errorCodes: Array<UpdateHighlightErrorCode>;
+};
+
+export enum UpdateHighlightErrorCode {
+  BadData = 'BAD_DATA',
+  Forbidden = 'FORBIDDEN',
+  NotFound = 'NOT_FOUND',
+  Unauthorized = 'UNAUTHORIZED'
+}
+
+export type UpdateHighlightInput = {
+  annotation?: InputMaybe<Scalars['String']['input']>;
+  color?: InputMaybe<Scalars['String']['input']>;
+  highlightId: Scalars['ID']['input'];
+  html?: InputMaybe<Scalars['String']['input']>;
+  quote?: InputMaybe<Scalars['String']['input']>;
+  sharedAt?: InputMaybe<Scalars['Date']['input']>;
+};
+
+export type UpdateHighlightReplyError = {
+  __typename?: 'UpdateHighlightReplyError';
+  errorCodes: Array<UpdateHighlightReplyErrorCode>;
+};
+
+export enum UpdateHighlightReplyErrorCode {
+  Forbidden = 'FORBIDDEN',
+  NotFound = 'NOT_FOUND',
+  Unauthorized = 'UNAUTHORIZED'
+}
+
+export type UpdateHighlightReplyInput = {
+  highlightReplyId: Scalars['ID']['input'];
+  text: Scalars['String']['input'];
+};
+
+export type UpdateHighlightReplyResult = UpdateHighlightReplyError | UpdateHighlightReplySuccess;
+
+export type UpdateHighlightReplySuccess = {
+  __typename?: 'UpdateHighlightReplySuccess';
+  highlightReply: HighlightReply;
+};
+
+export type UpdateHighlightResult = UpdateHighlightError | UpdateHighlightSuccess;
+
+export type UpdateHighlightSuccess = {
+  __typename?: 'UpdateHighlightSuccess';
+  highlight: Highlight;
+};
+
+export type UpdateLabelError = {
+  __typename?: 'UpdateLabelError';
+  errorCodes: Array<UpdateLabelErrorCode>;
+};
+
+export enum UpdateLabelErrorCode {
+  BadRequest = 'BAD_REQUEST',
+  Forbidden = 'FORBIDDEN',
+  NotFound = 'NOT_FOUND',
+  Unauthorized = 'UNAUTHORIZED'
+}
+
+export type UpdateLabelInput = {
+  color: Scalars['String']['input'];
+  description?: InputMaybe<Scalars['String']['input']>;
+  labelId: Scalars['ID']['input'];
+  name: Scalars['String']['input'];
+};
+
+export type UpdateLabelResult = UpdateLabelError | UpdateLabelSuccess;
+
+export type UpdateLabelSuccess = {
+  __typename?: 'UpdateLabelSuccess';
+  label: Label;
+};
+
+export type UpdateLinkShareInfoError = {
+  __typename?: 'UpdateLinkShareInfoError';
+  errorCodes: Array<UpdateLinkShareInfoErrorCode>;
+};
+
+export enum UpdateLinkShareInfoErrorCode {
+  BadRequest = 'BAD_REQUEST',
+  Unauthorized = 'UNAUTHORIZED'
+}
+
+export type UpdateLinkShareInfoInput = {
+  description: Scalars['String']['input'];
+  linkId: Scalars['ID']['input'];
+  title: Scalars['String']['input'];
+};
+
+export type UpdateLinkShareInfoResult = UpdateLinkShareInfoError | UpdateLinkShareInfoSuccess;
+
+export type UpdateLinkShareInfoSuccess = {
+  __typename?: 'UpdateLinkShareInfoSuccess';
+  message: Scalars['String']['output'];
+};
+
+export type UpdateNewsletterEmailError = {
+  __typename?: 'UpdateNewsletterEmailError';
+  errorCodes: Array<UpdateNewsletterEmailErrorCode>;
+};
+
+export enum UpdateNewsletterEmailErrorCode {
+  BadRequest = 'BAD_REQUEST',
+  Unauthorized = 'UNAUTHORIZED'
+}
+
+export type UpdateNewsletterEmailInput = {
+  description?: InputMaybe<Scalars['String']['input']>;
+  folder?: InputMaybe<Scalars['String']['input']>;
+  id: Scalars['ID']['input'];
+  name?: InputMaybe<Scalars['String']['input']>;
+};
+
+export type UpdateNewsletterEmailResult = UpdateNewsletterEmailError | UpdateNewsletterEmailSuccess;
+
+export type UpdateNewsletterEmailSuccess = {
+  __typename?: 'UpdateNewsletterEmailSuccess';
+  newsletterEmail: NewsletterEmail;
+};
+
+export type UpdatePageError = {
+  __typename?: 'UpdatePageError';
+  errorCodes: Array<UpdatePageErrorCode>;
+};
+
+export enum UpdatePageErrorCode {
+  BadRequest = 'BAD_REQUEST',
+  Forbidden = 'FORBIDDEN',
+  NotFound = 'NOT_FOUND',
+  Unauthorized = 'UNAUTHORIZED',
+  UpdateFailed = 'UPDATE_FAILED'
+}
+
+export type UpdatePageInput = {
+  byline?: InputMaybe<Scalars['String']['input']>;
+  description?: InputMaybe<Scalars['String']['input']>;
+  pageId: Scalars['ID']['input'];
+  previewImage?: InputMaybe<Scalars['String']['input']>;
+  publishedAt?: InputMaybe<Scalars['Date']['input']>;
+  savedAt?: InputMaybe<Scalars['Date']['input']>;
+  state?: InputMaybe<ArticleSavingRequestStatus>;
+  title?: InputMaybe<Scalars['String']['input']>;
+};
+
+export type UpdatePageResult = UpdatePageError | UpdatePageSuccess;
+
+export type UpdatePageSuccess = {
+  __typename?: 'UpdatePageSuccess';
+  updatedPage: Article;
+};
+
+export enum UpdateReason {
+  Created = 'CREATED',
+  Deleted = 'DELETED',
+  Updated = 'UPDATED'
+}
+
+export type UpdateReminderError = {
+  __typename?: 'UpdateReminderError';
+  errorCodes: Array<UpdateReminderErrorCode>;
+};
+
+export enum UpdateReminderErrorCode {
+  BadRequest = 'BAD_REQUEST',
+  NotFound = 'NOT_FOUND',
+  Unauthorized = 'UNAUTHORIZED'
+}
+
+export type UpdateReminderInput = {
+  archiveUntil: Scalars['Boolean']['input'];
+  id: Scalars['ID']['input'];
+  remindAt: Scalars['Date']['input'];
+  sendNotification: Scalars['Boolean']['input'];
+};
+
+export type UpdateReminderResult = UpdateReminderError | UpdateReminderSuccess;
+
+export type UpdateReminderSuccess = {
+  __typename?: 'UpdateReminderSuccess';
+  reminder: Reminder;
+};
+
+export type UpdateSharedCommentError = {
+  __typename?: 'UpdateSharedCommentError';
+  errorCodes: Array<UpdateSharedCommentErrorCode>;
+};
+
+export enum UpdateSharedCommentErrorCode {
+  NotFound = 'NOT_FOUND',
+  Unauthorized = 'UNAUTHORIZED'
+}
+
+export type UpdateSharedCommentInput = {
+  articleID: Scalars['ID']['input'];
+  sharedComment: Scalars['String']['input'];
+};
+
+export type UpdateSharedCommentResult = UpdateSharedCommentError | UpdateSharedCommentSuccess;
+
+export type UpdateSharedCommentSuccess = {
+  __typename?: 'UpdateSharedCommentSuccess';
+  articleID: Scalars['ID']['output'];
+  sharedComment: Scalars['String']['output'];
+};
+
+export type UpdateSubscriptionError = {
+  __typename?: 'UpdateSubscriptionError';
+  errorCodes: Array<UpdateSubscriptionErrorCode>;
+};
+
+export enum UpdateSubscriptionErrorCode {
+  BadRequest = 'BAD_REQUEST',
+  NotFound = 'NOT_FOUND',
+  Unauthorized = 'UNAUTHORIZED'
+}
+
+export type UpdateSubscriptionInput = {
+  autoAddToLibrary?: InputMaybe<Scalars['Boolean']['input']>;
+  description?: InputMaybe<Scalars['String']['input']>;
+  failedAt?: InputMaybe<Scalars['Date']['input']>;
+  fetchContent?: InputMaybe<Scalars['Boolean']['input']>;
+  fetchContentType?: InputMaybe<FetchContentType>;
+  folder?: InputMaybe<Scalars['String']['input']>;
+  id: Scalars['ID']['input'];
+  isPrivate?: InputMaybe<Scalars['Boolean']['input']>;
+  lastFetchedChecksum?: InputMaybe<Scalars['String']['input']>;
+  mostRecentItemDate?: InputMaybe<Scalars['Date']['input']>;
+  name?: InputMaybe<Scalars['String']['input']>;
+  refreshedAt?: InputMaybe<Scalars['Date']['input']>;
+  scheduledAt?: InputMaybe<Scalars['Date']['input']>;
+  status?: InputMaybe<SubscriptionStatus>;
+};
+
+export type UpdateSubscriptionResult = UpdateSubscriptionError | UpdateSubscriptionSuccess;
+
+export type UpdateSubscriptionSuccess = {
+  __typename?: 'UpdateSubscriptionSuccess';
+  subscription: Subscription;
+};
+
+export type UpdateUserError = {
+  __typename?: 'UpdateUserError';
+  errorCodes: Array<UpdateUserErrorCode>;
+};
+
+export enum UpdateUserErrorCode {
+  BioTooLong = 'BIO_TOO_LONG',
+  EmptyName = 'EMPTY_NAME',
+  Unauthorized = 'UNAUTHORIZED',
+  UserNotFound = 'USER_NOT_FOUND'
+}
+
+export type UpdateUserInput = {
+  bio?: InputMaybe<Scalars['String']['input']>;
+  name: Scalars['String']['input'];
+};
+
+export type UpdateUserProfileError = {
+  __typename?: 'UpdateUserProfileError';
+  errorCodes: Array<UpdateUserProfileErrorCode>;
+};
+
+export enum UpdateUserProfileErrorCode {
+  BadData = 'BAD_DATA',
+  BadUsername = 'BAD_USERNAME',
+  Forbidden = 'FORBIDDEN',
+  Unauthorized = 'UNAUTHORIZED',
+  UsernameExists = 'USERNAME_EXISTS'
+}
+
+export type UpdateUserProfileInput = {
+  bio?: InputMaybe<Scalars['String']['input']>;
+  pictureUrl?: InputMaybe<Scalars['String']['input']>;
+  userId: Scalars['ID']['input'];
+  username?: InputMaybe<Scalars['String']['input']>;
+};
+
+export type UpdateUserProfileResult = UpdateUserProfileError | UpdateUserProfileSuccess;
+
+export type UpdateUserProfileSuccess = {
+  __typename?: 'UpdateUserProfileSuccess';
+  user: User;
+};
+
+export type UpdateUserResult = UpdateUserError | UpdateUserSuccess;
+
+export type UpdateUserSuccess = {
+  __typename?: 'UpdateUserSuccess';
+  user: User;
+};
+
+export type UpdatesSinceError = {
+  __typename?: 'UpdatesSinceError';
+  errorCodes: Array<UpdatesSinceErrorCode>;
+};
+
+export enum UpdatesSinceErrorCode {
+  Unauthorized = 'UNAUTHORIZED'
+}
+
+export type UpdatesSinceResult = UpdatesSinceError | UpdatesSinceSuccess;
+
+export type UpdatesSinceSuccess = {
+  __typename?: 'UpdatesSinceSuccess';
+  edges: Array<SyncUpdatedItemEdge>;
+  pageInfo: PageInfo;
+};
+
+export type UploadFileRequestError = {
+  __typename?: 'UploadFileRequestError';
+  errorCodes: Array<UploadFileRequestErrorCode>;
+};
+
+export enum UploadFileRequestErrorCode {
+  BadInput = 'BAD_INPUT',
+  FailedCreate = 'FAILED_CREATE',
+  Unauthorized = 'UNAUTHORIZED'
+}
+
+export type UploadFileRequestInput = {
+  clientRequestId?: InputMaybe<Scalars['String']['input']>;
+  contentType: Scalars['String']['input'];
+  createPageEntry?: InputMaybe<Scalars['Boolean']['input']>;
+  url: Scalars['String']['input'];
+};
+
+export type UploadFileRequestResult = UploadFileRequestError | UploadFileRequestSuccess;
+
+export type UploadFileRequestSuccess = {
+  __typename?: 'UploadFileRequestSuccess';
+  createdPageId?: Maybe<Scalars['String']['output']>;
+  id: Scalars['ID']['output'];
+  uploadFileId?: Maybe<Scalars['ID']['output']>;
+  uploadSignedUrl?: Maybe<Scalars['String']['output']>;
+};
+
+export enum UploadFileStatus {
+  Completed = 'COMPLETED',
+  Initialized = 'INITIALIZED'
+}
+
+export type UploadImportFileError = {
+  __typename?: 'UploadImportFileError';
+  errorCodes: Array<UploadImportFileErrorCode>;
+};
+
+export enum UploadImportFileErrorCode {
+  BadRequest = 'BAD_REQUEST',
+  Unauthorized = 'UNAUTHORIZED',
+  UploadDailyLimitExceeded = 'UPLOAD_DAILY_LIMIT_EXCEEDED'
+}
+
+export type UploadImportFileResult = UploadImportFileError | UploadImportFileSuccess;
+
+export type UploadImportFileSuccess = {
+  __typename?: 'UploadImportFileSuccess';
+  uploadSignedUrl?: Maybe<Scalars['String']['output']>;
+};
+
+export enum UploadImportFileType {
+  Matter = 'MATTER',
+  Pocket = 'POCKET',
+  UrlList = 'URL_LIST'
+}
+
+export type User = {
+  __typename?: 'User';
+  email?: Maybe<Scalars['String']['output']>;
+  featureList?: Maybe<Array<Feature>>;
+  features?: Maybe<Array<Maybe<Scalars['String']['output']>>>;
+  followersCount?: Maybe<Scalars['Int']['output']>;
+  friendsCount?: Maybe<Scalars['Int']['output']>;
+  id: Scalars['ID']['output'];
+  intercomHash?: Maybe<Scalars['String']['output']>;
+  /** @deprecated isFriend has been replaced with viewerIsFollowing */
+  isFriend?: Maybe<Scalars['Boolean']['output']>;
+  isFullUser?: Maybe<Scalars['Boolean']['output']>;
+  name: Scalars['String']['output'];
+  picture?: Maybe<Scalars['String']['output']>;
+  profile: Profile;
+  sharedArticles: Array<FeedArticle>;
+  sharedArticlesCount?: Maybe<Scalars['Int']['output']>;
+  sharedHighlightsCount?: Maybe<Scalars['Int']['output']>;
+  sharedNotesCount?: Maybe<Scalars['Int']['output']>;
+  source?: Maybe<Scalars['String']['output']>;
+  viewerIsFollowing?: Maybe<Scalars['Boolean']['output']>;
+};
+
+export type UserError = {
+  __typename?: 'UserError';
+  errorCodes: Array<UserErrorCode>;
+};
+
+export enum UserErrorCode {
+  BadRequest = 'BAD_REQUEST',
+  Unauthorized = 'UNAUTHORIZED',
+  UserNotFound = 'USER_NOT_FOUND'
+}
+
+export type UserPersonalization = {
+  __typename?: 'UserPersonalization';
+  fields?: Maybe<Scalars['JSON']['output']>;
+  fontFamily?: Maybe<Scalars['String']['output']>;
+  fontSize?: Maybe<Scalars['Int']['output']>;
+  id?: Maybe<Scalars['ID']['output']>;
+  libraryLayoutType?: Maybe<Scalars['String']['output']>;
+  librarySortOrder?: Maybe<SortOrder>;
+  margin?: Maybe<Scalars['Int']['output']>;
+  speechRate?: Maybe<Scalars['String']['output']>;
+  speechSecondaryVoice?: Maybe<Scalars['String']['output']>;
+  speechVoice?: Maybe<Scalars['String']['output']>;
+  speechVolume?: Maybe<Scalars['String']['output']>;
+  theme?: Maybe<Scalars['String']['output']>;
+};
+
+export type UserResult = UserError | UserSuccess;
+
+export type UserSuccess = {
+  __typename?: 'UserSuccess';
+  user: User;
+};
+
+export type UsersError = {
+  __typename?: 'UsersError';
+  errorCodes: Array<UsersErrorCode>;
+};
+
+export enum UsersErrorCode {
+  Unauthorized = 'UNAUTHORIZED'
+}
+
+export type UsersResult = UsersError | UsersSuccess;
+
+export type UsersSuccess = {
+  __typename?: 'UsersSuccess';
+  users: Array<User>;
+};
+
+export type Webhook = {
+  __typename?: 'Webhook';
+  contentType: Scalars['String']['output'];
+  createdAt: Scalars['Date']['output'];
+  enabled: Scalars['Boolean']['output'];
+  eventTypes: Array<WebhookEvent>;
+  id: Scalars['ID']['output'];
+  method: Scalars['String']['output'];
+  updatedAt?: Maybe<Scalars['Date']['output']>;
+  url: Scalars['String']['output'];
+};
+
+export type WebhookError = {
+  __typename?: 'WebhookError';
+  errorCodes: Array<WebhookErrorCode>;
+};
+
+export enum WebhookErrorCode {
+  BadRequest = 'BAD_REQUEST',
+  NotFound = 'NOT_FOUND',
+  Unauthorized = 'UNAUTHORIZED'
+}
+
+export enum WebhookEvent {
+  HighlightCreated = 'HIGHLIGHT_CREATED',
+  HighlightDeleted = 'HIGHLIGHT_DELETED',
+  HighlightUpdated = 'HIGHLIGHT_UPDATED',
+  LabelCreated = 'LABEL_CREATED',
+  LabelDeleted = 'LABEL_DELETED',
+  LabelUpdated = 'LABEL_UPDATED',
+  PageCreated = 'PAGE_CREATED',
+  PageDeleted = 'PAGE_DELETED',
+  PageUpdated = 'PAGE_UPDATED'
+}
+
+export type WebhookResult = WebhookError | WebhookSuccess;
+
+export type WebhookSuccess = {
+  __typename?: 'WebhookSuccess';
+  webhook: Webhook;
+};
+
+export type WebhooksError = {
+  __typename?: 'WebhooksError';
+  errorCodes: Array<WebhooksErrorCode>;
+};
+
+export enum WebhooksErrorCode {
+  BadRequest = 'BAD_REQUEST',
+  Unauthorized = 'UNAUTHORIZED'
+}
+
+export type WebhooksResult = WebhooksError | WebhooksSuccess;
+
+export type WebhooksSuccess = {
+  __typename?: 'WebhooksSuccess';
+  webhooks: Array<Webhook>;
+};
+
+export type GetArticleQueryVariables = Exact<{
+  slug: Scalars['String']['input'];
+}>;
+
+
+export type GetArticleQuery = { __typename?: 'Query', article: { __typename?: 'ArticleError', errorCodes: Array<ArticleErrorCode> } | { __typename?: 'ArticleSuccess', article: { __typename?: 'Article', content: string, id: string, title: string, folder: string, url: string, author?: string | null, image?: string | null, savedAt: any, createdAt: any, publishedAt?: any | null, contentReader: ContentReader, originalArticleUrl?: string | null, readingProgressPercent: number, readingProgressAnchorIndex: number, slug: string, isArchived: boolean, description?: string | null, linkId?: string | null, siteName?: string | null, siteIcon?: string | null, state?: ArticleSavingRequestStatus | null, readAt?: any | null, updatedAt?: any | null, wordsCount?: number | null, highlights: Array<{ __typename?: 'Highlight', id: string, type: HighlightType, shortId: string, quote?: string | null, prefix?: string | null, suffix?: string | null, patch?: string | null, annotation?: string | null, createdByMe: boolean, createdAt: any, updatedAt?: any | null, sharedAt?: any | null, highlightPositionPercent?: number | null, highlightPositionAnchorIndex?: number | null, labels?: Array<{ __typename?: 'Label', id: string, name: string, color: string, description?: string | null, createdAt?: any | null, internal?: boolean | null }> | null }>, labels?: Array<{ __typename?: 'Label', id: string, name: string, color: string, description?: string | null, createdAt?: any | null, internal?: boolean | null }> | null, recommendations?: Array<{ __typename?: 'Recommendation', id: string, name: string, note?: string | null, recommendedAt: any, user?: { __typename?: 'RecommendingUser', userId: string, name: string, username: string, profileImageURL?: string | null } | null }> | null } } };
+
+export type ArticleFieldsFragment = { __typename?: 'Article', id: string, title: string, folder: string, url: string, author?: string | null, image?: string | null, savedAt: any, createdAt: any, publishedAt?: any | null, contentReader: ContentReader, originalArticleUrl?: string | null, readingProgressPercent: number, readingProgressAnchorIndex: number, slug: string, isArchived: boolean, description?: string | null, linkId?: string | null, siteName?: string | null, siteIcon?: string | null, state?: ArticleSavingRequestStatus | null, readAt?: any | null, updatedAt?: any | null, wordsCount?: number | null };
+
+export type RecommendationFieldsFragment = { __typename?: 'Recommendation', id: string, name: string, note?: string | null, recommendedAt: any, user?: { __typename?: 'RecommendingUser', userId: string, name: string, username: string, profileImageURL?: string | null } | null };
+
+export type TypeaheadSearchQueryVariables = Exact<{
+  query: Scalars['String']['input'];
+}>;
+
+
+export type TypeaheadSearchQuery = { __typename?: 'Query', typeaheadSearch: { __typename?: 'TypeaheadSearchError', errorCodes: Array<TypeaheadSearchErrorCode> } | { __typename?: 'TypeaheadSearchSuccess', items: Array<{ __typename?: 'TypeaheadSearchItem', id: string, title: string, slug: string, siteName?: string | null, contentReader: ContentReader }> } };
+
+export type LabelFieldsFragment = { __typename?: 'Label', id: string, name: string, color: string, description?: string | null, createdAt?: any | null, internal?: boolean | null };
+
+export type HighlightFieldsFragment = { __typename?: 'Highlight', id: string, type: HighlightType, shortId: string, quote?: string | null, prefix?: string | null, suffix?: string | null, patch?: string | null, annotation?: string | null, createdByMe: boolean, createdAt: any, updatedAt?: any | null, sharedAt?: any | null, highlightPositionPercent?: number | null, highlightPositionAnchorIndex?: number | null, labels?: Array<{ __typename?: 'Label', id: string, name: string, color: string, description?: string | null, createdAt?: any | null, internal?: boolean | null }> | null };
+
+export type MeQueryVariables = Exact<{ [key: string]: never; }>;
+
+
+export type MeQuery = { __typename?: 'Query', me?: { __typename?: 'User', id: string, name: string, picture?: string | null, profile: { __typename?: 'Profile', id: string, username: string } } | null };
+
+export type GetLabelsQueryVariables = Exact<{ [key: string]: never; }>;
+
+
+export type GetLabelsQuery = { __typename?: 'Query', labels: { __typename?: 'LabelsError', errorCodes: Array<LabelsErrorCode> } | { __typename?: 'LabelsSuccess', labels: Array<{ __typename?: 'Label', id: string, name: string, color: string, description?: string | null, createdAt?: any | null, internal?: boolean | null }> } };
+
+export type SearchQueryVariables = Exact<{
+  after?: InputMaybe<Scalars['String']['input']>;
+  first?: InputMaybe<Scalars['Int']['input']>;
+  query?: InputMaybe<Scalars['String']['input']>;
+  format?: InputMaybe<Scalars['String']['input']>;
+  includeContent?: InputMaybe<Scalars['Boolean']['input']>;
+}>;
+
+
+export type SearchQuery = { __typename?: 'Query', search: { __typename?: 'SearchError', errorCodes: Array<SearchErrorCode> } | { __typename?: 'SearchSuccess', edges: Array<{ __typename?: 'SearchItemEdge', cursor: string, node: { __typename?: 'SearchItem', id: string, title: string, slug: string, url: string, pageType: PageType, contentReader: ContentReader, createdAt: any, isArchived: boolean, archivedAt?: any | null, readingProgressPercent: number, readingProgressTopPercent?: number | null, readingProgressAnchorIndex: number, author?: string | null, image?: string | null, description?: string | null, publishedAt?: any | null, ownedByViewer?: boolean | null, originalArticleUrl?: string | null, uploadFileId?: string | null, color?: string | null, pageId?: string | null, shortId?: string | null, quote?: string | null, annotation?: string | null, state?: ArticleSavingRequestStatus | null, siteIcon?: string | null, siteName?: string | null, subscription?: string | null, readAt?: any | null, savedAt: any, wordsCount?: number | null, feedContent?: string | null, previewContentType?: string | null, links?: any | null, folder: string, aiSummary?: string | null, directionality?: DirectionalityType | null, format?: string | null, labels?: Array<{ __typename?: 'Label', id: string, name: string, color: string }> | null, recommendations?: Array<{ __typename?: 'Recommendation', id: string, name: string, note?: string | null, recommendedAt: any, user?: { __typename?: 'RecommendingUser', userId: string, name: string, username: string, profileImageURL?: string | null } | null }> | null, highlights?: Array<{ __typename?: 'Highlight', id: string, type: HighlightType, shortId: string, quote?: string | null, prefix?: string | null, suffix?: string | null, patch?: string | null, annotation?: string | null, createdByMe: boolean, createdAt: any, updatedAt?: any | null, sharedAt?: any | null, highlightPositionPercent?: number | null, highlightPositionAnchorIndex?: number | null, labels?: Array<{ __typename?: 'Label', id: string, name: string, color: string, description?: string | null, createdAt?: any | null, internal?: boolean | null }> | null }> | null } }>, pageInfo: { __typename?: 'PageInfo', hasNextPage: boolean, hasPreviousPage: boolean, startCursor?: string | null, endCursor?: string | null, totalCount?: number | null } } };
+
+export type SubscribeMutationVariables = Exact<{
+  input: SubscribeInput;
+}>;
+
+
+export type SubscribeMutation = { __typename?: 'Mutation', subscribe: { __typename?: 'SubscribeError', errorCodes: Array<SubscribeErrorCode> } | { __typename?: 'SubscribeSuccess', subscriptions: Array<{ __typename?: 'Subscription', id: string }> } };
+
+export type SaveUrlMutationVariables = Exact<{
+  input: SaveUrlInput;
+}>;
+
+
+export type SaveUrlMutation = { __typename?: 'Mutation', saveUrl: { __typename?: 'SaveError', errorCodes: Array<SaveErrorCode>, message?: string | null } | { __typename?: 'SaveSuccess', url: string, clientRequestId: string } };
+
+export type GetNewsletterEmailsQueryVariables = Exact<{ [key: string]: never; }>;
+
+
+export type GetNewsletterEmailsQuery = { __typename?: 'Query', newsletterEmails: { __typename?: 'NewsletterEmailsError', errorCodes: Array<NewsletterEmailsErrorCode> } | { __typename?: 'NewsletterEmailsSuccess', newsletterEmails: Array<{ __typename?: 'NewsletterEmail', id: string, address: string, createdAt: any, subscriptionCount: number }> } };
+
+export type GetSubscriptionsQueryVariables = Exact<{ [key: string]: never; }>;
+
+
+export type GetSubscriptionsQuery = { __typename?: 'Query', subscriptions: { __typename?: 'SubscriptionsError', errorCodes: Array<SubscriptionsErrorCode> } | { __typename?: 'SubscriptionsSuccess', subscriptions: Array<{ __typename?: 'Subscription', id: string, name: string, newsletterEmail?: string | null, url?: string | null, description?: string | null, status: SubscriptionStatus, unsubscribeMailTo?: string | null, unsubscribeHttpUrl?: string | null, icon?: string | null, type: SubscriptionType, count: number, lastFetchedAt?: any | null, createdAt: any, updatedAt?: any | null, isPrivate?: boolean | null, autoAddToLibrary?: boolean | null, fetchContent: boolean, fetchContentType: FetchContentType, folder: string, mostRecentItemDate?: any | null, refreshedAt?: any | null, failedAt?: any | null }> } };
+
+export type SavedSearchesQueryVariables = Exact<{ [key: string]: never; }>;
+
+
+export type SavedSearchesQuery = { __typename?: 'Query', filters: { __typename?: 'FiltersError', errorCodes: Array<FiltersErrorCode> } | { __typename?: 'FiltersSuccess', filters: Array<{ __typename?: 'Filter', id: string, name: string, filter: string, position: number, visible?: boolean | null, defaultFilter?: boolean | null, folder?: string | null, category?: string | null }> } };
+
+export type FiltersFragmentFragment = { __typename?: 'Filter', id: string, name: string, filter: string, position: number, visible?: boolean | null, defaultFilter?: boolean | null, folder?: string | null, category?: string | null };
+
+export type SaveFilterMutationVariables = Exact<{
+  input: SaveFilterInput;
+}>;
+
+
+export type SaveFilterMutation = { __typename?: 'Mutation', saveFilter: { __typename?: 'SaveFilterError', errorCodes: Array<SaveFilterErrorCode> } | { __typename?: 'SaveFilterSuccess', filter: { __typename?: 'Filter', id: string, name: string, filter: string, position: number, visible?: boolean | null, defaultFilter?: boolean | null, folder?: string | null, category?: string | null } } };
+
+export type DeleteFilterMutationVariables = Exact<{
+  id: Scalars['ID']['input'];
+}>;
+
+
+export type DeleteFilterMutation = { __typename?: 'Mutation', deleteFilter: { __typename?: 'DeleteFilterError', errorCodes: Array<DeleteFilterErrorCode> } | { __typename?: 'DeleteFilterSuccess', filter: { __typename?: 'Filter', id: string } } };
+
+export type SaveArticleReadingProgressMutationVariables = Exact<{
+  input: SaveArticleReadingProgressInput;
+}>;
+
+
+export type SaveArticleReadingProgressMutation = { __typename?: 'Mutation', saveArticleReadingProgress: { __typename?: 'SaveArticleReadingProgressError', errorCodes: Array<SaveArticleReadingProgressErrorCode> } | { __typename?: 'SaveArticleReadingProgressSuccess', updatedArticle: { __typename?: 'Article', id: string, readingProgressPercent: number, readingProgressAnchorIndex: number } } };
+
+export type SetLinkArchivedMutationVariables = Exact<{
+  input: ArchiveLinkInput;
+}>;
+
+
+export type SetLinkArchivedMutation = { __typename?: 'Mutation', setLinkArchived: { __typename?: 'ArchiveLinkError', message: string, errorCodes: Array<ArchiveLinkErrorCode> } | { __typename?: 'ArchiveLinkSuccess', linkId: string, message: string } };
+
+export type SetBookmarkArticleMutationVariables = Exact<{
+  input: SetBookmarkArticleInput;
+}>;
+
+
+export type SetBookmarkArticleMutation = { __typename?: 'Mutation', setBookmarkArticle: { __typename?: 'SetBookmarkArticleError', errorCodes: Array<SetBookmarkArticleErrorCode> } | { __typename?: 'SetBookmarkArticleSuccess', bookmarkedArticle: { __typename?: 'Article', id: string } } };
+
+export type CreateLabelMutationVariables = Exact<{
+  input: CreateLabelInput;
+}>;
+
+
+export type CreateLabelMutation = { __typename?: 'Mutation', createLabel: { __typename?: 'CreateLabelError', errorCodes: Array<CreateLabelErrorCode> } | { __typename?: 'CreateLabelSuccess', label: { __typename?: 'Label', id: string, name: string, color: string, description?: string | null, createdAt?: any | null, internal?: boolean | null } } };
+
+export type UpdateLabelMutationVariables = Exact<{
+  input: UpdateLabelInput;
+}>;
+
+
+export type UpdateLabelMutation = { __typename?: 'Mutation', updateLabel: { __typename?: 'UpdateLabelError', errorCodes: Array<UpdateLabelErrorCode> } | { __typename?: 'UpdateLabelSuccess', label: { __typename?: 'Label', id: string, name: string, color: string, description?: string | null, createdAt?: any | null, internal?: boolean | null } } };
+
+export type DeleteLabelMutationVariables = Exact<{
+  id: Scalars['ID']['input'];
+}>;
+
+
+export type DeleteLabelMutation = { __typename?: 'Mutation', deleteLabel: { __typename?: 'DeleteLabelError', errorCodes: Array<DeleteLabelErrorCode> } | { __typename?: 'DeleteLabelSuccess', label: { __typename?: 'Label', id: string, name: string, color: string, description?: string | null, createdAt?: any | null, internal?: boolean | null } } };
+
+export type SetLabelsMutationVariables = Exact<{
+  input: SetLabelsInput;
+}>;
+
+
+export type SetLabelsMutation = { __typename?: 'Mutation', setLabels: { __typename?: 'SetLabelsError', errorCodes: Array<SetLabelsErrorCode> } | { __typename?: 'SetLabelsSuccess', labels: Array<{ __typename?: 'Label', id: string, name: string, color: string, description?: string | null, createdAt?: any | null, internal?: boolean | null }> } };
+
+export type UpdatePageMutationVariables = Exact<{
+  input: UpdatePageInput;
+}>;
+
+
+export type UpdatePageMutation = { __typename?: 'Mutation', updatePage: { __typename?: 'UpdatePageError', errorCodes: Array<UpdatePageErrorCode> } | { __typename?: 'UpdatePageSuccess', updatedPage: { __typename?: 'Article', id: string, title: string, url: string, createdAt: any, author?: string | null, image?: string | null, description?: string | null, savedAt: any, publishedAt?: any | null } } };
+
+export type ArchivedArticleFragment = { __typename?: 'Article', id: string, isArchived: boolean };
+
+export type ReadingArticleFragment = { __typename?: 'SearchItem', id: string, readingProgressAnchorIndex: number, readingProgressPercent: number };
+
+export const ArticleFieldsFragmentDoc = {"kind":"Document","definitions":[{"kind":"FragmentDefinition","name":{"kind":"Name","value":"ArticleFields"},"typeCondition":{"kind":"NamedType","name":{"kind":"Name","value":"Article"}},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"id"}},{"kind":"Field","name":{"kind":"Name","value":"title"}},{"kind":"Field","name":{"kind":"Name","value":"folder"}},{"kind":"Field","name":{"kind":"Name","value":"url"}},{"kind":"Field","name":{"kind":"Name","value":"author"}},{"kind":"Field","name":{"kind":"Name","value":"image"}},{"kind":"Field","name":{"kind":"Name","value":"savedAt"}},{"kind":"Field","name":{"kind":"Name","value":"createdAt"}},{"kind":"Field","name":{"kind":"Name","value":"publishedAt"}},{"kind":"Field","name":{"kind":"Name","value":"contentReader"}},{"kind":"Field","name":{"kind":"Name","value":"originalArticleUrl"}},{"kind":"Field","name":{"kind":"Name","value":"readingProgressPercent"}},{"kind":"Field","name":{"kind":"Name","value":"readingProgressAnchorIndex"}},{"kind":"Field","name":{"kind":"Name","value":"slug"}},{"kind":"Field","name":{"kind":"Name","value":"isArchived"}},{"kind":"Field","name":{"kind":"Name","value":"description"}},{"kind":"Field","name":{"kind":"Name","value":"linkId"}},{"kind":"Field","name":{"kind":"Name","value":"siteName"}},{"kind":"Field","name":{"kind":"Name","value":"siteIcon"}},{"kind":"Field","name":{"kind":"Name","value":"state"}},{"kind":"Field","name":{"kind":"Name","value":"readAt"}},{"kind":"Field","name":{"kind":"Name","value":"updatedAt"}},{"kind":"Field","name":{"kind":"Name","value":"wordsCount"}}]}}]} as unknown as DocumentNode<ArticleFieldsFragment, unknown>;
+export const RecommendationFieldsFragmentDoc = {"kind":"Document","definitions":[{"kind":"FragmentDefinition","name":{"kind":"Name","value":"RecommendationFields"},"typeCondition":{"kind":"NamedType","name":{"kind":"Name","value":"Recommendation"}},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"id"}},{"kind":"Field","name":{"kind":"Name","value":"name"}},{"kind":"Field","name":{"kind":"Name","value":"note"}},{"kind":"Field","name":{"kind":"Name","value":"user"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"userId"}},{"kind":"Field","name":{"kind":"Name","value":"name"}},{"kind":"Field","name":{"kind":"Name","value":"username"}},{"kind":"Field","name":{"kind":"Name","value":"profileImageURL"}}]}},{"kind":"Field","name":{"kind":"Name","value":"recommendedAt"}}]}}]} as unknown as DocumentNode<RecommendationFieldsFragment, unknown>;
+export const LabelFieldsFragmentDoc = {"kind":"Document","definitions":[{"kind":"FragmentDefinition","name":{"kind":"Name","value":"LabelFields"},"typeCondition":{"kind":"NamedType","name":{"kind":"Name","value":"Label"}},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"id"}},{"kind":"Field","name":{"kind":"Name","value":"name"}},{"kind":"Field","name":{"kind":"Name","value":"color"}},{"kind":"Field","name":{"kind":"Name","value":"description"}},{"kind":"Field","name":{"kind":"Name","value":"createdAt"}},{"kind":"Field","name":{"kind":"Name","value":"internal"}}]}}]} as unknown as DocumentNode<LabelFieldsFragment, unknown>;
+export const HighlightFieldsFragmentDoc = {"kind":"Document","definitions":[{"kind":"FragmentDefinition","name":{"kind":"Name","value":"HighlightFields"},"typeCondition":{"kind":"NamedType","name":{"kind":"Name","value":"Highlight"}},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"id"}},{"kind":"Field","name":{"kind":"Name","value":"type"}},{"kind":"Field","name":{"kind":"Name","value":"shortId"}},{"kind":"Field","name":{"kind":"Name","value":"quote"}},{"kind":"Field","name":{"kind":"Name","value":"prefix"}},{"kind":"Field","name":{"kind":"Name","value":"suffix"}},{"kind":"Field","name":{"kind":"Name","value":"patch"}},{"kind":"Field","name":{"kind":"Name","value":"annotation"}},{"kind":"Field","name":{"kind":"Name","value":"createdByMe"}},{"kind":"Field","name":{"kind":"Name","value":"createdAt"}},{"kind":"Field","name":{"kind":"Name","value":"updatedAt"}},{"kind":"Field","name":{"kind":"Name","value":"sharedAt"}},{"kind":"Field","name":{"kind":"Name","value":"highlightPositionPercent"}},{"kind":"Field","name":{"kind":"Name","value":"highlightPositionAnchorIndex"}},{"kind":"Field","name":{"kind":"Name","value":"labels"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"FragmentSpread","name":{"kind":"Name","value":"LabelFields"}}]}}]}},{"kind":"FragmentDefinition","name":{"kind":"Name","value":"LabelFields"},"typeCondition":{"kind":"NamedType","name":{"kind":"Name","value":"Label"}},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"id"}},{"kind":"Field","name":{"kind":"Name","value":"name"}},{"kind":"Field","name":{"kind":"Name","value":"color"}},{"kind":"Field","name":{"kind":"Name","value":"description"}},{"kind":"Field","name":{"kind":"Name","value":"createdAt"}},{"kind":"Field","name":{"kind":"Name","value":"internal"}}]}}]} as unknown as DocumentNode<HighlightFieldsFragment, unknown>;
+export const FiltersFragmentFragmentDoc = {"kind":"Document","definitions":[{"kind":"FragmentDefinition","name":{"kind":"Name","value":"FiltersFragment"},"typeCondition":{"kind":"NamedType","name":{"kind":"Name","value":"Filter"}},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"id"}},{"kind":"Field","name":{"kind":"Name","value":"name"}},{"kind":"Field","name":{"kind":"Name","value":"filter"}},{"kind":"Field","name":{"kind":"Name","value":"position"}},{"kind":"Field","name":{"kind":"Name","value":"visible"}},{"kind":"Field","name":{"kind":"Name","value":"defaultFilter"}},{"kind":"Field","name":{"kind":"Name","value":"folder"}},{"kind":"Field","name":{"kind":"Name","value":"category"}}]}}]} as unknown as DocumentNode<FiltersFragmentFragment, unknown>;
+export const ArchivedArticleFragmentDoc = {"kind":"Document","definitions":[{"kind":"FragmentDefinition","name":{"kind":"Name","value":"ArchivedArticle"},"typeCondition":{"kind":"NamedType","name":{"kind":"Name","value":"Article"}},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"id"}},{"kind":"Field","name":{"kind":"Name","value":"isArchived"}}]}}]} as unknown as DocumentNode<ArchivedArticleFragment, unknown>;
+export const ReadingArticleFragmentDoc = {"kind":"Document","definitions":[{"kind":"FragmentDefinition","name":{"kind":"Name","value":"ReadingArticle"},"typeCondition":{"kind":"NamedType","name":{"kind":"Name","value":"SearchItem"}},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"id"}},{"kind":"Field","name":{"kind":"Name","value":"readingProgressAnchorIndex"}},{"kind":"Field","name":{"kind":"Name","value":"readingProgressPercent"}}]}}]} as unknown as DocumentNode<ReadingArticleFragment, unknown>;
+export const GetArticleDocument = {"kind":"Document","definitions":[{"kind":"OperationDefinition","operation":"query","name":{"kind":"Name","value":"GetArticle"},"variableDefinitions":[{"kind":"VariableDefinition","variable":{"kind":"Variable","name":{"kind":"Name","value":"slug"}},"type":{"kind":"NonNullType","type":{"kind":"NamedType","name":{"kind":"Name","value":"String"}}}}],"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"article"},"arguments":[{"kind":"Argument","name":{"kind":"Name","value":"username"},"value":{"kind":"StringValue","value":"me","block":false}},{"kind":"Argument","name":{"kind":"Name","value":"slug"},"value":{"kind":"Variable","name":{"kind":"Name","value":"slug"}}},{"kind":"Argument","name":{"kind":"Name","value":"format"},"value":{"kind":"StringValue","value":"markdown","block":false}}],"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"InlineFragment","typeCondition":{"kind":"NamedType","name":{"kind":"Name","value":"ArticleSuccess"}},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"article"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"FragmentSpread","name":{"kind":"Name","value":"ArticleFields"}},{"kind":"Field","name":{"kind":"Name","value":"content"}},{"kind":"Field","name":{"kind":"Name","value":"highlights"},"arguments":[{"kind":"Argument","name":{"kind":"Name","value":"input"},"value":{"kind":"ObjectValue","fields":[{"kind":"ObjectField","name":{"kind":"Name","value":"includeFriends"},"value":{"kind":"BooleanValue","value":false}}]}}],"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"FragmentSpread","name":{"kind":"Name","value":"HighlightFields"}}]}},{"kind":"Field","name":{"kind":"Name","value":"labels"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"FragmentSpread","name":{"kind":"Name","value":"LabelFields"}}]}},{"kind":"Field","name":{"kind":"Name","value":"recommendations"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"FragmentSpread","name":{"kind":"Name","value":"RecommendationFields"}}]}}]}}]}},{"kind":"InlineFragment","typeCondition":{"kind":"NamedType","name":{"kind":"Name","value":"ArticleError"}},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"errorCodes"}}]}}]}}]}},{"kind":"FragmentDefinition","name":{"kind":"Name","value":"LabelFields"},"typeCondition":{"kind":"NamedType","name":{"kind":"Name","value":"Label"}},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"id"}},{"kind":"Field","name":{"kind":"Name","value":"name"}},{"kind":"Field","name":{"kind":"Name","value":"color"}},{"kind":"Field","name":{"kind":"Name","value":"description"}},{"kind":"Field","name":{"kind":"Name","value":"createdAt"}},{"kind":"Field","name":{"kind":"Name","value":"internal"}}]}},{"kind":"FragmentDefinition","name":{"kind":"Name","value":"ArticleFields"},"typeCondition":{"kind":"NamedType","name":{"kind":"Name","value":"Article"}},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"id"}},{"kind":"Field","name":{"kind":"Name","value":"title"}},{"kind":"Field","name":{"kind":"Name","value":"folder"}},{"kind":"Field","name":{"kind":"Name","value":"url"}},{"kind":"Field","name":{"kind":"Name","value":"author"}},{"kind":"Field","name":{"kind":"Name","value":"image"}},{"kind":"Field","name":{"kind":"Name","value":"savedAt"}},{"kind":"Field","name":{"kind":"Name","value":"createdAt"}},{"kind":"Field","name":{"kind":"Name","value":"publishedAt"}},{"kind":"Field","name":{"kind":"Name","value":"contentReader"}},{"kind":"Field","name":{"kind":"Name","value":"originalArticleUrl"}},{"kind":"Field","name":{"kind":"Name","value":"readingProgressPercent"}},{"kind":"Field","name":{"kind":"Name","value":"readingProgressAnchorIndex"}},{"kind":"Field","name":{"kind":"Name","value":"slug"}},{"kind":"Field","name":{"kind":"Name","value":"isArchived"}},{"kind":"Field","name":{"kind":"Name","value":"description"}},{"kind":"Field","name":{"kind":"Name","value":"linkId"}},{"kind":"Field","name":{"kind":"Name","value":"siteName"}},{"kind":"Field","name":{"kind":"Name","value":"siteIcon"}},{"kind":"Field","name":{"kind":"Name","value":"state"}},{"kind":"Field","name":{"kind":"Name","value":"readAt"}},{"kind":"Field","name":{"kind":"Name","value":"updatedAt"}},{"kind":"Field","name":{"kind":"Name","value":"wordsCount"}}]}},{"kind":"FragmentDefinition","name":{"kind":"Name","value":"HighlightFields"},"typeCondition":{"kind":"NamedType","name":{"kind":"Name","value":"Highlight"}},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"id"}},{"kind":"Field","name":{"kind":"Name","value":"type"}},{"kind":"Field","name":{"kind":"Name","value":"shortId"}},{"kind":"Field","name":{"kind":"Name","value":"quote"}},{"kind":"Field","name":{"kind":"Name","value":"prefix"}},{"kind":"Field","name":{"kind":"Name","value":"suffix"}},{"kind":"Field","name":{"kind":"Name","value":"patch"}},{"kind":"Field","name":{"kind":"Name","value":"annotation"}},{"kind":"Field","name":{"kind":"Name","value":"createdByMe"}},{"kind":"Field","name":{"kind":"Name","value":"createdAt"}},{"kind":"Field","name":{"kind":"Name","value":"updatedAt"}},{"kind":"Field","name":{"kind":"Name","value":"sharedAt"}},{"kind":"Field","name":{"kind":"Name","value":"highlightPositionPercent"}},{"kind":"Field","name":{"kind":"Name","value":"highlightPositionAnchorIndex"}},{"kind":"Field","name":{"kind":"Name","value":"labels"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"FragmentSpread","name":{"kind":"Name","value":"LabelFields"}}]}}]}},{"kind":"FragmentDefinition","name":{"kind":"Name","value":"RecommendationFields"},"typeCondition":{"kind":"NamedType","name":{"kind":"Name","value":"Recommendation"}},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"id"}},{"kind":"Field","name":{"kind":"Name","value":"name"}},{"kind":"Field","name":{"kind":"Name","value":"note"}},{"kind":"Field","name":{"kind":"Name","value":"user"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"userId"}},{"kind":"Field","name":{"kind":"Name","value":"name"}},{"kind":"Field","name":{"kind":"Name","value":"username"}},{"kind":"Field","name":{"kind":"Name","value":"profileImageURL"}}]}},{"kind":"Field","name":{"kind":"Name","value":"recommendedAt"}}]}}]} as unknown as DocumentNode<GetArticleQuery, GetArticleQueryVariables>;
+export const TypeaheadSearchDocument = {"kind":"Document","definitions":[{"kind":"OperationDefinition","operation":"query","name":{"kind":"Name","value":"TypeaheadSearch"},"variableDefinitions":[{"kind":"VariableDefinition","variable":{"kind":"Variable","name":{"kind":"Name","value":"query"}},"type":{"kind":"NonNullType","type":{"kind":"NamedType","name":{"kind":"Name","value":"String"}}}}],"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"typeaheadSearch"},"arguments":[{"kind":"Argument","name":{"kind":"Name","value":"query"},"value":{"kind":"Variable","name":{"kind":"Name","value":"query"}}}],"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"InlineFragment","typeCondition":{"kind":"NamedType","name":{"kind":"Name","value":"TypeaheadSearchSuccess"}},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"items"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"id"}},{"kind":"Field","name":{"kind":"Name","value":"title"}},{"kind":"Field","name":{"kind":"Name","value":"slug"}},{"kind":"Field","name":{"kind":"Name","value":"siteName"}},{"kind":"Field","name":{"kind":"Name","value":"contentReader"}}]}}]}},{"kind":"InlineFragment","typeCondition":{"kind":"NamedType","name":{"kind":"Name","value":"TypeaheadSearchError"}},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"errorCodes"}}]}}]}}]}}]} as unknown as DocumentNode<TypeaheadSearchQuery, TypeaheadSearchQueryVariables>;
+export const MeDocument = {"kind":"Document","definitions":[{"kind":"OperationDefinition","operation":"query","name":{"kind":"Name","value":"Me"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"me"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"id"}},{"kind":"Field","name":{"kind":"Name","value":"name"}},{"kind":"Field","name":{"kind":"Name","value":"picture"}},{"kind":"Field","name":{"kind":"Name","value":"profile"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"id"}},{"kind":"Field","name":{"kind":"Name","value":"username"}}]}}]}}]}}]} as unknown as DocumentNode<MeQuery, MeQueryVariables>;
+export const GetLabelsDocument = {"kind":"Document","definitions":[{"kind":"OperationDefinition","operation":"query","name":{"kind":"Name","value":"GetLabels"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"labels"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"InlineFragment","typeCondition":{"kind":"NamedType","name":{"kind":"Name","value":"LabelsSuccess"}},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"labels"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"FragmentSpread","name":{"kind":"Name","value":"LabelFields"}}]}}]}},{"kind":"InlineFragment","typeCondition":{"kind":"NamedType","name":{"kind":"Name","value":"LabelsError"}},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"errorCodes"}}]}}]}}]}},{"kind":"FragmentDefinition","name":{"kind":"Name","value":"LabelFields"},"typeCondition":{"kind":"NamedType","name":{"kind":"Name","value":"Label"}},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"id"}},{"kind":"Field","name":{"kind":"Name","value":"name"}},{"kind":"Field","name":{"kind":"Name","value":"color"}},{"kind":"Field","name":{"kind":"Name","value":"description"}},{"kind":"Field","name":{"kind":"Name","value":"createdAt"}},{"kind":"Field","name":{"kind":"Name","value":"internal"}}]}}]} as unknown as DocumentNode<GetLabelsQuery, GetLabelsQueryVariables>;
+export const SearchDocument = {"kind":"Document","definitions":[{"kind":"OperationDefinition","operation":"query","name":{"kind":"Name","value":"Search"},"variableDefinitions":[{"kind":"VariableDefinition","variable":{"kind":"Variable","name":{"kind":"Name","value":"after"}},"type":{"kind":"NamedType","name":{"kind":"Name","value":"String"}}},{"kind":"VariableDefinition","variable":{"kind":"Variable","name":{"kind":"Name","value":"first"}},"type":{"kind":"NamedType","name":{"kind":"Name","value":"Int"}}},{"kind":"VariableDefinition","variable":{"kind":"Variable","name":{"kind":"Name","value":"query"}},"type":{"kind":"NamedType","name":{"kind":"Name","value":"String"}}},{"kind":"VariableDefinition","variable":{"kind":"Variable","name":{"kind":"Name","value":"format"}},"type":{"kind":"NamedType","name":{"kind":"Name","value":"String"}}},{"kind":"VariableDefinition","variable":{"kind":"Variable","name":{"kind":"Name","value":"includeContent"}},"type":{"kind":"NamedType","name":{"kind":"Name","value":"Boolean"}}}],"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"search"},"arguments":[{"kind":"Argument","name":{"kind":"Name","value":"after"},"value":{"kind":"Variable","name":{"kind":"Name","value":"after"}}},{"kind":"Argument","name":{"kind":"Name","value":"first"},"value":{"kind":"Variable","name":{"kind":"Name","value":"first"}}},{"kind":"Argument","name":{"kind":"Name","value":"query"},"value":{"kind":"Variable","name":{"kind":"Name","value":"query"}}},{"kind":"Argument","name":{"kind":"Name","value":"format"},"value":{"kind":"Variable","name":{"kind":"Name","value":"format"}}},{"kind":"Argument","name":{"kind":"Name","value":"includeContent"},"value":{"kind":"Variable","name":{"kind":"Name","value":"includeContent"}}}],"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"InlineFragment","typeCondition":{"kind":"NamedType","name":{"kind":"Name","value":"SearchSuccess"}},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"edges"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"cursor"}},{"kind":"Field","name":{"kind":"Name","value":"node"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"id"}},{"kind":"Field","name":{"kind":"Name","value":"title"}},{"kind":"Field","name":{"kind":"Name","value":"slug"}},{"kind":"Field","name":{"kind":"Name","value":"url"}},{"kind":"Field","name":{"kind":"Name","value":"pageType"}},{"kind":"Field","name":{"kind":"Name","value":"contentReader"}},{"kind":"Field","name":{"kind":"Name","value":"createdAt"}},{"kind":"Field","name":{"kind":"Name","value":"isArchived"}},{"kind":"Field","name":{"kind":"Name","value":"archivedAt"}},{"kind":"Field","name":{"kind":"Name","value":"readingProgressPercent"}},{"kind":"Field","name":{"kind":"Name","value":"readingProgressTopPercent"}},{"kind":"Field","name":{"kind":"Name","value":"readingProgressAnchorIndex"}},{"kind":"Field","name":{"kind":"Name","value":"author"}},{"kind":"Field","name":{"kind":"Name","value":"image"}},{"kind":"Field","name":{"kind":"Name","value":"description"}},{"kind":"Field","name":{"kind":"Name","value":"publishedAt"}},{"kind":"Field","name":{"kind":"Name","value":"ownedByViewer"}},{"kind":"Field","name":{"kind":"Name","value":"originalArticleUrl"}},{"kind":"Field","name":{"kind":"Name","value":"uploadFileId"}},{"kind":"Field","name":{"kind":"Name","value":"labels"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"id"}},{"kind":"Field","name":{"kind":"Name","value":"name"}},{"kind":"Field","name":{"kind":"Name","value":"color"}}]}},{"kind":"Field","name":{"kind":"Name","value":"color"}},{"kind":"Field","name":{"kind":"Name","value":"pageId"}},{"kind":"Field","name":{"kind":"Name","value":"shortId"}},{"kind":"Field","name":{"kind":"Name","value":"quote"}},{"kind":"Field","name":{"kind":"Name","value":"annotation"}},{"kind":"Field","name":{"kind":"Name","value":"state"}},{"kind":"Field","name":{"kind":"Name","value":"siteIcon"}},{"kind":"Field","name":{"kind":"Name","value":"siteName"}},{"kind":"Field","name":{"kind":"Name","value":"subscription"}},{"kind":"Field","name":{"kind":"Name","value":"readAt"}},{"kind":"Field","name":{"kind":"Name","value":"savedAt"}},{"kind":"Field","name":{"kind":"Name","value":"wordsCount"}},{"kind":"Field","name":{"kind":"Name","value":"recommendations"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"id"}},{"kind":"Field","name":{"kind":"Name","value":"name"}},{"kind":"Field","name":{"kind":"Name","value":"note"}},{"kind":"Field","name":{"kind":"Name","value":"user"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"userId"}},{"kind":"Field","name":{"kind":"Name","value":"name"}},{"kind":"Field","name":{"kind":"Name","value":"username"}},{"kind":"Field","name":{"kind":"Name","value":"profileImageURL"}}]}},{"kind":"Field","name":{"kind":"Name","value":"recommendedAt"}}]}},{"kind":"Field","name":{"kind":"Name","value":"highlights"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"FragmentSpread","name":{"kind":"Name","value":"HighlightFields"}}]}},{"kind":"Field","name":{"kind":"Name","value":"feedContent"}},{"kind":"Field","name":{"kind":"Name","value":"previewContentType"}},{"kind":"Field","name":{"kind":"Name","value":"links"}},{"kind":"Field","name":{"kind":"Name","value":"folder"}},{"kind":"Field","name":{"kind":"Name","value":"aiSummary"}},{"kind":"Field","name":{"kind":"Name","value":"directionality"}},{"kind":"Field","name":{"kind":"Name","value":"format"}}]}}]}},{"kind":"Field","name":{"kind":"Name","value":"pageInfo"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"hasNextPage"}},{"kind":"Field","name":{"kind":"Name","value":"hasPreviousPage"}},{"kind":"Field","name":{"kind":"Name","value":"startCursor"}},{"kind":"Field","name":{"kind":"Name","value":"endCursor"}},{"kind":"Field","name":{"kind":"Name","value":"totalCount"}}]}}]}},{"kind":"InlineFragment","typeCondition":{"kind":"NamedType","name":{"kind":"Name","value":"SearchError"}},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"errorCodes"}}]}}]}}]}},{"kind":"FragmentDefinition","name":{"kind":"Name","value":"LabelFields"},"typeCondition":{"kind":"NamedType","name":{"kind":"Name","value":"Label"}},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"id"}},{"kind":"Field","name":{"kind":"Name","value":"name"}},{"kind":"Field","name":{"kind":"Name","value":"color"}},{"kind":"Field","name":{"kind":"Name","value":"description"}},{"kind":"Field","name":{"kind":"Name","value":"createdAt"}},{"kind":"Field","name":{"kind":"Name","value":"internal"}}]}},{"kind":"FragmentDefinition","name":{"kind":"Name","value":"HighlightFields"},"typeCondition":{"kind":"NamedType","name":{"kind":"Name","value":"Highlight"}},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"id"}},{"kind":"Field","name":{"kind":"Name","value":"type"}},{"kind":"Field","name":{"kind":"Name","value":"shortId"}},{"kind":"Field","name":{"kind":"Name","value":"quote"}},{"kind":"Field","name":{"kind":"Name","value":"prefix"}},{"kind":"Field","name":{"kind":"Name","value":"suffix"}},{"kind":"Field","name":{"kind":"Name","value":"patch"}},{"kind":"Field","name":{"kind":"Name","value":"annotation"}},{"kind":"Field","name":{"kind":"Name","value":"createdByMe"}},{"kind":"Field","name":{"kind":"Name","value":"createdAt"}},{"kind":"Field","name":{"kind":"Name","value":"updatedAt"}},{"kind":"Field","name":{"kind":"Name","value":"sharedAt"}},{"kind":"Field","name":{"kind":"Name","value":"highlightPositionPercent"}},{"kind":"Field","name":{"kind":"Name","value":"highlightPositionAnchorIndex"}},{"kind":"Field","name":{"kind":"Name","value":"labels"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"FragmentSpread","name":{"kind":"Name","value":"LabelFields"}}]}}]}}]} as unknown as DocumentNode<SearchQuery, SearchQueryVariables>;
+export const SubscribeDocument = {"kind":"Document","definitions":[{"kind":"OperationDefinition","operation":"mutation","name":{"kind":"Name","value":"Subscribe"},"variableDefinitions":[{"kind":"VariableDefinition","variable":{"kind":"Variable","name":{"kind":"Name","value":"input"}},"type":{"kind":"NonNullType","type":{"kind":"NamedType","name":{"kind":"Name","value":"SubscribeInput"}}}}],"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"subscribe"},"arguments":[{"kind":"Argument","name":{"kind":"Name","value":"input"},"value":{"kind":"Variable","name":{"kind":"Name","value":"input"}}}],"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"InlineFragment","typeCondition":{"kind":"NamedType","name":{"kind":"Name","value":"SubscribeSuccess"}},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"subscriptions"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"id"}}]}}]}},{"kind":"InlineFragment","typeCondition":{"kind":"NamedType","name":{"kind":"Name","value":"SubscribeError"}},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"errorCodes"}}]}}]}}]}}]} as unknown as DocumentNode<SubscribeMutation, SubscribeMutationVariables>;
+export const SaveUrlDocument = {"kind":"Document","definitions":[{"kind":"OperationDefinition","operation":"mutation","name":{"kind":"Name","value":"SaveUrl"},"variableDefinitions":[{"kind":"VariableDefinition","variable":{"kind":"Variable","name":{"kind":"Name","value":"input"}},"type":{"kind":"NonNullType","type":{"kind":"NamedType","name":{"kind":"Name","value":"SaveUrlInput"}}}}],"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"saveUrl"},"arguments":[{"kind":"Argument","name":{"kind":"Name","value":"input"},"value":{"kind":"Variable","name":{"kind":"Name","value":"input"}}}],"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"InlineFragment","typeCondition":{"kind":"NamedType","name":{"kind":"Name","value":"SaveSuccess"}},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"url"}},{"kind":"Field","name":{"kind":"Name","value":"clientRequestId"}}]}},{"kind":"InlineFragment","typeCondition":{"kind":"NamedType","name":{"kind":"Name","value":"SaveError"}},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"errorCodes"}},{"kind":"Field","name":{"kind":"Name","value":"message"}}]}}]}}]}}]} as unknown as DocumentNode<SaveUrlMutation, SaveUrlMutationVariables>;
+export const GetNewsletterEmailsDocument = {"kind":"Document","definitions":[{"kind":"OperationDefinition","operation":"query","name":{"kind":"Name","value":"GetNewsletterEmails"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"newsletterEmails"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"InlineFragment","typeCondition":{"kind":"NamedType","name":{"kind":"Name","value":"NewsletterEmailsSuccess"}},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"newsletterEmails"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"id"}},{"kind":"Field","name":{"kind":"Name","value":"address"}},{"kind":"Field","name":{"kind":"Name","value":"createdAt"}},{"kind":"Field","name":{"kind":"Name","value":"subscriptionCount"}}]}}]}},{"kind":"InlineFragment","typeCondition":{"kind":"NamedType","name":{"kind":"Name","value":"NewsletterEmailsError"}},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"errorCodes"}}]}}]}}]}}]} as unknown as DocumentNode<GetNewsletterEmailsQuery, GetNewsletterEmailsQueryVariables>;
+export const GetSubscriptionsDocument = {"kind":"Document","definitions":[{"kind":"OperationDefinition","operation":"query","name":{"kind":"Name","value":"GetSubscriptions"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"subscriptions"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"InlineFragment","typeCondition":{"kind":"NamedType","name":{"kind":"Name","value":"SubscriptionsSuccess"}},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"subscriptions"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"id"}},{"kind":"Field","name":{"kind":"Name","value":"name"}},{"kind":"Field","name":{"kind":"Name","value":"newsletterEmail"}},{"kind":"Field","name":{"kind":"Name","value":"url"}},{"kind":"Field","name":{"kind":"Name","value":"description"}},{"kind":"Field","name":{"kind":"Name","value":"status"}},{"kind":"Field","name":{"kind":"Name","value":"unsubscribeMailTo"}},{"kind":"Field","name":{"kind":"Name","value":"unsubscribeHttpUrl"}},{"kind":"Field","name":{"kind":"Name","value":"icon"}},{"kind":"Field","name":{"kind":"Name","value":"type"}},{"kind":"Field","name":{"kind":"Name","value":"count"}},{"kind":"Field","name":{"kind":"Name","value":"lastFetchedAt"}},{"kind":"Field","name":{"kind":"Name","value":"createdAt"}},{"kind":"Field","name":{"kind":"Name","value":"updatedAt"}},{"kind":"Field","name":{"kind":"Name","value":"isPrivate"}},{"kind":"Field","name":{"kind":"Name","value":"autoAddToLibrary"}},{"kind":"Field","name":{"kind":"Name","value":"fetchContent"}},{"kind":"Field","name":{"kind":"Name","value":"fetchContentType"}},{"kind":"Field","name":{"kind":"Name","value":"folder"}},{"kind":"Field","name":{"kind":"Name","value":"mostRecentItemDate"}},{"kind":"Field","name":{"kind":"Name","value":"refreshedAt"}},{"kind":"Field","name":{"kind":"Name","value":"failedAt"}}]}}]}},{"kind":"InlineFragment","typeCondition":{"kind":"NamedType","name":{"kind":"Name","value":"SubscriptionsError"}},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"errorCodes"}}]}}]}}]}}]} as unknown as DocumentNode<GetSubscriptionsQuery, GetSubscriptionsQueryVariables>;
+export const SavedSearchesDocument = {"kind":"Document","definitions":[{"kind":"OperationDefinition","operation":"query","name":{"kind":"Name","value":"SavedSearches"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"filters"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"InlineFragment","typeCondition":{"kind":"NamedType","name":{"kind":"Name","value":"FiltersSuccess"}},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"filters"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"FragmentSpread","name":{"kind":"Name","value":"FiltersFragment"}}]}}]}},{"kind":"InlineFragment","typeCondition":{"kind":"NamedType","name":{"kind":"Name","value":"FiltersError"}},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"errorCodes"}}]}}]}}]}},{"kind":"FragmentDefinition","name":{"kind":"Name","value":"FiltersFragment"},"typeCondition":{"kind":"NamedType","name":{"kind":"Name","value":"Filter"}},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"id"}},{"kind":"Field","name":{"kind":"Name","value":"name"}},{"kind":"Field","name":{"kind":"Name","value":"filter"}},{"kind":"Field","name":{"kind":"Name","value":"position"}},{"kind":"Field","name":{"kind":"Name","value":"visible"}},{"kind":"Field","name":{"kind":"Name","value":"defaultFilter"}},{"kind":"Field","name":{"kind":"Name","value":"folder"}},{"kind":"Field","name":{"kind":"Name","value":"category"}}]}}]} as unknown as DocumentNode<SavedSearchesQuery, SavedSearchesQueryVariables>;
+export const SaveFilterDocument = {"kind":"Document","definitions":[{"kind":"OperationDefinition","operation":"mutation","name":{"kind":"Name","value":"SaveFilter"},"variableDefinitions":[{"kind":"VariableDefinition","variable":{"kind":"Variable","name":{"kind":"Name","value":"input"}},"type":{"kind":"NonNullType","type":{"kind":"NamedType","name":{"kind":"Name","value":"SaveFilterInput"}}}}],"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"saveFilter"},"arguments":[{"kind":"Argument","name":{"kind":"Name","value":"input"},"value":{"kind":"Variable","name":{"kind":"Name","value":"input"}}}],"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"InlineFragment","typeCondition":{"kind":"NamedType","name":{"kind":"Name","value":"SaveFilterSuccess"}},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"filter"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"id"}},{"kind":"Field","name":{"kind":"Name","value":"name"}},{"kind":"Field","name":{"kind":"Name","value":"filter"}},{"kind":"Field","name":{"kind":"Name","value":"position"}},{"kind":"Field","name":{"kind":"Name","value":"visible"}},{"kind":"Field","name":{"kind":"Name","value":"defaultFilter"}},{"kind":"Field","name":{"kind":"Name","value":"folder"}},{"kind":"Field","name":{"kind":"Name","value":"category"}}]}}]}},{"kind":"InlineFragment","typeCondition":{"kind":"NamedType","name":{"kind":"Name","value":"SaveFilterError"}},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"errorCodes"}}]}}]}}]}}]} as unknown as DocumentNode<SaveFilterMutation, SaveFilterMutationVariables>;
+export const DeleteFilterDocument = {"kind":"Document","definitions":[{"kind":"OperationDefinition","operation":"mutation","name":{"kind":"Name","value":"DeleteFilter"},"variableDefinitions":[{"kind":"VariableDefinition","variable":{"kind":"Variable","name":{"kind":"Name","value":"id"}},"type":{"kind":"NonNullType","type":{"kind":"NamedType","name":{"kind":"Name","value":"ID"}}}}],"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"deleteFilter"},"arguments":[{"kind":"Argument","name":{"kind":"Name","value":"id"},"value":{"kind":"Variable","name":{"kind":"Name","value":"id"}}}],"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"InlineFragment","typeCondition":{"kind":"NamedType","name":{"kind":"Name","value":"DeleteFilterSuccess"}},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"filter"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"id"}}]}}]}},{"kind":"InlineFragment","typeCondition":{"kind":"NamedType","name":{"kind":"Name","value":"DeleteFilterError"}},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"errorCodes"}}]}}]}}]}}]} as unknown as DocumentNode<DeleteFilterMutation, DeleteFilterMutationVariables>;
+export const SaveArticleReadingProgressDocument = {"kind":"Document","definitions":[{"kind":"OperationDefinition","operation":"mutation","name":{"kind":"Name","value":"SaveArticleReadingProgress"},"variableDefinitions":[{"kind":"VariableDefinition","variable":{"kind":"Variable","name":{"kind":"Name","value":"input"}},"type":{"kind":"NonNullType","type":{"kind":"NamedType","name":{"kind":"Name","value":"SaveArticleReadingProgressInput"}}}}],"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"saveArticleReadingProgress"},"arguments":[{"kind":"Argument","name":{"kind":"Name","value":"input"},"value":{"kind":"Variable","name":{"kind":"Name","value":"input"}}}],"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"InlineFragment","typeCondition":{"kind":"NamedType","name":{"kind":"Name","value":"SaveArticleReadingProgressSuccess"}},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"updatedArticle"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"id"}},{"kind":"Field","name":{"kind":"Name","value":"readingProgressPercent"}},{"kind":"Field","name":{"kind":"Name","value":"readingProgressAnchorIndex"}}]}}]}},{"kind":"InlineFragment","typeCondition":{"kind":"NamedType","name":{"kind":"Name","value":"SaveArticleReadingProgressError"}},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"errorCodes"}}]}}]}}]}}]} as unknown as DocumentNode<SaveArticleReadingProgressMutation, SaveArticleReadingProgressMutationVariables>;
+export const SetLinkArchivedDocument = {"kind":"Document","definitions":[{"kind":"OperationDefinition","operation":"mutation","name":{"kind":"Name","value":"SetLinkArchived"},"variableDefinitions":[{"kind":"VariableDefinition","variable":{"kind":"Variable","name":{"kind":"Name","value":"input"}},"type":{"kind":"NonNullType","type":{"kind":"NamedType","name":{"kind":"Name","value":"ArchiveLinkInput"}}}}],"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"setLinkArchived"},"arguments":[{"kind":"Argument","name":{"kind":"Name","value":"input"},"value":{"kind":"Variable","name":{"kind":"Name","value":"input"}}}],"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"InlineFragment","typeCondition":{"kind":"NamedType","name":{"kind":"Name","value":"ArchiveLinkSuccess"}},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"linkId"}},{"kind":"Field","name":{"kind":"Name","value":"message"}}]}},{"kind":"InlineFragment","typeCondition":{"kind":"NamedType","name":{"kind":"Name","value":"ArchiveLinkError"}},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"message"}},{"kind":"Field","name":{"kind":"Name","value":"errorCodes"}}]}}]}}]}}]} as unknown as DocumentNode<SetLinkArchivedMutation, SetLinkArchivedMutationVariables>;
+export const SetBookmarkArticleDocument = {"kind":"Document","definitions":[{"kind":"OperationDefinition","operation":"mutation","name":{"kind":"Name","value":"SetBookmarkArticle"},"variableDefinitions":[{"kind":"VariableDefinition","variable":{"kind":"Variable","name":{"kind":"Name","value":"input"}},"type":{"kind":"NonNullType","type":{"kind":"NamedType","name":{"kind":"Name","value":"SetBookmarkArticleInput"}}}}],"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"setBookmarkArticle"},"arguments":[{"kind":"Argument","name":{"kind":"Name","value":"input"},"value":{"kind":"Variable","name":{"kind":"Name","value":"input"}}}],"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"InlineFragment","typeCondition":{"kind":"NamedType","name":{"kind":"Name","value":"SetBookmarkArticleSuccess"}},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"bookmarkedArticle"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"id"}}]}}]}},{"kind":"InlineFragment","typeCondition":{"kind":"NamedType","name":{"kind":"Name","value":"SetBookmarkArticleError"}},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"errorCodes"}}]}}]}}]}}]} as unknown as DocumentNode<SetBookmarkArticleMutation, SetBookmarkArticleMutationVariables>;
+export const CreateLabelDocument = {"kind":"Document","definitions":[{"kind":"OperationDefinition","operation":"mutation","name":{"kind":"Name","value":"CreateLabel"},"variableDefinitions":[{"kind":"VariableDefinition","variable":{"kind":"Variable","name":{"kind":"Name","value":"input"}},"type":{"kind":"NonNullType","type":{"kind":"NamedType","name":{"kind":"Name","value":"CreateLabelInput"}}}}],"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"createLabel"},"arguments":[{"kind":"Argument","name":{"kind":"Name","value":"input"},"value":{"kind":"Variable","name":{"kind":"Name","value":"input"}}}],"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"InlineFragment","typeCondition":{"kind":"NamedType","name":{"kind":"Name","value":"CreateLabelSuccess"}},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"label"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"id"}},{"kind":"Field","name":{"kind":"Name","value":"name"}},{"kind":"Field","name":{"kind":"Name","value":"color"}},{"kind":"Field","name":{"kind":"Name","value":"description"}},{"kind":"Field","name":{"kind":"Name","value":"createdAt"}},{"kind":"Field","name":{"kind":"Name","value":"internal"}}]}}]}},{"kind":"InlineFragment","typeCondition":{"kind":"NamedType","name":{"kind":"Name","value":"CreateLabelError"}},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"errorCodes"}}]}}]}}]}}]} as unknown as DocumentNode<CreateLabelMutation, CreateLabelMutationVariables>;
+export const UpdateLabelDocument = {"kind":"Document","definitions":[{"kind":"OperationDefinition","operation":"mutation","name":{"kind":"Name","value":"UpdateLabel"},"variableDefinitions":[{"kind":"VariableDefinition","variable":{"kind":"Variable","name":{"kind":"Name","value":"input"}},"type":{"kind":"NonNullType","type":{"kind":"NamedType","name":{"kind":"Name","value":"UpdateLabelInput"}}}}],"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"updateLabel"},"arguments":[{"kind":"Argument","name":{"kind":"Name","value":"input"},"value":{"kind":"Variable","name":{"kind":"Name","value":"input"}}}],"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"InlineFragment","typeCondition":{"kind":"NamedType","name":{"kind":"Name","value":"UpdateLabelSuccess"}},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"label"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"id"}},{"kind":"Field","name":{"kind":"Name","value":"name"}},{"kind":"Field","name":{"kind":"Name","value":"color"}},{"kind":"Field","name":{"kind":"Name","value":"description"}},{"kind":"Field","name":{"kind":"Name","value":"createdAt"}},{"kind":"Field","name":{"kind":"Name","value":"internal"}}]}}]}},{"kind":"InlineFragment","typeCondition":{"kind":"NamedType","name":{"kind":"Name","value":"UpdateLabelError"}},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"errorCodes"}}]}}]}}]}}]} as unknown as DocumentNode<UpdateLabelMutation, UpdateLabelMutationVariables>;
+export const DeleteLabelDocument = {"kind":"Document","definitions":[{"kind":"OperationDefinition","operation":"mutation","name":{"kind":"Name","value":"DeleteLabel"},"variableDefinitions":[{"kind":"VariableDefinition","variable":{"kind":"Variable","name":{"kind":"Name","value":"id"}},"type":{"kind":"NonNullType","type":{"kind":"NamedType","name":{"kind":"Name","value":"ID"}}}}],"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"deleteLabel"},"arguments":[{"kind":"Argument","name":{"kind":"Name","value":"id"},"value":{"kind":"Variable","name":{"kind":"Name","value":"id"}}}],"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"InlineFragment","typeCondition":{"kind":"NamedType","name":{"kind":"Name","value":"DeleteLabelSuccess"}},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"label"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"id"}},{"kind":"Field","name":{"kind":"Name","value":"name"}},{"kind":"Field","name":{"kind":"Name","value":"color"}},{"kind":"Field","name":{"kind":"Name","value":"description"}},{"kind":"Field","name":{"kind":"Name","value":"createdAt"}},{"kind":"Field","name":{"kind":"Name","value":"internal"}}]}}]}},{"kind":"InlineFragment","typeCondition":{"kind":"NamedType","name":{"kind":"Name","value":"DeleteLabelError"}},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"errorCodes"}}]}}]}}]}}]} as unknown as DocumentNode<DeleteLabelMutation, DeleteLabelMutationVariables>;
+export const SetLabelsDocument = {"kind":"Document","definitions":[{"kind":"OperationDefinition","operation":"mutation","name":{"kind":"Name","value":"SetLabels"},"variableDefinitions":[{"kind":"VariableDefinition","variable":{"kind":"Variable","name":{"kind":"Name","value":"input"}},"type":{"kind":"NonNullType","type":{"kind":"NamedType","name":{"kind":"Name","value":"SetLabelsInput"}}}}],"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"setLabels"},"arguments":[{"kind":"Argument","name":{"kind":"Name","value":"input"},"value":{"kind":"Variable","name":{"kind":"Name","value":"input"}}}],"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"InlineFragment","typeCondition":{"kind":"NamedType","name":{"kind":"Name","value":"SetLabelsSuccess"}},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"labels"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"FragmentSpread","name":{"kind":"Name","value":"LabelFields"}}]}}]}},{"kind":"InlineFragment","typeCondition":{"kind":"NamedType","name":{"kind":"Name","value":"SetLabelsError"}},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"errorCodes"}}]}}]}}]}},{"kind":"FragmentDefinition","name":{"kind":"Name","value":"LabelFields"},"typeCondition":{"kind":"NamedType","name":{"kind":"Name","value":"Label"}},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"id"}},{"kind":"Field","name":{"kind":"Name","value":"name"}},{"kind":"Field","name":{"kind":"Name","value":"color"}},{"kind":"Field","name":{"kind":"Name","value":"description"}},{"kind":"Field","name":{"kind":"Name","value":"createdAt"}},{"kind":"Field","name":{"kind":"Name","value":"internal"}}]}}]} as unknown as DocumentNode<SetLabelsMutation, SetLabelsMutationVariables>;
+export const UpdatePageDocument = {"kind":"Document","definitions":[{"kind":"OperationDefinition","operation":"mutation","name":{"kind":"Name","value":"UpdatePage"},"variableDefinitions":[{"kind":"VariableDefinition","variable":{"kind":"Variable","name":{"kind":"Name","value":"input"}},"type":{"kind":"NonNullType","type":{"kind":"NamedType","name":{"kind":"Name","value":"UpdatePageInput"}}}}],"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"updatePage"},"arguments":[{"kind":"Argument","name":{"kind":"Name","value":"input"},"value":{"kind":"Variable","name":{"kind":"Name","value":"input"}}}],"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"InlineFragment","typeCondition":{"kind":"NamedType","name":{"kind":"Name","value":"UpdatePageSuccess"}},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"updatedPage"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"id"}},{"kind":"Field","name":{"kind":"Name","value":"title"}},{"kind":"Field","name":{"kind":"Name","value":"url"}},{"kind":"Field","name":{"kind":"Name","value":"createdAt"}},{"kind":"Field","name":{"kind":"Name","value":"author"}},{"kind":"Field","name":{"kind":"Name","value":"image"}},{"kind":"Field","name":{"kind":"Name","value":"description"}},{"kind":"Field","name":{"kind":"Name","value":"savedAt"}},{"kind":"Field","name":{"kind":"Name","value":"publishedAt"}}]}}]}},{"kind":"InlineFragment","typeCondition":{"kind":"NamedType","name":{"kind":"Name","value":"UpdatePageError"}},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"errorCodes"}}]}}]}}]}}]} as unknown as DocumentNode<UpdatePageMutation, UpdatePageMutationVariables>;
