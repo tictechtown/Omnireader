@@ -1,6 +1,6 @@
 import { useQuery } from "@apollo/client";
 import BottomSheet from "@gorhom/bottom-sheet";
-import { useEffect, useMemo, useRef, useState } from "react";
+import { useDeferredValue, useEffect, useMemo, useRef, useState } from "react";
 import { FlatList, RefreshControl } from "react-native";
 import {
   ActivityIndicator,
@@ -158,21 +158,23 @@ export default function FeedList({
     );
   };
 
+  const deferredData = useDeferredValue(data);
+
   const itemsData = useMemo(() => {
-    if (!data) {
+    if (!deferredData) {
       return [];
     }
-    if (data.search.__typename === "SearchError") {
+    if (deferredData.search.__typename === "SearchError") {
       return [];
     }
-    const edges = data.search.edges;
+    const edges = deferredData.search.edges;
     if (shouldFilterRead) {
       return edges.filter((e) => e.node.readingProgressPercent < 100);
     }
     return edges;
-  }, [data, shouldFilterRead]);
+  }, [deferredData, shouldFilterRead]);
 
-  if (loading && !data) {
+  if (loading && !deferredData) {
     return (
       <Surface
         mode="flat"
@@ -189,7 +191,7 @@ export default function FeedList({
     );
   }
 
-  if (error && !data) {
+  if (error && !deferredData) {
     return (
       <Surface style={{ flex: 1, height: "100%" }} mode="flat" elevation={0}>
         <Text>{error.cause?.toString()}</Text>

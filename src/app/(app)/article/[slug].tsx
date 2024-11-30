@@ -123,51 +123,54 @@ export default function Page() {
   const handleOpenPress = () => bottomSheetRef.current?.expand();
   const handleNotebookPress = () => notebookSheetRef.current?.expand();
 
-  const onScroll = ({ nativeEvent }) => {
-    const {
-      contentInset: { top },
-      contentOffset: { y },
-      contentSize: { height },
-      layoutMeasurement: { height: lHeight },
-    } = nativeEvent;
+  const onScroll = useCallback(
+    ({ nativeEvent }) => {
+      const {
+        contentInset: { top },
+        contentOffset: { y },
+        contentSize: { height },
+        layoutMeasurement: { height: lHeight },
+      } = nativeEvent;
 
-    // height = lHeight + top + y
-    const readingProgressPercent = clampToPercent(
-      (100 * (lHeight + top + y + 10)) / height
-    );
-    const readingProgressTopPercent = clampToPercent(
-      (100 * (top + y + 10)) / height
-    );
+      // height = lHeight + top + y
+      const readingProgressPercent = clampToPercent(
+        (100 * (lHeight + top + y + 10)) / height
+      );
+      const readingProgressTopPercent = clampToPercent(
+        (100 * (top + y + 10)) / height
+      );
 
-    if (data?.article.__typename === "ArticleSuccess") {
-      debouncedSaveProgress({
-        variables: {
-          input: {
-            id: data.article.article.id,
-            readingProgressPercent,
-            readingProgressTopPercent,
+      if (data?.article.__typename === "ArticleSuccess") {
+        debouncedSaveProgress({
+          variables: {
+            input: {
+              id: data.article.article.id,
+              readingProgressPercent,
+              readingProgressTopPercent,
+            },
           },
-        },
-      });
-    }
-  };
+        });
+      }
+    },
+    [debouncedSaveProgress, data?.article.__typename]
+  );
 
-  const handleArchive = () => {
+  const handleArchive = useCallback(() => {
     if (data?.article.__typename === "ArticleSuccess") {
       setArchiveStatus(
         data?.article.article.id,
         !data?.article.article.isArchived
       );
     }
-  };
+  }, [data?.article.article.id, data?.article.article.isArchived]);
 
-  const handleShare = () => {
+  const handleShare = useCallback(() => {
     if (data?.article.__typename === "ArticleSuccess") {
       Share.share({
         message: data?.article.article.url,
       });
     }
-  };
+  }, [data?.article.article.url]);
 
   const article =
     data?.article?.__typename === "ArticleSuccess"

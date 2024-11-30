@@ -1,8 +1,8 @@
+import ExpoImage from "expo-image/build/ExpoImage";
 import * as WebBrowser from "expo-web-browser";
 import React, { memo, useCallback } from "react";
 import { ScrollView } from "react-native";
 import Markdown from "react-native-markdown-display";
-import Pdf from "react-native-pdf";
 import {
   ArticleFieldsFragment,
   LabelFieldsFragment,
@@ -20,48 +20,77 @@ type Props = {
   onArchive: () => void;
 };
 
-const Article = ({ onScroll, onShare, onArchive, article }: Props) => {
-  const { styles } = useMarkdownStyles();
+const renderRules = {
+  image: (
+    node,
+    children,
+    parent,
+    styles,
+    allowedImageHandlers,
+    defaultImageHandler
+  ) => {
+    const { src, alt } = node.attributes;
 
+    // we check that the source starts with at least one of the elements in allowedImageHandlers
+    const show =
+      allowedImageHandlers.filter((value) => {
+        return src.toLowerCase().startsWith(value.toLowerCase());
+      }).length > 0;
+
+    if (show === false && defaultImageHandler === null) {
+      return null;
+    }
+
+    const imageProps = {
+      indicator: true,
+      key: node.key,
+      style: styles._VIEW_SAFE_image,
+      source: src,
+    };
+
+    if (alt) {
+      imageProps.accessible = true;
+      imageProps.accessibilityLabel = alt;
+    }
+
+    return <ExpoImage {...imageProps} />;
+  },
+};
+
+const ArticleContent = ({ articleId, articleContent }) => {
+  console.log("render", "article");
+  const { styles } = useMarkdownStyles();
   const handleLinkPress = useCallback((url: string) => {
     WebBrowser.openBrowserAsync(url);
     return true;
   }, []);
 
-  if (article.contentReader === "PDF") {
-    return (
-      <Pdf
-        source={{ uri: article.url, cache: false }}
-        onLoadComplete={(numberOfPages, filePath) => {
-          console.log(`Number of pages: ${numberOfPages}`);
-        }}
-        onPageChanged={(page, numberOfPages) => {
-          console.log(`Current page: ${page}`);
-        }}
-        onError={(error) => {
-          console.log(error);
-        }}
-        onPressLink={(uri) => {
-          console.log(`Link pressed: ${uri}`);
-        }}
-        style={{ flex: 1 }}
-        trustAllCerts={false}
-      />
-    );
-  }
+  return (
+    <Markdown style={styles} onLinkPress={handleLinkPress}>
+      {articleContent}
+    </Markdown>
+  );
+};
 
+const arePropsEqual = (oldProps, newProps) =>
+  oldProps.articleId === newProps.articleId;
+
+const MemoArticleContent = memo(ArticleContent, arePropsEqual);
+
+const Article = ({ onScroll, onShare, onArchive, article }: Props) => {
+  console.log("render");
   return (
     <ScrollView
-      onScroll={onScroll}
-      scrollEventThrottle={16}
+      scrollEventThrottle={60}
       contentContainerStyle={{ padding: 16 }}
       contentInsetAdjustmentBehavior="automatic"
       style={{ height: "100%" }}
     >
       <ArticleHeader article={article} />
-      <Markdown style={styles} onLinkPress={handleLinkPress}>
-        {article.content}
-      </Markdown>
+      <MemoArticleContent
+        articleId={article.id}
+        articleContent={article.content}
+      />
       <ArticleFooter onShare={onShare} onArchive={onArchive} />
     </ScrollView>
   );
